@@ -5,29 +5,28 @@
 #ifndef SERVER_MESSAGE_H
 #define SERVER_MESSAGE_H
 
-
-#include "Broadcast/DeltaBroadcast.hpp"
-
-#include <variant>
-#include <Broadcast/GlobalDebug.hpp>
-#include <Broadcast/LoginGreeting.hpp>
-#include <Broadcast/MatchConfig.hpp>
-#include <Broadcast/MatchFinish.hpp>
-#include <Broadcast/MatchStart.hpp>
-#include <Broadcast/Next.hpp>
-#include <Broadcast/PauseResponse.hpp>
-#include <Broadcast/Snapshot.hpp>
-#include <Request/ContinueRequest.hpp>
-#include <Request/DeltaRequest.hpp>
-#include <Request/GetReplay.hpp>
-#include <Request/JoinRequest.hpp>
-#include <Request/PauseRequest.hpp>
-#include <Request/SendDebug.hpp>
-#include <Request/TeamFormation.hpp>
-#include <Unicast/JoinResponse.hpp>
-#include <Unicast/PrivateDebug.hpp>
-#include <Unicast/Reconnect.hpp>
 #include <chrono>
+#include <variant>
+
+#include "DeltaBroadcast.hpp"
+#include "GlobalDebug.hpp"
+#include "LoginGreeting.hpp"
+#include "MatchConfig.hpp"
+#include "MatchFinish.hpp"
+#include "MatchStart.hpp"
+#include "Next.hpp"
+#include "PauseResponse.hpp"
+#include "Snapshot.hpp"
+#include "ContinueRequest.hpp"
+#include "DeltaRequest.hpp"
+#include "GetReplay.hpp"
+#include "JoinRequest.hpp"
+#include "PauseRequest.hpp"
+#include "SendDebug.hpp"
+#include "TeamFormation.hpp"
+#include "JoinResponse.hpp"
+#include "PrivateDebug.hpp"
+#include "Reconnect.hpp"
 
 namespace communication::messages {
     using Payload = std::variant<
