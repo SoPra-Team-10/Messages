@@ -4,7 +4,7 @@
 // Created by paulnykiel on 26.04.19.
 //
 
-#include "Message.h"
+#include "Message.hpp"
 #include <sstream>
 #include <iomanip>
 #include <iostream>

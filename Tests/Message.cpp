@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Message.h>
+#include <Message.hpp>
 
 using namespace communication::messages;
 
