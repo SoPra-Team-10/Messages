@@ -115,6 +115,9 @@ namespace communication::messages::broadcast {
         this->log.emplace_back(message);
     }
 
+    Replay::Replay(const std::string &lobby, const std::string &startTime, const MatchConfig &matchConfig) : lobby(
+            lobby), startTime(startTime), matchConfig(matchConfig) {}
+
     void to_json(nlohmann::json &j, const Replay &replay) {
         j["lobby"] = replay.getLobby();
         j["startTimestamp"] = replay.getStartTime();
