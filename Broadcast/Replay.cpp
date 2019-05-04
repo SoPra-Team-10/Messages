@@ -55,7 +55,7 @@ namespace communication::messages::broadcast {
         return rightTeamUserName;
     }
 
-    std::vector<std::string> Replay::getSpectatrUserNames() const {
+    std::vector<std::string> Replay::getSpectatorUserNames() const {
         return spectatorUserNames;
     }
 
@@ -87,6 +87,34 @@ namespace communication::messages::broadcast {
         return this->startTime;
     }
 
+    void Replay::setLeftTeamConfig(const request::TeamConfig &leftTeamConfig) {
+        this->leftTeamConfig = leftTeamConfig;
+    }
+
+    void Replay::setRightTeamConfig(const request::TeamConfig &rightTeamConfig) {
+        this->rightTeamConfig = rightTeamConfig;
+    }
+
+    void Replay::setLeftTeamUserName(const std::string &leftTeamUserName) {
+        this->leftTeamUserName = leftTeamUserName;
+    }
+
+    void Replay::setRightTeamUserName(const std::string &rightTeamUserName) {
+        this->rightTeamUserName = rightTeamUserName;
+    }
+
+    void Replay::setSpectatorUserNames(const std::vector<std::string> &spectatorUserNames) {
+        this->spectatorUserNames = spectatorUserNames;
+    }
+
+    void Replay::setFirstSnapshot(const Snapshot &firstSnapshot) {
+        this->firstSnapshot = firstSnapshot;
+    }
+
+    void Replay::addLog(const messages::Message &message) {
+        this->log.emplace_back(message);
+    }
+
     void to_json(nlohmann::json &j, const Replay &replay) {
         j["lobby"] = replay.getLobby();
         j["startTimestamp"] = replay.getStartTime();
@@ -95,7 +123,7 @@ namespace communication::messages::broadcast {
         j["rightTeamConfig"] = replay.getRightTeamConfig();
         j["leftTeamUserName"] = replay.getLeftTeamUserName();
         j["rightTeamUserName"] = replay.getRightTeamUserName();
-        j["spectatorUserName"] = replay.getSpectatrUserNames();
+        j["spectatorUserName"] = replay.getSpectatorUserNames();
         j["firstSnapshot"] = replay.getFirstSnapshot();
         j["log"] = replay.getLog();
     }

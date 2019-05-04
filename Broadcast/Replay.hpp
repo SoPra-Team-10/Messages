@@ -38,7 +38,7 @@ namespace communication::messages::broadcast {
 
         std::string getRightTeamUserName() const;
 
-        std::vector<std::string> getSpectatrUserNames() const;
+        std::vector<std::string> getSpectatorUserNames() const;
 
         Snapshot getFirstSnapshot() const;
 
@@ -50,6 +50,19 @@ namespace communication::messages::broadcast {
 
         bool operator!=(const Replay &rhs) const;
 
+        void setLeftTeamConfig(const request::TeamConfig &leftTeamConfig);
+
+        void setRightTeamConfig(const request::TeamConfig &rightTeamConfig);
+
+        void setLeftTeamUserName(const std::string &leftTeamUserName);
+
+        void setRightTeamUserName(const std::string &rightTeamUserName);
+
+        void setSpectatorUserNames(const std::vector<std::string> &spectatorUserNames);
+
+        void setFirstSnapshot(const Snapshot &firstSnapshot);
+
+        void addLog(const messages::Message &message);
     private:
         std::string lobby;
         std::string startTime;
