@@ -184,9 +184,6 @@ TEST(CommunicationMessagesCommonTypes, PhaseTypeBallPhase) {
 TEST(CommunicationMessagesCommonTypes, PhaseTypePlayerPhase) {
     EXPECT_EQ(fromStringPhaseType(toString(PhaseType::PLAYER_PHASE)), PhaseType::PLAYER_PHASE);
 }
-TEST(CommunicationMessagesCommonTypes, PhaseTypeActionPhase) {
-    EXPECT_EQ(fromStringPhaseType(toString(PhaseType::ACTION_PHASE)), PhaseType::ACTION_PHASE);
-}
 TEST(CommunicationMessagesCommonTypes, PhaseTypeFanPhase) {
     EXPECT_EQ(fromStringPhaseType(toString(PhaseType::FAN_PHASE)), PhaseType::FAN_PHASE);
 }

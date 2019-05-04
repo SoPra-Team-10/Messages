@@ -111,53 +111,6 @@ namespace communication::messages::broadcast {
         return lastDeltaBroadcast;
     }
 
-    TeamSnapshot::TeamSnapshot(int points, std::vector<std::pair<types::FanType, bool>> fans, int seekerX,
-                             int seekerY, bool seekerBanned, bool seekerTurnUsed, int keeperX, int keeperY,
-                             bool keeperBanned, bool keeperHoldsQuaffle, bool keeperTurnUsed, int chaser1X,
-                             int chaser1Y, bool chaser1Banned, bool chaser1HoldsQuaffle, bool chaser1TurnUsed,
-                             int chaser2X, int chaser2Y, bool chaser2Banned, bool chaser2HoldsQuaffle,
-                             bool chaser2TurnUsed, int chaser3X, int chaser3Y, bool chaser3Banned,
-                             bool chaser3HoldsQuaffle, bool chaser3TurnUsed, int beater1X, int beater1Y,
-                             bool beater1Banned, bool beater1HoldsBludger, bool beater1TurnUsed, int beater2X,
-                             int beater2Y, bool beater2Banned, bool beater2HoldsBludger, bool beater2TurnUsed) : points(
-            points), fans(std::move(fans)), seekerX(seekerX), seekerY(seekerY), seekerBanned(seekerBanned), seekerTurnUsed(
-            seekerTurnUsed), keeperX(keeperX), keeperY(keeperY), keeperBanned(keeperBanned), keeperHoldsQuaffle(
-            keeperHoldsQuaffle), keeperTurnUsed(keeperTurnUsed), chaser1X(chaser1X), chaser1Y(chaser1Y), chaser1Banned(
-            chaser1Banned), chaser1HoldsQuaffle(chaser1HoldsQuaffle), chaser1TurnUsed(chaser1TurnUsed), chaser2X(
-            chaser2X), chaser2Y(chaser2Y), chaser2Banned(chaser2Banned), chaser2HoldsQuaffle(chaser2HoldsQuaffle),
-                                                                                                                 chaser2TurnUsed(
-                                                                                                                         chaser2TurnUsed),
-                                                                                                                 chaser3X(
-                                                                                                                         chaser3X),
-                                                                                                                 chaser3Y(
-                                                                                                                         chaser3Y),
-                                                                                                                 chaser3Banned(
-                                                                                                                         chaser3Banned),
-                                                                                                                 chaser3HoldsQuaffle(
-                                                                                                                         chaser3HoldsQuaffle),
-                                                                                                                 chaser3TurnUsed(
-                                                                                                                         chaser3TurnUsed),
-                                                                                                                 beater1X(
-                                                                                                                         beater1X),
-                                                                                                                 beater1Y(
-                                                                                                                         beater1Y),
-                                                                                                                 beater1Banned(
-                                                                                                                         beater1Banned),
-                                                                                                                 beater1HoldsBludger(
-                                                                                                                         beater1HoldsBludger),
-                                                                                                                 beater1TurnUsed(
-                                                                                                                         beater1TurnUsed),
-                                                                                                                 beater2X(
-                                                                                                                         beater2X),
-                                                                                                                 beater2Y(
-                                                                                                                         beater2Y),
-                                                                                                                 beater2Banned(
-                                                                                                                         beater2Banned),
-                                                                                                                 beater2HoldsBludger(
-                                                                                                                         beater2HoldsBludger),
-                                                                                                                 beater2TurnUsed(
-                                                                                                                         beater2TurnUsed) {}
-
     int TeamSnapshot::getPoints() const {
         return points;
     }
@@ -302,6 +255,126 @@ namespace communication::messages::broadcast {
         return beater2TurnUsed;
     }
 
+
+    TeamSnapshot::TeamSnapshot(int points, const std::vector<std::pair<types::FanType, bool>> &fans, int seekerX,
+                               int seekerY, bool seekerBanned, bool seekerTurnUsed, bool seekerKnockout, int keeperX,
+                               int keeperY, bool keeperBanned, bool keeperHoldsQuaffle, bool keeperTurnUsed,
+                               bool keeperKnockout, int chaser1X, int chaser1Y, bool chaser1Banned,
+                               bool chaser1HoldsQuaffle, bool chaser1TurnUsed, bool chaser1Knockout, int chaser2X,
+                               int chaser2Y, bool chaser2Banned, bool chaser2HoldsQuaffle, bool chaser2TurnUsed,
+                               bool chaser2Knockout, int chaser3X, int chaser3Y, bool chaser3Banned,
+                               bool chaser3HoldsQuaffle, bool chaser3TurnUsed, bool chaser3Knockout, int beater1X,
+                               int beater1Y, bool beater1Banned, bool beater1HoldsBludger, bool beater1TurnUsed,
+                               bool beater1Knockout, int beater2X, int beater2Y, bool beater2Banned,
+                               bool beater2HoldsBludger, bool beater2TurnUsed, bool beater2Knockout) : points(points),
+                                                                                                       fans(fans),
+                                                                                                       seekerX(seekerX),
+                                                                                                       seekerY(seekerY),
+                                                                                                       seekerBanned(
+                                                                                                               seekerBanned),
+                                                                                                       seekerTurnUsed(
+                                                                                                               seekerTurnUsed),
+                                                                                                       seekerKnockout(
+                                                                                                               seekerKnockout),
+                                                                                                       keeperX(keeperX),
+                                                                                                       keeperY(keeperY),
+                                                                                                       keeperBanned(
+                                                                                                               keeperBanned),
+                                                                                                       keeperHoldsQuaffle(
+                                                                                                               keeperHoldsQuaffle),
+                                                                                                       keeperTurnUsed(
+                                                                                                               keeperTurnUsed),
+                                                                                                       keeperKnockout(
+                                                                                                               keeperKnockout),
+                                                                                                       chaser1X(
+                                                                                                               chaser1X),
+                                                                                                       chaser1Y(
+                                                                                                               chaser1Y),
+                                                                                                       chaser1Banned(
+                                                                                                               chaser1Banned),
+                                                                                                       chaser1HoldsQuaffle(
+                                                                                                               chaser1HoldsQuaffle),
+                                                                                                       chaser1TurnUsed(
+                                                                                                               chaser1TurnUsed),
+                                                                                                       chaser1Knockout(
+                                                                                                               chaser1Knockout),
+                                                                                                       chaser2X(
+                                                                                                               chaser2X),
+                                                                                                       chaser2Y(
+                                                                                                               chaser2Y),
+                                                                                                       chaser2Banned(
+                                                                                                               chaser2Banned),
+                                                                                                       chaser2HoldsQuaffle(
+                                                                                                               chaser2HoldsQuaffle),
+                                                                                                       chaser2TurnUsed(
+                                                                                                               chaser2TurnUsed),
+                                                                                                       chaser2Knockout(
+                                                                                                               chaser2Knockout),
+                                                                                                       chaser3X(
+                                                                                                               chaser3X),
+                                                                                                       chaser3Y(
+                                                                                                               chaser3Y),
+                                                                                                       chaser3Banned(
+                                                                                                               chaser3Banned),
+                                                                                                       chaser3HoldsQuaffle(
+                                                                                                               chaser3HoldsQuaffle),
+                                                                                                       chaser3TurnUsed(
+                                                                                                               chaser3TurnUsed),
+                                                                                                       chaser3Knockout(
+                                                                                                               chaser3Knockout),
+                                                                                                       beater1X(
+                                                                                                               beater1X),
+                                                                                                       beater1Y(
+                                                                                                               beater1Y),
+                                                                                                       beater1Banned(
+                                                                                                               beater1Banned),
+                                                                                                       beater1HoldsBludger(
+                                                                                                               beater1HoldsBludger),
+                                                                                                       beater1TurnUsed(
+                                                                                                               beater1TurnUsed),
+                                                                                                       beater1Knockout(
+                                                                                                               beater1Knockout),
+                                                                                                       beater2X(
+                                                                                                               beater2X),
+                                                                                                       beater2Y(
+                                                                                                               beater2Y),
+                                                                                                       beater2Banned(
+                                                                                                               beater2Banned),
+                                                                                                       beater2HoldsBludger(
+                                                                                                               beater2HoldsBludger),
+                                                                                                       beater2TurnUsed(
+                                                                                                               beater2TurnUsed),
+                                                                                                       beater2Knockout(
+                                                                                                               beater2Knockout) {}
+
+    bool TeamSnapshot::isSeekerKnockout() const {
+        return seekerKnockout;
+    }
+
+    bool TeamSnapshot::isKeeperKnockout() const {
+        return keeperKnockout;
+    }
+
+    bool TeamSnapshot::isChaser1Knockout() const {
+        return chaser1Knockout;
+    }
+
+    bool TeamSnapshot::isChaser2Knockout() const {
+        return chaser2Knockout;
+    }
+
+    bool TeamSnapshot::isChaser3Knockout() const {
+        return chaser3Knockout;
+    }
+
+    bool TeamSnapshot::isBeater1Knockout() const {
+        return beater1Knockout;
+    }
+
+    bool TeamSnapshot::isBeater2Knockout() const {
+        return beater2Knockout;
+    }
+
     bool TeamSnapshot::operator==(const TeamSnapshot &rhs) const {
         return points == rhs.points &&
                fans == rhs.fans &&
@@ -309,36 +382,43 @@ namespace communication::messages::broadcast {
                seekerY == rhs.seekerY &&
                seekerBanned == rhs.seekerBanned &&
                seekerTurnUsed == rhs.seekerTurnUsed &&
+               seekerKnockout == rhs.seekerKnockout &&
                keeperX == rhs.keeperX &&
                keeperY == rhs.keeperY &&
                keeperBanned == rhs.keeperBanned &&
                keeperHoldsQuaffle == rhs.keeperHoldsQuaffle &&
                keeperTurnUsed == rhs.keeperTurnUsed &&
+               keeperKnockout == rhs.keeperKnockout &&
                chaser1X == rhs.chaser1X &&
                chaser1Y == rhs.chaser1Y &&
                chaser1Banned == rhs.chaser1Banned &&
                chaser1HoldsQuaffle == rhs.chaser1HoldsQuaffle &&
                chaser1TurnUsed == rhs.chaser1TurnUsed &&
+               chaser1Knockout == rhs.chaser1Knockout &&
                chaser2X == rhs.chaser2X &&
                chaser2Y == rhs.chaser2Y &&
                chaser2Banned == rhs.chaser2Banned &&
                chaser2HoldsQuaffle == rhs.chaser2HoldsQuaffle &&
                chaser2TurnUsed == rhs.chaser2TurnUsed &&
+               chaser2Knockout == rhs.chaser2Knockout &&
                chaser3X == rhs.chaser3X &&
                chaser3Y == rhs.chaser3Y &&
                chaser3Banned == rhs.chaser3Banned &&
                chaser3HoldsQuaffle == rhs.chaser3HoldsQuaffle &&
                chaser3TurnUsed == rhs.chaser3TurnUsed &&
+               chaser3Knockout == rhs.chaser3Knockout &&
                beater1X == rhs.beater1X &&
                beater1Y == rhs.beater1Y &&
                beater1Banned == rhs.beater1Banned &&
                beater1HoldsBludger == rhs.beater1HoldsBludger &&
                beater1TurnUsed == rhs.beater1TurnUsed &&
+               beater1Knockout == rhs.beater1Knockout &&
                beater2X == rhs.beater2X &&
                beater2Y == rhs.beater2Y &&
                beater2Banned == rhs.beater2Banned &&
                beater2HoldsBludger == rhs.beater2HoldsBludger &&
-               beater2TurnUsed == rhs.beater2TurnUsed;
+               beater2TurnUsed == rhs.beater2TurnUsed &&
+               beater2Knockout == rhs.beater2Knockout;
     }
 
     bool TeamSnapshot::operator!=(const TeamSnapshot &rhs) const {
@@ -359,36 +439,43 @@ namespace communication::messages::broadcast {
         j["players"]["seeker"]["yPos"] = teamSnaphot.getSeekerY();
         j["players"]["seeker"]["banned"] = teamSnaphot.isSeekerBanned();
         j["players"]["seeker"]["turnUsed"] = teamSnaphot.isSeekerTurnUsed();
+        j["players"]["seeker"]["knockout"] = teamSnaphot.isSeekerKnockout();
         j["players"]["keeper"]["xPos"] = teamSnaphot.getKeeperX();
         j["players"]["keeper"]["yPos"] = teamSnaphot.getKeeperY();
         j["players"]["keeper"]["banned"] = teamSnaphot.isKeeperBanned();
         j["players"]["keeper"]["holdsQuaffle"] = teamSnaphot.isKeeperHoldsQuaffle();
         j["players"]["keeper"]["turnUsed"] = teamSnaphot.isKeeperTurnUsed();
+        j["players"]["keeper"]["knockout"] = teamSnaphot.isKeeperKnockout();
         j["players"]["chaser1"]["xPos"] = teamSnaphot.getChaser1X();
         j["players"]["chaser1"]["yPos"] = teamSnaphot.getChaser1Y();
         j["players"]["chaser1"]["banned"] = teamSnaphot.isChaser1Banned();
         j["players"]["chaser1"]["holdsQuaffle"] = teamSnaphot.isChaser1HoldsQuaffle();
         j["players"]["chaser1"]["turnUsed"] = teamSnaphot.isChaser1TurnUsed();
+        j["players"]["chaser1"]["knockout"] = teamSnaphot.isChaser1Knockout();
         j["players"]["chaser2"]["xPos"] = teamSnaphot.getChaser2X();
         j["players"]["chaser2"]["yPos"] = teamSnaphot.getChaser2Y();
         j["players"]["chaser2"]["banned"] = teamSnaphot.isChaser2Banned();
         j["players"]["chaser2"]["holdsQuaffle"] = teamSnaphot.isChaser2HoldsQuaffle();
         j["players"]["chaser2"]["turnUsed"] = teamSnaphot.isChaser2TurnUsed();
+        j["players"]["chaser2"]["knockout"] = teamSnaphot.isChaser2Knockout();
         j["players"]["chaser3"]["xPos"] = teamSnaphot.getChaser3X();
         j["players"]["chaser3"]["yPos"] = teamSnaphot.getChaser3Y();
         j["players"]["chaser3"]["banned"] = teamSnaphot.isChaser3Banned();
         j["players"]["chaser3"]["holdsQuaffle"] = teamSnaphot.isChaser3HoldsQuaffle();
         j["players"]["chaser3"]["turnUsed"] = teamSnaphot.isChaser3TurnUsed();
+        j["players"]["chaser3"]["knockout"] = teamSnaphot.isChaser3Knockout();
         j["players"]["beater1"]["xPos"] = teamSnaphot.getBeater1X();
         j["players"]["beater1"]["yPos"] = teamSnaphot.getBeater1Y();
         j["players"]["beater1"]["banned"] = teamSnaphot.isBeater1Banned();
         j["players"]["beater1"]["holdsBludger"] = teamSnaphot.isBeater1HoldsBludger();
+        j["players"]["beater1"]["knockout"] = teamSnaphot.isBeater1Knockout();
         j["players"]["beater1"]["turnUsed"] = teamSnaphot.isBeater1TurnUsed();
         j["players"]["beater2"]["xPos"] = teamSnaphot.getBeater2X();
         j["players"]["beater2"]["yPos"] = teamSnaphot.getBeater2Y();
         j["players"]["beater2"]["banned"] = teamSnaphot.isBeater2Banned();
         j["players"]["beater2"]["holdsBludger"] = teamSnaphot.isBeater2HoldsBludger();
         j["players"]["beater2"]["turnUsed"] = teamSnaphot.isBeater2TurnUsed();
+        j["players"]["beater2"]["knockout"] = teamSnaphot.isBeater2Knockout();
     }
 
     void from_json(const nlohmann::json &j, TeamSnapshot &teamSnaphot) {
@@ -408,36 +495,43 @@ namespace communication::messages::broadcast {
             j.at("players").at("seeker").at("yPos").get<int>(),
             j.at("players").at("seeker").at("banned").get<bool>(),
             j.at("players").at("seeker").at("turnUsed").get<bool>(),
+            j.at("players").at("seeker").at("knockout").get<bool>(),
             j.at("players").at("keeper").at("xPos").get<int>(),
             j.at("players").at("keeper").at("yPos").get<int>(),
             j.at("players").at("keeper").at("banned").get<bool>(),
             j.at("players").at("keeper").at("holdsQuaffle").get<bool>(),
             j.at("players").at("keeper").at("turnUsed").get<bool>(),
+            j.at("players").at("keeper").at("knockout").get<bool>(),
             j.at("players").at("chaser1").at("xPos").get<int>(),
             j.at("players").at("chaser1").at("yPos").get<int>(),
             j.at("players").at("chaser1").at("banned").get<bool>(),
             j.at("players").at("chaser1").at("holdsQuaffle").get<bool>(),
             j.at("players").at("chaser1").at("turnUsed").get<bool>(),
+            j.at("players").at("chaser1").at("knockout").get<bool>(),
             j.at("players").at("chaser2").at("xPos").get<int>(),
             j.at("players").at("chaser2").at("yPos").get<int>(),
             j.at("players").at("chaser2").at("banned").get<bool>(),
             j.at("players").at("chaser2").at("holdsQuaffle").get<bool>(),
             j.at("players").at("chaser2").at("turnUsed").get<bool>(),
+            j.at("players").at("chaser2").at("knockout").get<bool>(),
             j.at("players").at("chaser3").at("xPos").get<int>(),
             j.at("players").at("chaser3").at("yPos").get<int>(),
             j.at("players").at("chaser3").at("banned").get<bool>(),
             j.at("players").at("chaser3").at("holdsQuaffle").get<bool>(),
             j.at("players").at("chaser3").at("turnUsed").get<bool>(),
+            j.at("players").at("chaser3").at("knockout").get<bool>(),
             j.at("players").at("beater1").at("xPos").get<int>(),
             j.at("players").at("beater1").at("yPos").get<int>(),
             j.at("players").at("beater1").at("banned").get<bool>(),
             j.at("players").at("beater1").at("holdsBludger").get<bool>(),
             j.at("players").at("beater1").at("turnUsed").get<bool>(),
+            j.at("players").at("beater1").at("knockout").get<bool>(),
             j.at("players").at("beater2").at("xPos").get<int>(),
             j.at("players").at("beater2").at("yPos").get<int>(),
             j.at("players").at("beater2").at("banned").get<bool>(),
             j.at("players").at("beater2").at("holdsBludger").get<bool>(),
-            j.at("players").at("beater2").at("turnUsed").get<bool>()
+            j.at("players").at("beater2").at("turnUsed").get<bool>(),
+            j.at("players").at("beater2").at("knockout").get<bool>()
         };
     }
 

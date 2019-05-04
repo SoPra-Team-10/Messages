@@ -18,14 +18,16 @@ namespace communication::messages::broadcast {
     class TeamSnapshot {
     public:
         TeamSnapshot() = default;
-        TeamSnapshot(int points, std::vector<std::pair<types::FanType, bool>> fans, int seekerX, int seekerY,
-                    bool seekerBanned, bool seekerTurnUsed, int keeperX, int keeperY, bool keeperBanned,
-                    bool keeperHoldsQuaffle, bool keeperTurnUsed, int chaser1X, int chaser1Y, bool chaser1Banned,
-                    bool chaser1HoldsQuaffle, bool chaser1TurnUsed, int chaser2X, int chaser2Y, bool chaser2Banned,
-                    bool chaser2HoldsQuaffle, bool chaser2TurnUsed, int chaser3X, int chaser3Y, bool chaser3Banned,
-                    bool chaser3HoldsQuaffle, bool chaser3TurnUsed, int beater1X, int beater1Y, bool beater1Banned,
-                    bool beater1HoldsBludger, bool beater1TurnUsed, int beater2X, int beater2Y, bool beater2Banned,
-                    bool beater2HoldsBludger, bool beater2TurnUsed);
+        TeamSnapshot(int points, const std::vector<std::pair<types::FanType, bool>> &fans, int seekerX, int seekerY,
+                     bool seekerBanned, bool seekerTurnUsed, bool seekerKnockout, int keeperX, int keeperY,
+                     bool keeperBanned, bool keeperHoldsQuaffle, bool keeperTurnUsed, bool keeperKnockout, int chaser1X,
+                     int chaser1Y, bool chaser1Banned, bool chaser1HoldsQuaffle, bool chaser1TurnUsed,
+                     bool chaser1Knockout, int chaser2X, int chaser2Y, bool chaser2Banned, bool chaser2HoldsQuaffle,
+                     bool chaser2TurnUsed, bool chaser2Knockout, int chaser3X, int chaser3Y, bool chaser3Banned,
+                     bool chaser3HoldsQuaffle, bool chaser3TurnUsed, bool chaser3Knockout, int beater1X, int beater1Y,
+                     bool beater1Banned, bool beater1HoldsBludger, bool beater1TurnUsed, bool beater1Knockout,
+                     int beater2X, int beater2Y, bool beater2Banned, bool beater2HoldsBludger, bool beater2TurnUsed,
+                     bool beater2Knockout);
 
         int getPoints() const;
         std::vector<std::pair<types::FanType, bool>> getFans() const;
@@ -64,6 +66,20 @@ namespace communication::messages::broadcast {
         bool isBeater2HoldsBludger() const;
         bool isBeater2TurnUsed() const;
 
+        bool isSeekerKnockout() const;
+
+        bool isKeeperKnockout() const;
+
+        bool isChaser1Knockout() const;
+
+        bool isChaser2Knockout() const;
+
+        bool isChaser3Knockout() const;
+
+        bool isBeater1Knockout() const;
+
+        bool isBeater2Knockout() const;
+
         bool operator==(const TeamSnapshot &rhs) const;
 
         bool operator!=(const TeamSnapshot &rhs) const;
@@ -72,19 +88,19 @@ namespace communication::messages::broadcast {
         int points{};
         std::vector<std::pair<types::FanType, bool>> fans;
         int seekerX{}, seekerY{};
-        bool seekerBanned{}, seekerTurnUsed{};
+        bool seekerBanned{}, seekerTurnUsed{}, seekerKnockout{};
         int keeperX{}, keeperY{};
-        bool keeperBanned{}, keeperHoldsQuaffle{}, keeperTurnUsed{};
+        bool keeperBanned{}, keeperHoldsQuaffle{}, keeperTurnUsed{}, keeperKnockout{};
         int chaser1X{}, chaser1Y{};
-        bool chaser1Banned{}, chaser1HoldsQuaffle{}, chaser1TurnUsed{};
+        bool chaser1Banned{}, chaser1HoldsQuaffle{}, chaser1TurnUsed{}, chaser1Knockout{};
         int chaser2X{}, chaser2Y{};
-        bool chaser2Banned{}, chaser2HoldsQuaffle{}, chaser2TurnUsed{};
+        bool chaser2Banned{}, chaser2HoldsQuaffle{}, chaser2TurnUsed{}, chaser2Knockout{};
         int chaser3X{}, chaser3Y{};
-        bool chaser3Banned{}, chaser3HoldsQuaffle{}, chaser3TurnUsed{};
+        bool chaser3Banned{}, chaser3HoldsQuaffle{}, chaser3TurnUsed{}, chaser3Knockout{};
         int beater1X{}, beater1Y{};
-        bool beater1Banned{}, beater1HoldsBludger{}, beater1TurnUsed{};
+        bool beater1Banned{}, beater1HoldsBludger{}, beater1TurnUsed{}, beater1Knockout;
         int beater2X{}, beater2Y{};
-        bool beater2Banned{}, beater2HoldsBludger{}, beater2TurnUsed{};
+        bool beater2Banned{}, beater2HoldsBludger{}, beater2TurnUsed{}, beater2Knockout;
     };
 
     void to_json(nlohmann::json &j, const TeamSnapshot &teamSnaphot);
