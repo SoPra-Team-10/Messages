@@ -60,7 +60,7 @@ namespace communication::messages::broadcast {
 
         void setRightTeamUserName(const std::string &rightTeamUserName);
 
-        void setSpectatorUserNames(const std::vector<std::string> &spectatorUserNames);
+        void addSpectator(const std::string &name);
 
         void setFirstSnapshot(const Snapshot &firstSnapshot);
 

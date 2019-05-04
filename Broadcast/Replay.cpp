@@ -103,10 +103,6 @@ namespace communication::messages::broadcast {
         this->rightTeamUserName = rightTeamUserName;
     }
 
-    void Replay::setSpectatorUserNames(const std::vector<std::string> &spectatorUserNames) {
-        this->spectatorUserNames = spectatorUserNames;
-    }
-
     void Replay::setFirstSnapshot(const Snapshot &firstSnapshot) {
         this->firstSnapshot = firstSnapshot;
     }
@@ -117,6 +113,10 @@ namespace communication::messages::broadcast {
 
     Replay::Replay(const std::string &lobby, const std::string &startTime, const MatchConfig &matchConfig) : lobby(
             lobby), startTime(startTime), matchConfig(matchConfig) {}
+
+    void Replay::addSpectator(const std::string &name) {
+        this->spectatorUserNames.emplace_back(name);
+    }
 
     void to_json(nlohmann::json &j, const Replay &replay) {
         j["lobby"] = replay.getLobby();
