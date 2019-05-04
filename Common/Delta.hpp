@@ -16,9 +16,11 @@ namespace communication::messages {
     class Delta {
     public:
         Delta() = default;
-        Delta(types::DeltaType deltaType, std::optional<bool> success, std::optional<int> xPosOld,
-              std::optional<int> yPosOld, std::optional<int> xPosNew, std::optional<int> yPosNew,
-              std::optional<types::EntityId> activeEntity, std::optional<types::EntityId> passiveEntity);
+
+        Delta(types::DeltaType deltaType, const std::optional<bool> &success, const std::optional<int> &xPosOld,
+              const std::optional<int> &yPosOld, const std::optional<int> &xPosNew, const std::optional<int> &yPosNew,
+              const std::optional<types::EntityId> &activeEntity, const std::optional<types::EntityId> &passiveEntity,
+              types::PhaseType phase, int leftPoints, int rightPoints, int round);
 
         types::DeltaType getDeltaType() const;
 
@@ -36,6 +38,16 @@ namespace communication::messages {
 
         std::optional<types::EntityId> getPassiveEntity() const;
 
+        std::optional<bool> getSuccess() const;
+
+        types::PhaseType getPhase() const;
+
+        int getLeftPoints() const;
+
+        int getRightPoints() const;
+
+        int getRound() const;
+
         bool operator==(const Delta &rhs) const;
 
         bool operator!=(const Delta &rhs) const;
@@ -45,6 +57,8 @@ namespace communication::messages {
         std::optional<bool> success;
         std::optional<int> xPosOld, yPosOld, xPosNew, yPosNew;
         std::optional<types::EntityId> activeEntity, passiveEntity;
+        types::PhaseType phase;
+        int leftPoints, rightPoints, round;
     };
 
     void to_json(nlohmann::json &j, const Delta &delta);

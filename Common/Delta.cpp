@@ -9,18 +9,6 @@
 #include "OptionalSerialization.hpp"
 
 namespace communication::messages {
-    Delta::Delta(types::DeltaType deltaType,
-                 std::optional<bool> success,
-                 std::optional<int> xPosOld,
-                 std::optional<int> yPosOld,
-                 std::optional<int> xPosNew,
-                 std::optional<int> yPosNew,
-                 std::optional<types::EntityId> activeEntity,
-                 std::optional<types::EntityId> passiveEntity) :
-            deltaType(deltaType), success(success), xPosOld(xPosOld),
-            yPosOld(yPosOld), xPosNew(xPosNew), yPosNew(yPosNew),
-            activeEntity(activeEntity),
-            passiveEntity(passiveEntity) {}
 
     types::DeltaType Delta::getDeltaType() const {
         return deltaType;
@@ -54,6 +42,35 @@ namespace communication::messages {
         return passiveEntity;
     }
 
+    Delta::Delta(types::DeltaType deltaType, const std::optional<bool> &success, const std::optional<int> &xPosOld,
+                 const std::optional<int> &yPosOld, const std::optional<int> &xPosNew,
+                 const std::optional<int> &yPosNew, const std::optional<types::EntityId> &activeEntity,
+                 const std::optional<types::EntityId> &passiveEntity, types::PhaseType phase, int leftPoints,
+                 int rightPoints, int round) : deltaType(deltaType), success(success), xPosOld(xPosOld),
+                                               yPosOld(yPosOld), xPosNew(xPosNew), yPosNew(yPosNew),
+                                               activeEntity(activeEntity), passiveEntity(passiveEntity), phase(phase),
+                                               leftPoints(leftPoints), rightPoints(rightPoints), round(round) {}
+
+    std::optional<bool> Delta::getSuccess() const {
+        return success;
+    }
+
+    types::PhaseType Delta::getPhase() const {
+        return phase;
+    }
+
+    int Delta::getLeftPoints() const {
+        return leftPoints;
+    }
+
+    int Delta::getRightPoints() const {
+        return rightPoints;
+    }
+
+    int Delta::getRound() const {
+        return round;
+    }
+
     bool Delta::operator==(const Delta &rhs) const {
         return deltaType == rhs.deltaType &&
                success == rhs.success &&
@@ -62,12 +79,17 @@ namespace communication::messages {
                xPosNew == rhs.xPosNew &&
                yPosNew == rhs.yPosNew &&
                activeEntity == rhs.activeEntity &&
-               passiveEntity == rhs.passiveEntity;
+               passiveEntity == rhs.passiveEntity &&
+               phase == rhs.phase &&
+               leftPoints == rhs.leftPoints &&
+               rightPoints == rhs.rightPoints &&
+               round == rhs.round;
     }
 
     bool Delta::operator!=(const Delta &rhs) const {
         return !(rhs == *this);
     }
+
 
     void to_json(nlohmann::json &j, const Delta &delta) {
         j["deltaType"] = types::toString(delta.getDeltaType());
@@ -88,6 +110,11 @@ namespace communication::messages {
         } else {
             j["passiveEntity"] = nullptr;
         }
+
+        j["phase"] = types::toString(delta.getPhase());
+        j["leftPoints"] = delta.getLeftPoints();
+        j["rightPoints"] = delta.getRightPoints();
+        j["round"] = delta.getRound();
     }
 
     void from_json(const nlohmann::json &j, Delta &delta) {
@@ -100,13 +127,17 @@ namespace communication::messages {
         }
 
         delta = Delta{
-                types::fromStringDeltaType(j.at("deltaType").get<std::string>()),
+            types::fromStringDeltaType(j.at("deltaType").get<std::string>()),
                 j.at("success").get<std::optional<bool>>(),
                 j.at("xPosOld").get<std::optional<int>>(),
                 j.at("yPosOld").get<std::optional<int>>(),
                 j.at("xPosNew").get<std::optional<int>>(),
                 j.at("yPosNew").get<std::optional<int>>(),
-                active, passive
+                active, passive,
+                types::fromStringPhaseType(j.at("phase")),
+                j.at("leftPoints").get<int>(),
+                j.at("rightPoints").get<int>(),
+                j.at("round").get<int>()
         };
     }
 }
