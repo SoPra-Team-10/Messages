@@ -102,6 +102,27 @@ namespace communication::messages::request {
             j.at("players").at("beater1").get<Player>(),
             j.at("players").at("beater2").get<Player>()
         };
+
+        auto ok = [](const std::string &s, std::size_t len) {
+            for (const auto &c : s) {
+                if (!std::isalnum(c)) {
+                    return false;
+                }
+            }
+            return 3 <= s.size() && s.size() <= len;
+        };
+
+        if (!ok(teamConfig.getTeamName(), 40)) {
+            throw std::runtime_error{"Invalid name"};
+        }
+
+        if (teamConfig.getColorPrimary() == teamConfig.getColorSecondary()) {
+            throw std::runtime_error{"Primary and secondary color must be different"};
+        }
+
+        if (teamConfig.getColorPrimary().size() != 6 || teamConfig.getColorSecondary().size() != 6) {
+            throw std::runtime_error{"Colors invalid"};
+        }
     }
 
     Player TeamConfig::getSeeker() const {
@@ -196,5 +217,18 @@ namespace communication::messages::request {
         types::Sex sex = types::fromStringSex(sexS);
 
         player = Player{name, broom, sex};
+
+        auto ok = [](const std::string &s, std::size_t len) {
+            for (const auto &c : s) {
+                if (!std::isalnum(c)) {
+                    return false;
+                }
+            }
+            return 3 <= s.size() && s.size() <= len;
+        };
+
+        if (!ok(name, 40)) {
+            throw std::runtime_error{"Player name not ok!"};
+        }
     }
 }

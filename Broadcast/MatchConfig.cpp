@@ -242,5 +242,37 @@ namespace communication::messages::broadcast {
             j.at("probabilities").at("fanFoulDetection").at("trollRoar").get<float>(),
             j.at("probabilities").at("fanFoulDetection").at("snitchSnatch").get<float>()
         };
+
+        if (matchConfig.getMaxRounds() < 0 || matchConfig.getFanTurnTimeout() < 0 ||
+            matchConfig.getPlayerPhaseTime() < 0 || matchConfig.getFanPhaseTime() < 0 ||
+            matchConfig.getBallPhaseTime() < 0) {
+            throw std::runtime_error{"Timeout not valid"};
+        }
+
+        auto isProb = [](double p) {
+            return 0<=p && p<=1;
+        };
+
+        if (!isProb(matchConfig.getProbThrowSuccess()) ||
+                !isProb(matchConfig.getProbKnockOut()) ||
+                !isProb(matchConfig.getProbFoolAway()) ||
+                !isProb(matchConfig.getProbCatchSnitch()) ||
+                !isProb(matchConfig.getProbCatchQuaffle()) ||
+                !isProb(matchConfig.getProbWrestQuaffle()) ||
+                !isProb(matchConfig.getProbExtraTinderblast()) ||
+                !isProb(matchConfig.getProbExtraCleansweep()) ||
+                !isProb(matchConfig.getProbExtraComet()) ||
+                !isProb(matchConfig.getProbExtraFirebolt()) ||
+                !isProb(matchConfig.getProbFoulFlacking()) ||
+                !isProb(matchConfig.getProbFoulHaversacking()) ||
+                !isProb(matchConfig.getProbFoulStooging()) ||
+                !isProb(matchConfig.getProbFoulBlatching()) ||
+                !isProb(matchConfig.getProbFoulSnitchnip()) ||
+                !isProb(matchConfig.getProbFoulElf()) ||
+                !isProb(matchConfig.getProbFoulGoblin()) ||
+                !isProb(matchConfig.getProbFoulTroll()) ||
+                !isProb(matchConfig.getProbFoulSnitch())) {
+            throw std::runtime_error{"Probabilites not valid"};
+        }
     }
 }

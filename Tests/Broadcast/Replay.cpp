@@ -6,7 +6,17 @@ using namespace communication::messages;
 using T = broadcast::Replay;
 
 TEST(CommunicationMessagesBroadcastReplay, SerializeDeserialize) {
-    T orig{"Test", "abc", {}, {}, {}, "a", "b", {}, {}, {}};
+    request::Player player{"def",{},{}};
+    request::TeamConfig teamConfig{
+            "abc",
+            "abc",
+            "00FF11",
+            "11FF00",
+            "abc",
+            1,2,3,4,
+            player,player,player,player,player,player,player
+    };
+    T orig{"Test", "abc", {}, teamConfig, teamConfig, "asdsd", "ssdsdb", {}, {}, {}};
     std::string ser;
     nlohmann::json json;
     T comp;

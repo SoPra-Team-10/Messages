@@ -133,5 +133,19 @@ namespace communication::messages::request {
             j.at("players").at("beater2").at("xPos").get<int>(),
             j.at("players").at("beater2").at("yPos").get<int>()
         };
+
+        auto inF = [](int x, int y) {
+            return 0 <= x && x <= 16 && 0 <= y && y <= 12;
+        };
+
+        if (!inF(teamFormation.getSeekerX(), teamFormation.getSeekerY()) &&
+            !inF(teamFormation.getKeeperX(), teamFormation.getKeeperY()) &&
+            !inF(teamFormation.getChaser1X(), teamFormation.getChaser1Y()) &&
+            !inF(teamFormation.getChaser2X(), teamFormation.getChaser2Y()) &&
+            !inF(teamFormation.getChaser3X(), teamFormation.getChaser3Y()) &&
+            !inF(teamFormation.getBeater1X(), teamFormation.getBeater1Y()) &&
+            !inF(teamFormation.getBeater2X(), teamFormation.getBeater2Y())) {
+            throw std::runtime_error{"One of the players is not on the field!"};
+        }
     }
 }

@@ -6,7 +6,17 @@ using namespace communication::messages;
 using T = broadcast::MatchStart;
 
 TEST(CommunicationMessagesBroadcastMatchStart, SerializeDeserialize) {
-    T orig{broadcast::MatchConfig{}, request::TeamConfig{}, request::TeamConfig{},"a","b"};
+    request::Player player{"def",{},{}};
+    request::TeamConfig teamConfig{
+        "abc",
+        "abc",
+        "00FF11",
+        "11FF00",
+        "abc",
+        1,2,3,4,
+        player,player,player,player,player,player,player
+    };
+    T orig{broadcast::MatchConfig{}, teamConfig, teamConfig,"adsds","bsdsds"};
     std::string ser;
     nlohmann::json json;
     T comp;

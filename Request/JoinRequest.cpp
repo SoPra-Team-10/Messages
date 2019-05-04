@@ -69,5 +69,19 @@ namespace communication::messages::request {
             j.at("isArtificialIntelligence").get<bool>(),
             j.at("mods")
         };
+
+        auto ok = [](const std::string &s, std::size_t len) {
+            for (const auto &c : s) {
+                if (!std::isalnum(c)) {
+                    return false;
+                }
+            }
+            return s.size() >= 3 && s.size() <= len;
+        };
+
+        if (!ok(joinRequest.getLobby(), 40) ||
+            !ok(joinRequest.getUserName(), 20)) {
+            throw std::runtime_error{"Not valid userName or Lobby"};
+        }
     }
 }
