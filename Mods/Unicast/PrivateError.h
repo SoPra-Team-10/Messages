@@ -12,6 +12,9 @@ namespace commmunication::messages::mods::broadcast {
     class PrivateError {
     public:
         static auto getName() -> std::string;
+
+    private:
+        std::string errorProducingPayload, information;
     };
 }
 

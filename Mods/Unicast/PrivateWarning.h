@@ -12,6 +12,9 @@ namespace commmunication::messages::mods::broadcast {
     class PrivateWarning {
     public:
         static auto getName() -> std::string;
+
+    private:
+        std::string warningProducingPayload, information;
     };
 }
 

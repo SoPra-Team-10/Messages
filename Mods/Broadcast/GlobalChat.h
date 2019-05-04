@@ -12,6 +12,9 @@ namespace commmunication::messages::mods::broadcast {
     class GlobalChat {
     public:
         static auto getName() -> std::string;
+
+    private:
+        std::string senderUserName, information;
     };
 }
 

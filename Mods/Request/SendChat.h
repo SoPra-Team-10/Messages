@@ -12,6 +12,9 @@ namespace commmunication::messages::mods::broadcast {
     class SendChat {
     public:
         static auto getName() -> std::string;
+
+    private:
+        std::string information;
     };
 }
 

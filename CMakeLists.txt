@@ -44,11 +44,11 @@ set(SOURCES
         ${CMAKE_SOURCE_DIR}/Common/Delta.cpp
         ${CMAKE_SOURCE_DIR}/ReplayMessage.cpp
         ${CMAKE_SOURCE_DIR}/Mods/Broadcast/GlobalChat.cpp
-        ${CMAKE_SOURCE_DIR}/Mods/Broadcast/GetReplayWithSnapshot.cpp
-        ${CMAKE_SOURCE_DIR}/Mods/Broadcast/SendChat.cpp
-        ${CMAKE_SOURCE_DIR}/Mods/Broadcast/PrivateError.cpp
-        ${CMAKE_SOURCE_DIR}/Mods/Broadcast/PrivateWarning.cpp
-        ${CMAKE_SOURCE_DIR}/Mods/Broadcast/ReplayWithSnapshot.cpp)
+        ${CMAKE_SOURCE_DIR}/Mods/Request/GetReplayWithSnapshot.cpp
+        ${CMAKE_SOURCE_DIR}/Mods/Request/SendChat.cpp
+        ${CMAKE_SOURCE_DIR}/Mods/Unicast/PrivateError.cpp
+        ${CMAKE_SOURCE_DIR}/Mods/Unicast/PrivateWarning.cpp
+        ${CMAKE_SOURCE_DIR}/Mods/Unicast/ReplayWithSnapshot.cpp)
 
 include_directories(${CMAKE_SOURCE_DIR})
 add_library(${PROJECT_NAME} SHARED ${SOURCES})

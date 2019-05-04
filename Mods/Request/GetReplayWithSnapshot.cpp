@@ -7,6 +7,6 @@
 namespace commmunication::messages::mods::broadcast {
 
     auto GetReplayWithSnapshot::getName() -> std::string {
-        return "getReplayWithSnapshot"
+        return "getReplayWithSnapshot";
     }
 }
