@@ -30,10 +30,6 @@
 #include "Reconnect.hpp"
 
 namespace communication::messages {
-    namespace broadcast {
-        class Replay;
-    }
-
     using Payload = std::variant<
             broadcast::DeltaBroadcast,
             broadcast::GlobalDebug,
@@ -75,14 +71,6 @@ namespace communication::messages {
         Payload payload;
     };
 
-    template<typename Payload>
-    AbstractMessage<Payload>::AbstractMessage() :
-        timestamp{std::chrono::duration_cast<std::chrono::milliseconds>(
-                std::chrono::system_clock::now().time_since_epoch())},
-                payload{broadcast::DeltaBroadcast{}}{
-            auto globTime = std::time(nullptr);
-            this->time = *std::localtime(&globTime);
-    }
 
     template<typename Payload>
     AbstractMessage<Payload>::AbstractMessage(Payload payload) :
@@ -99,14 +87,6 @@ namespace communication::messages {
         return this->payload;
     }
 
-    template<typename Payload>
-    auto AbstractMessage<Payload>::getPayloadType() const -> std::string {
-        std::string type;
-        std::visit([&type](auto &&arg){
-            type = arg.getName();
-        }, this->payload);
-        return type;
-    }
 
     template<typename Payload>
     auto AbstractMessage<Payload>::getTimeStamp() const -> std::string {
@@ -131,7 +111,6 @@ namespace communication::messages {
     }
 
     using Message = AbstractMessage<Payload>;
-    using ReplayMessage = AbstractMessage<broadcast::Replay>;
 
     template<typename T>
     void to_json(nlohmann::json &j, const AbstractMessage<T> &message);
@@ -139,14 +118,6 @@ namespace communication::messages {
     template<typename T>
     void from_json(const nlohmann::json &j, AbstractMessage<T> &message);
 
-    template <typename T>
-    void to_json(nlohmann::json &j, const AbstractMessage<T> &message) {
-        j["timestamp"] = message.getTimeStamp();
-        j["payloadType"] = message.getPayloadType();
-        std::visit([&j](auto &&arg){
-            j["payload"] = arg;
-        }, message.getPayload());
-    }
 }
 
 #endif //SERVER_MESSAGE_H

@@ -5,12 +5,28 @@
 //
 
 #include "Message.hpp"
-#include "Replay.hpp"
 #include <sstream>
 #include <iomanip>
 #include <iostream>
 
 namespace communication::messages {
+    template<>
+    AbstractMessage<Payload>::AbstractMessage() :
+            timestamp{std::chrono::duration_cast<std::chrono::milliseconds>(
+                    std::chrono::system_clock::now().time_since_epoch())},
+            payload{broadcast::DeltaBroadcast{}}{
+        auto globTime = std::time(nullptr);
+        this->time = *std::localtime(&globTime);
+    }
+    template<>
+    auto AbstractMessage<Payload>::getPayloadType() const -> std::string {
+        std::string type;
+        std::visit([&type](auto &&arg){
+            type = arg.getName();
+        }, this->payload);
+        return type;
+    }
+
     template <>
     void from_json(const nlohmann::json &j, AbstractMessage<Payload> &message) {
         std::string payloadType = j.at("payloadType");
@@ -64,7 +80,12 @@ namespace communication::messages {
     }
 
     template <>
-    void from_json(const nlohmann::json &j, AbstractMessage<broadcast::Replay> &message) {
-        message = ReplayMessage{j.at("payload").get<broadcast::Replay>()};
+    void to_json(nlohmann::json &j, const AbstractMessage<Payload > &message) {
+        j["timestamp"] = message.getTimeStamp();
+        j["payloadType"] = message.getPayloadType();
+        std::visit([&j](auto &&arg){
+            j["payload"] = arg;
+        }, message.getPayload());
     }
+
 }
