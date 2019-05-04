@@ -144,6 +144,10 @@ auto communication::messages::types::fromStringTurnType(const std::string &s)
         return types::TurnType::MOVE;
     } else if (s == "action") {
         return types::TurnType::ACTION;
+    } else if (s == "fan") {
+        return types::TurnType::FAN;
+    } else if (s == "removeBan") {
+        return types::TurnType::REMOVE_BAN;
     } else {
         throw std::runtime_error{"Not a valid turnType"};
     }

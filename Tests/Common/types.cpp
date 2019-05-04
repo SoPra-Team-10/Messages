@@ -88,6 +88,12 @@ TEST(CommunicationMessagesCommonTypes, TurnTypeMove) {
 TEST(CommunicationMessagesCommonTypes, TurnTypeAction) {
     EXPECT_EQ(fromStringTurnType(toString(TurnType::ACTION)), TurnType::ACTION);
 }
+TEST(CommunicationMessagesCommonTypes, TurnTypeFan) {
+    EXPECT_EQ(fromStringTurnType(toString(TurnType::FAN)), TurnType::FAN);
+}
+TEST(CommunicationMessagesCommonTypes, TurnTypeRemoveBan) {
+    EXPECT_EQ(fromStringTurnType(toString(TurnType::REMOVE_BAN)), TurnType::REMOVE_BAN);
+}
 
 TEST(CommunicationMessagesCommonTypes, VictoryReasonDisqualification) {
     EXPECT_EQ(fromStringVictoryReason(toString(VictoryReason::DISQUALIFICATION)), VictoryReason::DISQUALIFICATION);
