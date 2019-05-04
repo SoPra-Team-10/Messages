@@ -130,6 +130,10 @@ auto communication::messages::types::toString(communication::messages::types::Tu
             return "move";
         case types::TurnType::ACTION:
             return "action";
+        case TurnType::FAN:
+            return "fan";
+        case TurnType::REMOVE_BAN:
+            return "removeBan";
     }
     throw std::runtime_error{"We shouln't really be here"};
 }
@@ -285,8 +289,6 @@ auto communication::messages::types::toString(communication::messages::types::Ph
             return "ballPhase";
         case PhaseType::PLAYER_PHASE:
             return "playerPhase";
-        case PhaseType::ACTION_PHASE:
-            return "actionPhase";
         case PhaseType::FAN_PHASE:
             return "fanPhase";
         case PhaseType::GAME_FINISH:
@@ -301,8 +303,6 @@ auto communication::messages::types::fromStringPhaseType(const std::string &s)
         return PhaseType::BALL_PHASE;
     } else if (s == "playerPhase") {
         return PhaseType::PLAYER_PHASE;
-    } else if (s == "actionPhase") {
-        return PhaseType::ACTION_PHASE;
     } else if (s == "fanPhase") {
         return PhaseType::FAN_PHASE;
     } else if (s == "gameFinish") {

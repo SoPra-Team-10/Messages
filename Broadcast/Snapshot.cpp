@@ -15,9 +15,10 @@ namespace communication::messages::broadcast {
         return "snapshot";
     }
 
-    Snapshot::Snapshot(types::PhaseType phase, const std::vector<std::string> &spectatorUserName, int round,
+    Snapshot::Snapshot(broadcast::DeltaBroadcast lastDeltaBroadcast, types::PhaseType phase, const std::vector<std::string> &spectatorUserName, int round,
                        const TeamSnapshot &leftTeam, const TeamSnapshot &rightTeam, int snitchX, int snitchY,
-                       int quaffleX, int quaffleY, int bludger1X, int bludger1Y, int bludger2X, int bludger2Y) : phase(
+                       int quaffleX, int quaffleY, int bludger1X, int bludger1Y, int bludger2X, int bludger2Y) :
+                       lastDeltaBroadcast{lastDeltaBroadcast}, phase(
             phase), spectatorUserName(spectatorUserName), round(round), leftTeam(leftTeam), rightTeam(rightTeam),
                                                                                                                  snitchX(snitchX),
                                                                                                                  snitchY(snitchY),
@@ -104,6 +105,10 @@ namespace communication::messages::broadcast {
 
     bool Snapshot::operator!=(const Snapshot &rhs) const {
         return !(rhs == *this);
+    }
+
+    DeltaBroadcast Snapshot::getLastDeltaBroadcast() const {
+        return lastDeltaBroadcast;
     }
 
     TeamSnapshot::TeamSnapshot(int points, std::vector<std::pair<types::FanType, bool>> fans, int seekerX,
@@ -437,6 +442,7 @@ namespace communication::messages::broadcast {
     }
 
     void to_json(nlohmann::json &j, const Snapshot &snaphot) {
+        j["lastDeltaBroadcast"] = snaphot.getLastDeltaBroadcast();
         j["phase"] = types::toString(snaphot.getPhase());
         j["spectatorUserName"] = snaphot.getSpectatorUserName();
         j["round"] = snaphot.getRound();
@@ -454,6 +460,7 @@ namespace communication::messages::broadcast {
 
     void from_json(const nlohmann::json &j, Snapshot &snaphot) {
         snaphot = Snapshot{
+            j.at("lastDeltaBroadcast"),
             types::fromStringPhaseType(
                     j.at("phase").get<std::string>()),
             j.at("spectatorUserName").get<std::vector<std::string>>(),

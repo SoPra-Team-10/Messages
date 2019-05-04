@@ -12,6 +12,7 @@
 #include "json.hpp"
 
 #include "types.hpp"
+#include "DeltaBroadcast.hpp"
 
 namespace communication::messages::broadcast {
     class TeamSnapshot {
@@ -92,9 +93,11 @@ namespace communication::messages::broadcast {
     class Snapshot {
     public:
         Snapshot() = default;
-        Snapshot(types::PhaseType phase, const std::vector<std::string> &spectatorUserName, int round,
+        Snapshot(broadcast::DeltaBroadcast lastDeltaBroadcast, types::PhaseType phase, const std::vector<std::string> &spectatorUserName, int round,
                  const TeamSnapshot &leftTeam, const TeamSnapshot &rightTeam, int snitchX, int snitchY, int quaffleX,
                  int quaffleY, int bludger1X, int bludger1Y, int bludger2X, int bludger2Y);
+
+        DeltaBroadcast getLastDeltaBroadcast() const;
 
         types::PhaseType getPhase() const;
         std::vector<std::string> getSpectatorUserName() const;
@@ -117,6 +120,7 @@ namespace communication::messages::broadcast {
         bool operator!=(const Snapshot &rhs) const;
 
     private:
+        broadcast::DeltaBroadcast lastDeltaBroadcast;
         types::PhaseType phase;
         std::vector<std::string> spectatorUserName;
         int round{};

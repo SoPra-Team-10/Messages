@@ -72,7 +72,7 @@ namespace communication::messages::request {
         j["image"] = teamConfig.getImage();
         j["fans"]["goblins"] = teamConfig.getGoblins();
         j["fans"]["trolls"] = teamConfig.getTrolls();
-        j["fans"]["elfs"] = teamConfig.getElfs();
+        j["fans"]["elves"] = teamConfig.getElfs();
         j["fans"]["nifflers"] = teamConfig.getNifflers();
         j["players"]["seeker"] = teamConfig.getSeeker();
         j["players"]["keeper"] = teamConfig.getKeeper();
@@ -92,7 +92,7 @@ namespace communication::messages::request {
             j.at("image").get<std::string>(),
             j.at("fans").at("goblins").get<int>(),
             j.at("fans").at("trolls").get<int>(),
-            j.at("fans").at("elfs").get<int>(),
+            j.at("fans").at("elves").get<int>(),
             j.at("fans").at("nifflers").get<int>(),
             j.at("players").at("seeker").get<Player>(),
             j.at("players").at("keeper").get<Player>(),

@@ -23,7 +23,7 @@ namespace communication::messages::types {
     auto fromStringEntityId(const std::string &s) -> EntityId;
 
     enum class TurnType {
-        MOVE, ACTION
+        MOVE, ACTION, FAN, REMOVE_BAN
     };
 
     auto toString(TurnType turnType) -> std::string;
@@ -72,7 +72,7 @@ namespace communication::messages::types {
     auto fromStringDeltaType(const std::string &s) -> DeltaType;
 
     enum class PhaseType {
-        BALL_PHASE, PLAYER_PHASE, ACTION_PHASE, FAN_PHASE, GAME_FINISH
+        BALL_PHASE, PLAYER_PHASE, FAN_PHASE, GAME_FINISH
     };
 
     auto toString(PhaseType phaseType) -> std::string;
