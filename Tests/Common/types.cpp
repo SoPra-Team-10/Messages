@@ -124,8 +124,8 @@ TEST(CommunicationMessagesCommonTypes, FanTypeNiffler) {
     EXPECT_EQ(fromStringFanType(toString(FanType::NIFFLER)), FanType::NIFFLER);
 }
 
-TEST(CommunicationMessagesCommonTypes, BroomThinderblast) {
-    EXPECT_EQ(fromStringBroom(toString(Broom::THINDERBLAST)), Broom::THINDERBLAST);
+TEST(CommunicationMessagesCommonTypes, BroomTinderblast) {
+    EXPECT_EQ(fromStringBroom(toString(Broom::TINDERBLAST)), Broom::TINDERBLAST);
 }
 TEST(CommunicationMessagesCommonTypes, BroomCleansweep) {
     EXPECT_EQ(fromStringBroom(toString(Broom::CLEANSWEEP11)), Broom::CLEANSWEEP11);

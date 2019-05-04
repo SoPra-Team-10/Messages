@@ -49,7 +49,7 @@ namespace communication::messages::types {
     auto fromStringFanType(const std::string &s) -> FanType ;
 
     enum class Broom {
-        THINDERBLAST, CLEANSWEEP11, COMET260, NIMBUS2001, FIREBOLT
+        TINDERBLAST, CLEANSWEEP11, COMET260, NIMBUS2001, FIREBOLT
     };
 
     auto toString(Broom broom) -> std::string;

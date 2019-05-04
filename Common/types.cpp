@@ -147,8 +147,8 @@ auto communication::messages::types::fromStringTurnType(const std::string &s)
 
 auto communication::messages::types::toString(communication::messages::types::Broom broom) -> std::string {
     switch (broom) {
-        case types::Broom::THINDERBLAST:
-            return "thinderblast";
+        case types::Broom::TINDERBLAST:
+            return "tinderblast";
         case types::Broom::CLEANSWEEP11:
             return "cleansweep-11";
         case types::Broom::COMET260:
@@ -162,8 +162,8 @@ auto communication::messages::types::toString(communication::messages::types::Br
 }
 
 auto communication::messages::types::fromStringBroom(const std::string &s) -> communication::messages::types::Broom {
-    if (s == "thinderblast") {
-        return types::Broom::THINDERBLAST;
+    if (s == "tinderblast") {
+        return types::Broom::TINDERBLAST;
     } else if (s == "cleansweep-11") {
         return types::Broom::CLEANSWEEP11;
     } else if (s == "comet-260") {
