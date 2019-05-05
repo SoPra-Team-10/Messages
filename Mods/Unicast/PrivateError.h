@@ -25,6 +25,9 @@ namespace commmunication::messages::mods::broadcast {
     private:
         std::string errorProducingPayload, information;
     };
+
+    void to_json(nlohmann::json &j, const PrivateError &privateError);
+    void from_json(const nlohmann::json &j, PrivateError &privateError);
 }
 
 #endif //SOPRAMESSAGES_PRIVATEERROR_H

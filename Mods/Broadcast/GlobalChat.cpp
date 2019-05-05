@@ -29,4 +29,16 @@ namespace commmunication::messages::mods::broadcast {
     bool GlobalChat::operator!=(const GlobalChat &rhs) const {
         return !(rhs == *this);
     }
+
+    void to_json(nlohmann::json &j, const GlobalChat &globalChat) {
+        j["senderUserName"] = globalChat.getSenderUserName();
+        j["information"] = globalChat.getInformation();
+    }
+
+    void from_json(const nlohmann::json &j, GlobalChat &globalChat) {
+        globalChat = GlobalChat{
+            j.at("senderUserName").get<std::string>(),
+            j.at("information").get<std::string>()
+        };
+    }
 }

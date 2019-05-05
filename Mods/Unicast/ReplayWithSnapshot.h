@@ -58,6 +58,9 @@ namespace commmunication::messages::mods::broadcast {
         communication::messages::broadcast::Snapshot firstSnapshot;
         std::vector<communication::messages::Message> messages;
     };
+
+    void to_json(nlohmann::json &j, const ReplayWithSnapshot &replayWithSnapshot);
+    void from_json(const nlohmann::json &j, ReplayWithSnapshot &replayWithSnapshot);
 }
 
 #endif //SOPRAMESSAGES_REPLAYWITHSNAPSHOT_H

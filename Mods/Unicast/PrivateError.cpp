@@ -31,4 +31,15 @@ namespace commmunication::messages::mods::broadcast {
         return !(rhs == *this);
     }
 
+    void to_json(nlohmann::json &j, const PrivateError &privateError) {
+        j["errorProducingPayload"] = privateError.getErrorProducingPayload();
+        j["information"] = privateError.getInformation();
+    }
+
+    void from_json(const nlohmann::json &j, PrivateError &privateError) {
+        privateError = PrivateError{
+            j.at("errorProducingPayload").get<std::string>(),
+            j.at("information").get<std::string>()
+        };
+    }
 }

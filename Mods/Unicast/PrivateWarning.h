@@ -25,6 +25,9 @@ namespace commmunication::messages::mods::broadcast {
     private:
         std::string warningProducingPayload, information;
     };
+
+    void to_json(nlohmann::json &j, const PrivateWarning &privateWarning);
+    void from_json(const nlohmann::json &j, PrivateWarning &privateWarning);
 }
 
 #endif //SOPRAMESSAGES_PRIVATEWARNING_H

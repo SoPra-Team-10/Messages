@@ -26,6 +26,9 @@ namespace commmunication::messages::mods::broadcast {
     private:
         std::string senderUserName, information;
     };
+
+    void to_json(nlohmann::json &j, const GlobalChat &globalChat);
+    void from_json(const nlohmann::json &j, GlobalChat &globalChat);
 }
 
 #endif //SOPRAMESSAGES_GLOBALCHAT_H

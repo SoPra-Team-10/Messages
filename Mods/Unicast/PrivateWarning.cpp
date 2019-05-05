@@ -29,4 +29,16 @@ namespace commmunication::messages::mods::broadcast {
     bool PrivateWarning::operator!=(const PrivateWarning &rhs) const {
         return !(rhs == *this);
     }
+
+    void to_json(nlohmann::json &j, const PrivateWarning &privateWarning) {
+        j["warningProducingPayload"] = privateWarning.getWarningProducingPayload();
+        j["information"] = privateWarning.getInformation();
+    }
+
+    void from_json(const nlohmann::json &j, PrivateWarning &privateWarning) {
+        privateWarning = PrivateWarning{
+            j.at("warningProducingPayload").get<std::string>(),
+            j.at("information").get<std::string>()
+        };
+    }
 }

@@ -23,4 +23,14 @@ namespace commmunication::messages::mods::broadcast {
     bool SendChat::operator!=(const SendChat &rhs) const {
         return !(rhs == *this);
     }
+
+    void to_json(nlohmann::json &j, const SendChat &sendChat) {
+        j["information"] = sendChat.getInformation();
+    }
+
+    void from_json(const nlohmann::json &j, SendChat &sendChat) {
+        sendChat = SendChat{
+            j.at("information").get<std::string>()
+        };
+    }
 }

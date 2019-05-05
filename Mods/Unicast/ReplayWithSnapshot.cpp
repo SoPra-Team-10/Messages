@@ -89,4 +89,31 @@ namespace commmunication::messages::mods::broadcast {
         return !(rhs == *this);
     }
 
+    void to_json(nlohmann::json &j, const ReplayWithSnapshot &replayWithSnapshot) {
+        j["lobby"] = replayWithSnapshot.getLobby();
+        j["startTimestamp"] = replayWithSnapshot.getStartTimestamp();
+        j["matchConfig"] = replayWithSnapshot.getMatchConfig();
+        j["leftTeamConfig"] = replayWithSnapshot.getLeftTeamConfig();
+        j["rightTeamConfig"] = replayWithSnapshot.getRightTeamConfig();
+        j["leftTeamUserName"] = replayWithSnapshot.getLeftTeamUserName();
+        j["rightTeamUserName"] = replayWithSnapshot.getRightTeamUserName();
+        j["spectatorUserName"] = replayWithSnapshot.getSpectatorUserName();
+        j["firstSnapshot"] = replayWithSnapshot.getFirstSnapshot();
+        j["log"] = replayWithSnapshot.getMessages();
+    }
+
+    void from_json(const nlohmann::json &j, ReplayWithSnapshot &replayWithSnapshot) {
+        replayWithSnapshot = ReplayWithSnapshot{
+            j.at("lobby").get<std::string>(),
+            j.at("startTimestamp").get<std::string>(),
+            j.at("matchConfig").get<communication::messages::broadcast::MatchConfig>(),
+            j.at("leftTeamConfig").get<communication::messages::request::TeamConfig>(),
+            j.at("rightTeamConfig").get<communication::messages::request::TeamConfig>(),
+            j.at("leftTeamUserName").get<std::string>(),
+            j.at("rightTeamUserName").get<std::string>(),
+            j.at("spectatorUserNames").get<std::vector<std::string>>(),
+            j.at("firstSnapshot").get<communication::messages::broadcast::Snapshot>(),
+            j.at("log").get<std::vector<communication::messages::Message>>()
+        };
+    }
 }

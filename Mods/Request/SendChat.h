@@ -23,6 +23,9 @@ namespace commmunication::messages::mods::broadcast {
     private:
         std::string information;
     };
+
+    void to_json(nlohmann::json &j, const SendChat &sendChat);
+    void from_json(const nlohmann::json &j, SendChat &sendChat);
 }
 
 #endif //SOPRAMESSAGES_SENDCHAT_H
