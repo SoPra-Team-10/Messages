@@ -6,7 +6,7 @@
 
 #include <utility>
 
-namespace commmunication::messages::mods::broadcast {
+namespace communication::messages::mods::broadcast {
 
     auto GlobalChat::getName() -> std::string {
         return "globalChat";

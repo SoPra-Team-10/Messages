@@ -8,9 +8,10 @@
 #include <string>
 #include "json.hpp"
 
-namespace commmunication::messages::mods::broadcast {
+namespace communication::messages::mods::request {
     class SendChat {
     public:
+        SendChat() = default;
         explicit SendChat(std::string information);
 
         std::string getInformation() const;

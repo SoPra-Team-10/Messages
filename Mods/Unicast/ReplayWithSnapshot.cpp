@@ -6,7 +6,7 @@
 
 #include <utility>
 
-namespace commmunication::messages::mods::broadcast {
+namespace communication::messages::mods::unicast {
 
     auto ReplayWithSnapshot::getName() -> std::string {
         return "replayWithSnapshot";
@@ -113,7 +113,7 @@ namespace commmunication::messages::mods::broadcast {
             j.at("rightTeamConfig").get<communication::messages::request::TeamConfig>(),
             j.at("leftTeamUserName").get<std::string>(),
             j.at("rightTeamUserName").get<std::string>(),
-            j.at("spectatorUserNames").get<std::vector<std::string>>(),
+            j.at("spectatorUserName").get<std::vector<std::string>>(),
             j.at("firstSnapshot").get<communication::messages::broadcast::Snapshot>(),
             j.at("log").get<std::vector<communication::messages::Message>>()
         };

@@ -8,9 +8,10 @@
 #include <string>
 #include "json.hpp"
 
-namespace commmunication::messages::mods::broadcast {
+namespace communication::messages::mods::unicast {
     class PrivateWarning {
     public:
+        PrivateWarning() = default;
         PrivateWarning(std::string warningProducingPayload, std::string information);
 
         std::string getWarningProducingPayload() const;

@@ -8,9 +8,10 @@
 #include <string>
 #include "json.hpp"
 
-namespace commmunication::messages::mods::broadcast {
+namespace communication::messages::mods::unicast {
     class PrivateError {
     public:
+        PrivateError() = default;
         PrivateError(std::string errorProducingPayload, std::string information);
 
         std::string getErrorProducingPayload() const;

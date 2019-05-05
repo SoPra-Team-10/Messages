@@ -6,7 +6,7 @@
 
 #include <utility>
 
-namespace commmunication::messages::mods::broadcast {
+namespace communication::messages::mods::unicast {
 
     auto PrivateError::getName() -> std::string {
         return "privateError";

@@ -6,7 +6,7 @@
 
 #include <utility>
 
-namespace commmunication::messages::mods::broadcast {
+namespace communication::messages::mods::request {
 
     auto SendChat::getName() -> std::string {
         return "sendChat";

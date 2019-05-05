@@ -6,7 +6,7 @@
 
 #include <utility>
 
-namespace commmunication::messages::mods::broadcast {
+namespace communication::messages::mods::unicast {
 
     auto PrivateWarning::getName() -> std::string {
         return "privateWarning";

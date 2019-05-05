@@ -12,9 +12,10 @@
 #include "json.hpp"
 #include "MatchConfig.hpp"
 
-namespace commmunication::messages::mods::broadcast {
+namespace communication::messages::mods::unicast {
     class ReplayWithSnapshot {
     public:
+        ReplayWithSnapshot() = default;
         ReplayWithSnapshot(std::string lobby, std::string startTimestamp,
                            const communication::messages::broadcast::MatchConfig &matchConfig,
                            communication::messages::request::TeamConfig leftTeamConfig,
@@ -51,7 +52,7 @@ namespace commmunication::messages::mods::broadcast {
         static auto getName() -> std::string;
     private:
         std::string lobby, startTimestamp;
-        communication::messages::broadcast::MatchConfig matchConfig;
+        communication::messages::broadcast::MatchConfig matchConfig{};
         communication::messages::request::TeamConfig leftTeamConfig, rightTeamConfig;
         std::string leftTeamUserName, rightTeamUserName;
         std::vector<std::string> spectatorUserName;

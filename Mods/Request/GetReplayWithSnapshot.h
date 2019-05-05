@@ -8,7 +8,7 @@
 #include <string>
 #include "json.hpp"
 
-namespace commmunication::messages::mods::broadcast {
+namespace communication::messages::mods::request {
     class GetReplayWithSnapshot {
     public:
         GetReplayWithSnapshot() = default;
@@ -19,6 +19,9 @@ namespace commmunication::messages::mods::broadcast {
 
         static auto getName() -> std::string;
     };
+
+    void to_json(nlohmann::json &j, const GetReplayWithSnapshot &getReplayWithSnapshot);
+    void from_json(const nlohmann::json &j, GetReplayWithSnapshot &getReplayWithSnapshot);
 }
 
 #endif //SOPRAMESSAGES_GETREPLAYWITHSNAPSHOT_H

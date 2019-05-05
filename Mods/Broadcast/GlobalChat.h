@@ -8,7 +8,7 @@
 #include <string>
 #include "json.hpp"
 
-namespace commmunication::messages::mods::broadcast {
+namespace communication::messages::mods::broadcast {
     class GlobalChat {
     public:
         GlobalChat() = default;

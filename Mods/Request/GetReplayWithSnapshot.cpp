@@ -4,17 +4,21 @@
 
 #include "GetReplayWithSnapshot.h"
 
-namespace commmunication::messages::mods::broadcast {
+namespace communication::messages::mods::request {
 
     auto GetReplayWithSnapshot::getName() -> std::string {
         return "getReplayWithSnapshot";
     }
 
-    bool GetReplayWithSnapshot::operator==(const GetReplayWithSnapshot &rhs) const {
+    bool GetReplayWithSnapshot::operator==(const GetReplayWithSnapshot &) const {
         return true;
     }
 
-    bool GetReplayWithSnapshot::operator!=(const GetReplayWithSnapshot &rhs) const {
+    bool GetReplayWithSnapshot::operator!=(const GetReplayWithSnapshot &) const {
         return true;
     }
+
+    void to_json(nlohmann::json &, const GetReplayWithSnapshot &) {}
+
+    void from_json(const nlohmann::json &, GetReplayWithSnapshot &) {}
 }
