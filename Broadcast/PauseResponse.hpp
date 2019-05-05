@@ -29,7 +29,7 @@ namespace communication::messages::broadcast {
 
     private:
         std::string message, userName;
-        bool pause;
+        bool pause{};
     };
 
     void to_json(nlohmann::json &j, const PauseResponse &pauseResponse);

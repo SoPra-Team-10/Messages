@@ -137,7 +137,7 @@ namespace communication::messages::broadcast {
 
     private:
         broadcast::DeltaBroadcast lastDeltaBroadcast;
-        types::PhaseType phase;
+        types::PhaseType phase{};
         std::vector<std::string> spectatorUserName;
         int round{};
         TeamSnapshot leftTeam, rightTeam;

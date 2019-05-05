@@ -35,7 +35,7 @@ namespace communication::messages::broadcast {
     private:
         int endRound{}, leftPoints{}, rightPoints{};
         std::string winnerUserName;
-        types::VictoryReason victoryReason;
+        types::VictoryReason victoryReason{};
     };
 
     void to_json(nlohmann::json &j, const MatchFinish &matchFinish);

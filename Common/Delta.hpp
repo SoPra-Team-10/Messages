@@ -55,8 +55,8 @@ namespace communication::messages {
         std::optional<bool> success;
         std::optional<int> xPosOld, yPosOld, xPosNew, yPosNew;
         std::optional<types::EntityId> activeEntity, passiveEntity;
-        types::PhaseType phase;
-        int leftPoints, rightPoints, round;
+        types::PhaseType phase{};
+        int leftPoints{}, rightPoints{}, round{};
     };
 
     void to_json(nlohmann::json &j, const Delta &delta);
