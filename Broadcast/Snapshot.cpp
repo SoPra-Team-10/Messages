@@ -258,7 +258,7 @@ namespace communication::messages::broadcast {
     }
 
 
-    TeamSnapshot::TeamSnapshot(int points, const std::vector<std::pair<types::FanType, bool>> &fans, int seekerX,
+    TeamSnapshot::TeamSnapshot(int points, std::vector<std::pair<types::FanType, bool>> fans, int seekerX,
                                int seekerY, bool seekerBanned, bool seekerTurnUsed, bool seekerKnockout, int keeperX,
                                int keeperY, bool keeperBanned, bool keeperHoldsQuaffle, bool keeperTurnUsed,
                                bool keeperKnockout, int chaser1X, int chaser1Y, bool chaser1Banned,
@@ -269,7 +269,7 @@ namespace communication::messages::broadcast {
                                int beater1Y, bool beater1Banned, bool beater1HoldsBludger, bool beater1TurnUsed,
                                bool beater1Knockout, int beater2X, int beater2Y, bool beater2Banned,
                                bool beater2HoldsBludger, bool beater2TurnUsed, bool beater2Knockout) : points(points),
-                                                                                                       fans(fans),
+                                                                                                       fans(std::move(fans)),
                                                                                                        seekerX(seekerX),
                                                                                                        seekerY(seekerY),
                                                                                                        seekerBanned(

@@ -111,8 +111,8 @@ namespace communication::messages::broadcast {
         this->log.emplace_back(message);
     }
 
-    Replay::Replay(const std::string &lobby, const std::string &startTime, const MatchConfig &matchConfig) : lobby(
-            lobby), startTime(startTime), matchConfig(matchConfig) {}
+    Replay::Replay(std::string lobby, std::string startTime, const MatchConfig &matchConfig) : lobby(std::move(
+            lobby)), startTime(std::move(startTime)), matchConfig(matchConfig) {}
 
     void Replay::addSpectator(const std::string &name) {
         this->spectatorUserNames.emplace_back(name);

@@ -25,7 +25,7 @@ namespace communication::messages::broadcast {
                std::string rightTeamUserName, std::vector<std::string> spectatrUserNames,
                Snapshot firstSnapshot, std::vector<Message> log);
 
-        Replay(const std::string &lobby, const std::string &startTime, const MatchConfig &matchConfig);
+        Replay(std::string lobby, std::string startTime, const MatchConfig &matchConfig);
 
         std::string getLobby() const;
 

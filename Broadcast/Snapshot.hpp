@@ -18,7 +18,7 @@ namespace communication::messages::broadcast {
     class TeamSnapshot {
     public:
         TeamSnapshot() = default;
-        TeamSnapshot(int points, const std::vector<std::pair<types::FanType, bool>> &fans, int seekerX, int seekerY,
+        TeamSnapshot(int points, std::vector<std::pair<types::FanType, bool>> fans, int seekerX, int seekerY,
                      bool seekerBanned, bool seekerTurnUsed, bool seekerKnockout, int keeperX, int keeperY,
                      bool keeperBanned, bool keeperHoldsQuaffle, bool keeperTurnUsed, bool keeperKnockout, int chaser1X,
                      int chaser1Y, bool chaser1Banned, bool chaser1HoldsQuaffle, bool chaser1TurnUsed,
@@ -98,9 +98,9 @@ namespace communication::messages::broadcast {
         int chaser3X{}, chaser3Y{};
         bool chaser3Banned{}, chaser3HoldsQuaffle{}, chaser3TurnUsed{}, chaser3Knockout{};
         int beater1X{}, beater1Y{};
-        bool beater1Banned{}, beater1HoldsBludger{}, beater1TurnUsed{}, beater1Knockout;
+        bool beater1Banned{}, beater1HoldsBludger{}, beater1TurnUsed{}, beater1Knockout{};
         int beater2X{}, beater2Y{};
-        bool beater2Banned{}, beater2HoldsBludger{}, beater2TurnUsed{}, beater2Knockout;
+        bool beater2Banned{}, beater2HoldsBludger{}, beater2TurnUsed{}, beater2Knockout{};
     };
 
     void to_json(nlohmann::json &j, const TeamSnapshot &teamSnaphot);
