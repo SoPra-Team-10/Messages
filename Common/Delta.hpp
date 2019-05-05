@@ -38,8 +38,6 @@ namespace communication::messages {
 
         std::optional<types::EntityId> getPassiveEntity() const;
 
-        std::optional<bool> getSuccess() const;
-
         types::PhaseType getPhase() const;
 
         int getLeftPoints() const;

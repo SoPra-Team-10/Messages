@@ -9,17 +9,19 @@
 
 #include <utility>
 
+#include "OptionalSerialization.hpp"
+
 namespace communication::messages::broadcast {
 
     auto Snapshot::getName() -> std::string {
         return "snapshot";
     }
 
-    Snapshot::Snapshot(broadcast::DeltaBroadcast lastDeltaBroadcast, types::PhaseType phase, const std::vector<std::string> &spectatorUserName, int round,
-                       const TeamSnapshot &leftTeam, const TeamSnapshot &rightTeam, int snitchX, int snitchY,
+    Snapshot::Snapshot(broadcast::DeltaBroadcast lastDeltaBroadcast, types::PhaseType phase, std::vector<std::string> spectatorUserName, int round,
+                       TeamSnapshot leftTeam, TeamSnapshot rightTeam, std::optional<int> snitchX, std::optional<int> snitchY,
                        int quaffleX, int quaffleY, int bludger1X, int bludger1Y, int bludger2X, int bludger2Y) :
                        lastDeltaBroadcast{lastDeltaBroadcast}, phase(
-            phase), spectatorUserName(spectatorUserName), round(round), leftTeam(leftTeam), rightTeam(rightTeam),
+            phase), spectatorUserName(std::move(spectatorUserName)), round(round), leftTeam(std::move(leftTeam)), rightTeam(std::move(rightTeam)),
                                                                                                                  snitchX(snitchX),
                                                                                                                  snitchY(snitchY),
                                                                                                                  quaffleX(
@@ -55,11 +57,11 @@ namespace communication::messages::broadcast {
         return rightTeam;
     }
 
-    int Snapshot::getSnitchX() const {
+    std::optional<int >Snapshot::getSnitchX() const {
         return snitchX;
     }
 
-    int Snapshot::getSnitchY() const {
+    std::optional<int> Snapshot::getSnitchY() const {
         return snitchY;
     }
 
@@ -561,8 +563,8 @@ namespace communication::messages::broadcast {
             j.at("round").get<int>(),
             j.at("leftTeam").get<TeamSnapshot>(),
             j.at("rightTeam").get<TeamSnapshot>(),
-            j.at("balls").at("snitch").at("xPos").get<int>(),
-            j.at("balls").at("snitch").at("yPos").get<int>(),
+            j.at("balls").at("snitch").at("xPos").get<std::optional<int>>(),
+            j.at("balls").at("snitch").at("yPos").get<std::optional<int>>(),
             j.at("balls").at("quaffle").at("xPos").get<int>(),
             j.at("balls").at("quaffle").at("yPos").get<int>(),
             j.at("balls").at("bludger1").at("xPos").get<int>(),

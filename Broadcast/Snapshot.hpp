@@ -109,8 +109,8 @@ namespace communication::messages::broadcast {
     class Snapshot {
     public:
         Snapshot() = default;
-        Snapshot(broadcast::DeltaBroadcast lastDeltaBroadcast, types::PhaseType phase, const std::vector<std::string> &spectatorUserName, int round,
-                 const TeamSnapshot &leftTeam, const TeamSnapshot &rightTeam, int snitchX, int snitchY, int quaffleX,
+        Snapshot(broadcast::DeltaBroadcast lastDeltaBroadcast, types::PhaseType phase, std::vector<std::string> spectatorUserName, int round,
+                 TeamSnapshot leftTeam, TeamSnapshot rightTeam, std::optional<int> snitchX, std::optional<int> snitchY, int quaffleX,
                  int quaffleY, int bludger1X, int bludger1Y, int bludger2X, int bludger2Y);
 
         DeltaBroadcast getLastDeltaBroadcast() const;
@@ -120,8 +120,8 @@ namespace communication::messages::broadcast {
         int getRound() const;
         TeamSnapshot getLeftTeam() const;
         TeamSnapshot getRightTeam() const;
-        int getSnitchX() const;
-        int getSnitchY() const;
+        std::optional<int> getSnitchX() const;
+        std::optional<int> getSnitchY() const;
         int getQuaffleX() const;
         int getQuaffleY() const;
         int getBludger1X() const;
@@ -141,7 +141,7 @@ namespace communication::messages::broadcast {
         std::vector<std::string> spectatorUserName;
         int round{};
         TeamSnapshot leftTeam, rightTeam;
-        int snitchX{}, snitchY{};
+        std::optional<int> snitchX{}, snitchY{};
         int quaffleX{}, quaffleY{};
         int bludger1X{}, bludger1Y{};
         int bludger2X{}, bludger2Y{};

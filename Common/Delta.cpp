@@ -51,10 +51,6 @@ namespace communication::messages {
                                                activeEntity(activeEntity), passiveEntity(passiveEntity), phase(phase),
                                                leftPoints(leftPoints), rightPoints(rightPoints), round(round) {}
 
-    std::optional<bool> Delta::getSuccess() const {
-        return success;
-    }
-
     types::PhaseType Delta::getPhase() const {
         return phase;
     }
