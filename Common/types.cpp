@@ -357,3 +357,39 @@ auto communication::messages::types::fromStringVictoryReason(
         throw std::runtime_error{"Not a valid VictoryReason"};
     }
 }
+
+auto communication::messages::types::toString(communication::messages::types::Mods mods) -> std::string {
+    switch (mods) {
+        case Mods::CHAT:
+            return "chat";
+        case Mods::DISABLE_GENDER_BALANCE:
+            return "disableGenderBalance";
+        case Mods::REPLAY_WITH_SNAPSHOT:
+            return "replayWithSnapshot";
+        case Mods::ERROR:
+            return "error";
+        case Mods::WARNING:
+            return "warning";
+        case Mods::LOBBIES:
+            return "lobbies";
+    }
+    throw std::runtime_error{"We shouln't really be here"};
+}
+
+auto communication::messages::types::fromStringMod(const std::string &s) -> communication::messages::types::Mods {
+    if (s == "chat") {
+        return Mods::CHAT;
+    } else if (s == "disableGenderBalance") {
+        return Mods::DISABLE_GENDER_BALANCE;
+    } else if (s == "replayWithSnapshot") {
+        return Mods::REPLAY_WITH_SNAPSHOT;
+    } else if (s == "error") {
+        return Mods::ERROR;
+    } else if (s == "warning") {
+        return Mods::WARNING;
+    } else if (s == "lobbies") {
+        return Mods::LOBBIES;
+    } else {
+        throw std::runtime_error{"Not a valid Mod"};
+    }
+}

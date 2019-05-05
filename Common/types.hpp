@@ -77,6 +77,13 @@ namespace communication::messages::types {
 
     auto toString(PhaseType phaseType) -> std::string;
     auto fromStringPhaseType(const std::string &s) -> PhaseType;
+
+    enum class Mods {
+        CHAT, DISABLE_GENDER_BALANCE, REPLAY_WITH_SNAPSHOT, ERROR, WARNING, LOBBIES
+    };
+
+    auto toString(Mods mods) -> std::string;
+    auto fromStringMod(const std::string &s) -> Mods;
 }
 
 #endif //SERVER_TYPES_HPP

@@ -3,7 +3,7 @@
 
 using namespace communication::messages;
 
-TEST(CommunicationMessagesCommonDelta, SerializeDeserialize) {
+TEST(CommonDelta, SerializeDeserialize) {
     Delta orig{types::DeltaType::SNITCH_SNATCH, true, 17,38,-12,35,
                 types::EntityId::LEFT_NIFFLER, types::EntityId::RIGHT_BEATER1, types::PhaseType::FAN_PHASE,
                 34,33,32};
