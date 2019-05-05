@@ -63,7 +63,7 @@ auto communication::messages::types::toString(communication::messages::types::En
         case types::EntityId::RIGHT_NIFFLER:
             return "rightNiffler";
     }
-    throw std::runtime_error{"We shouln't really be here"};
+    throw std::runtime_error{"[EntityId] We shouldn't really be here"};
 }
 
 auto communication::messages::types::fromStringEntityId(const std::string &s) -> communication::messages::types::EntityId {
@@ -135,7 +135,7 @@ auto communication::messages::types::toString(communication::messages::types::Tu
         case TurnType::REMOVE_BAN:
             return "removeBan";
     }
-    throw std::runtime_error{"We shouln't really be here"};
+    throw std::runtime_error{"[TurnType] We shouln't really be here"};
 }
 
 auto communication::messages::types::fromStringTurnType(const std::string &s)
@@ -166,7 +166,7 @@ auto communication::messages::types::toString(communication::messages::types::Br
         case types::Broom::FIREBOLT:
             return "firebolt";
     }
-    throw std::runtime_error{"We shouln't really be here"};
+    throw std::runtime_error{"[Broom] We shouln't really be here"};
 }
 
 auto communication::messages::types::fromStringBroom(const std::string &s) -> communication::messages::types::Broom {
@@ -192,7 +192,7 @@ auto communication::messages::types::toString(communication::messages::types::Se
         case types::Sex::F:
             return "f";
     }
-    throw std::runtime_error{"We shouln't really be here"};
+    throw std::runtime_error{"[Sex] We shouln't really be here"};
 }
 
 auto communication::messages::types::fromStringSex(const std::string &s) -> communication::messages::types::Sex {
@@ -228,7 +228,7 @@ auto communication::messages::types::toString(communication::messages::types::De
         case DeltaType::MOVE:
             return "move";
     }
-    throw std::runtime_error{"We shouln't really be here"};
+    throw std::runtime_error{"[DeltaType] We shouln't really be here"};
 }
 
 auto communication::messages::types::fromStringDeltaType(const std::string &s)
@@ -269,7 +269,7 @@ auto communication::messages::types::toString(communication::messages::types::Fa
         case FanType::NIFFLER:
             return "niffler";
     }
-    throw std::runtime_error{"We shouln't really be here"};
+    throw std::runtime_error{"[FanType] We shouln't really be here"};
 }
 
 auto communication::messages::types::fromStringFanType(const std::string &s)
@@ -298,7 +298,7 @@ auto communication::messages::types::toString(communication::messages::types::Ph
         case PhaseType::GAME_FINISH:
             return "gameFinish";
     }
-    throw std::runtime_error{"We shouln't really be here"};
+    throw std::runtime_error{"[PhaseType] We shouln't really be here"};
 }
 
 auto communication::messages::types::fromStringPhaseType(const std::string &s)
@@ -334,7 +334,7 @@ auto communication::messages::types::toString(communication::messages::types::Vi
         case VictoryReason::VIOLATION_OF_PROTOCOL:
             return "violationOfProtocol";
     }
-    throw std::runtime_error{"We shouln't really be here"};
+    throw std::runtime_error{"[VictoryReason] We shouln't really be here"};
 }
 
 auto communication::messages::types::fromStringVictoryReason(
@@ -373,7 +373,7 @@ auto communication::messages::types::toString(communication::messages::types::Mo
         case Mods::LOBBIES:
             return "lobbies";
     }
-    throw std::runtime_error{"We shouln't really be here"};
+    throw std::runtime_error{"[Mods] We shouln't really be here"};
 }
 
 auto communication::messages::types::fromStringMod(const std::string &s) -> communication::messages::types::Mods {
