@@ -73,6 +73,16 @@ namespace communication::messages {
             payload = payloadJ.get<unicast::PrivateDebug>();
         } else if (payloadType == unicast::Reconnect::getName()) {
             payload = payloadJ.get<unicast::Reconnect>();
+        } else if (payloadType == mods::broadcast::GlobalChat::getName()) {
+            payload = payloadJ.get<mods::broadcast::GlobalChat>();
+        } else if (payloadType == mods::request::GetReplayWithSnapshot::getName()) {
+            payload = payloadJ.get<mods::request::GetReplayWithSnapshot>();
+        } else if (payloadType == mods::request::SendChat::getName()) {
+            payload = payloadJ.get<mods::request::SendChat>();
+        } else if (payloadType == mods::unicast::PrivateError::getName()) {
+            payload = payloadJ.get<mods::unicast::PrivateError>();
+        } else if (payloadType == mods::unicast::PrivateWarning::getName()) {
+            payload = payloadJ.get<mods::unicast::PrivateWarning>();
         } else {
             throw std::runtime_error{"Not a valid payloadType"};
         }

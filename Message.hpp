@@ -28,6 +28,11 @@
 #include "JoinResponse.hpp"
 #include "PrivateDebug.hpp"
 #include "Reconnect.hpp"
+#include "GlobalChat.h"
+#include "GetReplayWithSnapshot.h"
+#include "SendChat.h"
+#include "PrivateError.h"
+#include "PrivateWarning.h"
 
 namespace communication::messages {
     using Payload = std::variant<
@@ -50,7 +55,12 @@ namespace communication::messages {
             request::TeamFormation,
             unicast::JoinResponse,
             unicast::PrivateDebug,
-            unicast::Reconnect>;
+            unicast::Reconnect,
+            mods::broadcast::GlobalChat,
+            mods::request::GetReplayWithSnapshot,
+            mods::request::SendChat,
+            mods::unicast::PrivateError,
+            mods::unicast::PrivateWarning>;
 
     template <typename Payload>
     class AbstractMessage {
