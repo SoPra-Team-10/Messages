@@ -15,7 +15,7 @@ endif ()
 # Building
 project(SopraMessages VERSION 0.0.1 DESCRIPTION "Messages for SoPra")
 
-include_directories(Broadcast Request Unicast Common Lib Util ${CMAKE_SOURCE_DIR})
+include_directories(Broadcast Request Unicast Common Lib Util Mods/Broadcast Mods/Request Mods/Unicast ${CMAKE_SOURCE_DIR})
 
 set(SOURCES
         ${CMAKE_SOURCE_DIR}/Message.cpp
