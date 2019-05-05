@@ -9,7 +9,7 @@
 #define SERVER_JOINREQUEST_HPP
 
 #include <string>
-#include <types.hpp>
+#include "types.hpp"
 #include "json.hpp"
 
 namespace communication::messages::request {
