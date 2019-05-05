@@ -5,7 +5,7 @@ using namespace communication::messages;
 
 using T = broadcast::Replay;
 
-TEST(CommunicationMessagesBroadcastReplay, SerializeDeserialize) {
+TEST(BroadcastReplay, SerializeDeserialize) {
     request::Player player{"def",{},{}};
     request::TeamConfig teamConfig{
             "abc",

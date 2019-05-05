@@ -5,7 +5,7 @@ using namespace communication::messages;
 
 using T = broadcast::MatchFinish;
 
-TEST(CommunicationMessagesBroadcastMatchFinish, SerializeDeserialize) {
+TEST(BroadcastMatchFinish, SerializeDeserialize) {
     T orig{1,2,3,"Test",types::VictoryReason::MOST_POINTS};
     std::string ser;
     nlohmann::json json;

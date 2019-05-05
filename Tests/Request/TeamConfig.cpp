@@ -6,7 +6,7 @@ using namespace communication::messages;
 using T0 = request::TeamConfig;
 using T1 = request::Player;
 
-TEST(CommunicationMessagesRequestTeamConfig, TeamConfigSerializeDeserialize) {
+TEST(RequestTeamConfig, TeamConfigSerializeDeserialize) {
     request::Player player{"abcd", {}, {}};
     T0 orig{"asds","bsdsd","0011FF","FF1100","esdsd",1,2,3,4,player,player,player,player,player,player,player};
     std::string ser;
@@ -18,7 +18,7 @@ TEST(CommunicationMessagesRequestTeamConfig, TeamConfigSerializeDeserialize) {
     EXPECT_EQ(comp, orig);
 }
 
-TEST(CommunicationMessagesRequestTeamConfig, PlayerSerializeDeserialize) {
+TEST(RequestTeamConfig, PlayerSerializeDeserialize) {
     T1 orig{"Test", types::Broom::FIREBOLT, types::Sex::F};
     std::string ser;
     nlohmann::json json;

@@ -5,7 +5,7 @@ using namespace communication::messages;
 
 using T = broadcast::PauseResponse;
 
-TEST(CommunicationMessagesBroadcastPauseResponse, SerializeDeserialize) {
+TEST(BroadcastPauseResponse, SerializeDeserialize) {
     T orig{"Test", "Test2", true};
     std::string ser;
     nlohmann::json json;

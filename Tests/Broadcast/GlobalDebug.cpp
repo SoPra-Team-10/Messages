@@ -5,7 +5,7 @@ using namespace communication::messages;
 
 using T = broadcast::GlobalDebug;
 
-TEST(CommunicationMessagesBroadcastGlobalDebug, SerializeDeserialize) {
+TEST(BroadcastGlobalDebug, SerializeDeserialize) {
     T orig{"Test"};
     std::string ser;
     nlohmann::json json;

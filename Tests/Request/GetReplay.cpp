@@ -5,7 +5,7 @@ using namespace communication::messages;
 
 using T = request::GetReplay;
 
-TEST(CommunicationMessagesRequestGetReplay, SerializeDeserialize) {
+TEST(RequestGetReplay, SerializeDeserialize) {
     T orig{};
     std::string ser;
     nlohmann::json json;

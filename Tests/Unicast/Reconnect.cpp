@@ -5,7 +5,7 @@ using namespace communication::messages;
 
 using T = unicast::Reconnect;
 
-TEST(CommunicationMessagesUnicastReconnect, SerializeDeserialize) {
+TEST(UnicastReconnect, SerializeDeserialize) {
     request::Player player{"def",{},{}};
     request::TeamConfig teamConfig{
             "abc",

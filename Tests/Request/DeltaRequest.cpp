@@ -5,7 +5,7 @@ using namespace communication::messages;
 
 using T = request::DeltaRequest;
 
-TEST(CommunicationMessagesRequestDeltaRequest, SerializeDeserialize) {
+TEST(RequestDeltaRequest, SerializeDeserialize) {
     T orig{};
     std::string ser;
     nlohmann::json json;

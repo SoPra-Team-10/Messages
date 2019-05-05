@@ -5,7 +5,7 @@ using namespace communication::messages;
 
 using T = broadcast::LoginGreeting;
 
-TEST(CommunicationMessagesBroadcastLoginGreeting, SerializeDeserialize) {
+TEST(BroadcastLoginGreeting, SerializeDeserialize) {
     T orig{"Test"};
     std::string ser;
     nlohmann::json json;

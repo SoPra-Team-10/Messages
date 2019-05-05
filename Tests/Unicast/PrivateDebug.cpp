@@ -5,7 +5,7 @@ using namespace communication::messages;
 
 using T = unicast::PrivateDebug;
 
-TEST(CommunicationMessagesUnicastPrivateDebug, SerializeDeserialize) {
+TEST(UnicastPrivateDebug, SerializeDeserialize) {
     T orig{"Test"};
     std::string ser;
     nlohmann::json json;

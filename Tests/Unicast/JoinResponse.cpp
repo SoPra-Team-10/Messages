@@ -5,7 +5,7 @@ using namespace communication::messages;
 
 using T = unicast::JoinResponse;
 
-TEST(CommunicationMessagesUnicastJoinResponse, SerializeDeserialize) {
+TEST(UnicastJoinResponse, SerializeDeserialize) {
     T orig{"Test"};
     std::string ser;
     nlohmann::json json;

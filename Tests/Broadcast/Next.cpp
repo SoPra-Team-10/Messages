@@ -5,7 +5,7 @@ using namespace communication::messages;
 
 using T = broadcast::Next;
 
-TEST(CommunicationMessagesBroadcastNext, SerializeDeserialize) {
+TEST(BroadcastNext, SerializeDeserialize) {
     T orig{types::EntityId::RIGHT_GOBLIN, types::TurnType::MOVE, 37};
     std::string ser;
     nlohmann::json json;

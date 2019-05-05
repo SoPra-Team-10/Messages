@@ -5,7 +5,7 @@ using namespace communication::messages;
 
 using T = request::SendDebug;
 
-TEST(CommunicationMessagesRequestSendDebug, SerializeDeserialize) {
+TEST(RequestSendDebug, SerializeDeserialize) {
     T orig{"Test"};
     std::string ser;
     nlohmann::json json;
