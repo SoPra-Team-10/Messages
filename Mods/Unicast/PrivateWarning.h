@@ -11,8 +11,17 @@
 namespace commmunication::messages::mods::broadcast {
     class PrivateWarning {
     public:
-        static auto getName() -> std::string;
+        PrivateWarning(const std::string &warningProducingPayload, const std::string &information);
 
+        std::string getWarningProducingPayload() const;
+
+        std::string getInformation() const;
+
+        bool operator==(const PrivateWarning &rhs) const;
+
+        bool operator!=(const PrivateWarning &rhs) const;
+
+        static auto getName() -> std::string;
     private:
         std::string warningProducingPayload, information;
     };

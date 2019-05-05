@@ -15,8 +15,40 @@
 namespace commmunication::messages::mods::broadcast {
     class ReplayWithSnapshot {
     public:
-        static auto getName() -> std::string;
+        ReplayWithSnapshot(const std::string &lobby, const std::string &startTimestamp,
+                           const communication::messages::broadcast::MatchConfig &matchConfig,
+                           const communication::messages::request::TeamConfig &leftTeamConfig,
+                           const communication::messages::request::TeamConfig &rightTeamConfig,
+                           const std::string &leftTeamUserName, const std::string &rightTeamUserName,
+                           const std::vector<std::string> &spectatorUserName,
+                           const communication::messages::broadcast::Snapshot &firstSnapshot,
+                           const std::vector<communication::messages::Message> &messages);
 
+        const std::string &getLobby() const;
+
+        const std::string &getStartTimestamp() const;
+
+        const communication::messages::broadcast::MatchConfig &getMatchConfig() const;
+
+        const communication::messages::request::TeamConfig &getLeftTeamConfig() const;
+
+        const communication::messages::request::TeamConfig &getRightTeamConfig() const;
+
+        const std::string &getLeftTeamUserName() const;
+
+        const std::string &getRightTeamUserName() const;
+
+        const std::vector<std::string> &getSpectatorUserName() const;
+
+        const communication::messages::broadcast::Snapshot &getFirstSnapshot() const;
+
+        const std::vector<communication::messages::Message> &getMessages() const;
+
+        bool operator==(const ReplayWithSnapshot &rhs) const;
+
+        bool operator!=(const ReplayWithSnapshot &rhs) const;
+
+        static auto getName() -> std::string;
     private:
         std::string lobby, startTimestamp;
         communication::messages::broadcast::MatchConfig matchConfig;

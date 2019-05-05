@@ -9,4 +9,24 @@ namespace commmunication::messages::mods::broadcast {
     auto GlobalChat::getName() -> std::string {
         return "globalChat";
     }
+
+    GlobalChat::GlobalChat(const std::string &senderUserName, const std::string &information) : senderUserName(
+            senderUserName), information(information) {}
+
+    std::string GlobalChat::getSenderUserName() const {
+        return senderUserName;
+    }
+
+    std::string GlobalChat::getInformation() const {
+        return information;
+    }
+
+    bool GlobalChat::operator==(const GlobalChat &rhs) const {
+        return senderUserName == rhs.senderUserName &&
+               information == rhs.information;
+    }
+
+    bool GlobalChat::operator!=(const GlobalChat &rhs) const {
+        return !(rhs == *this);
+    }
 }

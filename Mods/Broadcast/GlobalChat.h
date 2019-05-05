@@ -11,8 +11,18 @@
 namespace commmunication::messages::mods::broadcast {
     class GlobalChat {
     public:
-        static auto getName() -> std::string;
+        GlobalChat() = default;
+        GlobalChat(const std::string &senderUserName, const std::string &information);
 
+        std::string getSenderUserName() const;
+
+        std::string getInformation() const;
+
+        bool operator==(const GlobalChat &rhs) const;
+
+        bool operator!=(const GlobalChat &rhs) const;
+
+        static auto getName() -> std::string;
     private:
         std::string senderUserName, information;
     };

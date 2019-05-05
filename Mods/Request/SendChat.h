@@ -11,8 +11,15 @@
 namespace commmunication::messages::mods::broadcast {
     class SendChat {
     public:
-        static auto getName() -> std::string;
+        SendChat(const std::string &information);
 
+        std::string getInformation() const;
+
+        bool operator==(const SendChat &rhs) const;
+
+        bool operator!=(const SendChat &rhs) const;
+
+        static auto getName() -> std::string;
     private:
         std::string information;
     };
