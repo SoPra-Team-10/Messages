@@ -25,6 +25,9 @@ namespace communication::messages::mods::unicast {
                            communication::messages::broadcast::Snapshot firstSnapshot,
                            std::vector<communication::messages::Message> messages);
 
+        ReplayWithSnapshot(std::string lobby, std::string startTime,
+                const communication::messages::broadcast::MatchConfig &matchConfig);
+
         const std::string &getLobby() const;
 
         const std::string &getStartTimestamp() const;
@@ -48,6 +51,20 @@ namespace communication::messages::mods::unicast {
         bool operator==(const ReplayWithSnapshot &rhs) const;
 
         bool operator!=(const ReplayWithSnapshot &rhs) const;
+
+        void setLeftTeamConfig(const communication::messages::request::TeamConfig &leftTeamConfig);
+
+        void setRightTeamConfig(const communication::messages::request::TeamConfig &rightTeamConfig);
+
+        void setLeftTeamUserName(const std::string &leftTeamUserName);
+
+        void setRightTeamUserName(const std::string &rightTeamUserName);
+
+        void addSpectator(const std::string &name);
+
+        void setFirstSnapshot(const communication::messages::broadcast::Snapshot &firstSnapshot);
+
+        void addLog(const messages::Message &message);
 
         static auto getName() -> std::string;
     private:

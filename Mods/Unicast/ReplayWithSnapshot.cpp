@@ -1,3 +1,7 @@
+#include <utility>
+
+#include <utility>
+
 //
 // Created by paulnykiel on 04.05.19.
 //
@@ -89,6 +93,39 @@ namespace communication::messages::mods::unicast {
 
     bool ReplayWithSnapshot::operator!=(const ReplayWithSnapshot &rhs) const {
         return !(rhs == *this);
+    }
+
+    ReplayWithSnapshot::ReplayWithSnapshot(std::string lobby, std::string startTime,
+                                           const communication::messages::broadcast::MatchConfig &matchConfig)
+                                           : lobby{std::move(lobby)},
+                                           startTimestamp{std::move(startTime)}, matchConfig{matchConfig} {}
+
+    void ReplayWithSnapshot::setLeftTeamConfig(const communication::messages::request::TeamConfig &leftTeamConfig) {
+        this->leftTeamConfig = leftTeamConfig;
+    }
+
+    void ReplayWithSnapshot::setRightTeamConfig(const communication::messages::request::TeamConfig &rightTeamConfig) {
+        this->rightTeamConfig = rightTeamConfig;
+    }
+
+    void ReplayWithSnapshot::setLeftTeamUserName(const std::string &leftTeamUserName) {
+        this->leftTeamUserName = leftTeamUserName;
+    }
+
+    void ReplayWithSnapshot::setRightTeamUserName(const std::string &rightTeamUserName) {
+        this->rightTeamUserName = rightTeamUserName;
+    }
+
+    void ReplayWithSnapshot::addSpectator(const std::string &name) {
+        this->spectatorUserName.emplace_back(name);
+    }
+
+    void ReplayWithSnapshot::setFirstSnapshot(const communication::messages::broadcast::Snapshot &firstSnapshot) {
+        this->firstSnapshot = firstSnapshot;
+    }
+
+    void ReplayWithSnapshot::addLog(const messages::Message &message) {
+        this->messages.emplace_back(message);
     }
 
     void to_json(nlohmann::json &j, const ReplayWithSnapshot &replayWithSnapshot) {
