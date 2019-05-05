@@ -6,9 +6,9 @@
 #define SOPRAMESSAGES_REPLAYWITHSNAPSHOT_H
 
 #include <string>
-#include <TeamConfig.hpp>
-#include <Snapshot.hpp>
-#include <Message.hpp>
+#include "TeamConfig.hpp"
+#include "Snapshot.hpp"
+#include "Message.hpp"
 #include "json.hpp"
 #include "MatchConfig.hpp"
 
