@@ -11,7 +11,7 @@
 namespace commmunication::messages::mods::broadcast {
     class PrivateWarning {
     public:
-        PrivateWarning(const std::string &warningProducingPayload, const std::string &information);
+        PrivateWarning(std::string warningProducingPayload, std::string information);
 
         std::string getWarningProducingPayload() const;
 

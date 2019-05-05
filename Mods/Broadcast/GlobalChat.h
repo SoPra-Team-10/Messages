@@ -12,7 +12,7 @@ namespace commmunication::messages::mods::broadcast {
     class GlobalChat {
     public:
         GlobalChat() = default;
-        GlobalChat(const std::string &senderUserName, const std::string &information);
+        GlobalChat(std::string senderUserName, std::string information);
 
         std::string getSenderUserName() const;
 

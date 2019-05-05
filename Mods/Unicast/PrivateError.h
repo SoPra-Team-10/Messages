@@ -11,7 +11,7 @@
 namespace commmunication::messages::mods::broadcast {
     class PrivateError {
     public:
-        PrivateError(const std::string &errorProducingPayload, const std::string &information);
+        PrivateError(std::string errorProducingPayload, std::string information);
 
         std::string getErrorProducingPayload() const;
 

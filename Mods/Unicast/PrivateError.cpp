@@ -4,6 +4,7 @@
 
 #include "PrivateError.h"
 
+#include <utility>
 
 namespace commmunication::messages::mods::broadcast {
 
@@ -11,8 +12,8 @@ namespace commmunication::messages::mods::broadcast {
         return "privateError";
     }
 
-    PrivateError::PrivateError(const std::string &errorProducingPayload, const std::string &information)
-            : errorProducingPayload(errorProducingPayload), information(information) {}
+    PrivateError::PrivateError(std::string errorProducingPayload, std::string information)
+            : errorProducingPayload(std::move(errorProducingPayload)), information(std::move(information)) {}
 
     std::string PrivateError::getErrorProducingPayload() const {
         return errorProducingPayload;

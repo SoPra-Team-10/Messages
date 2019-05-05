@@ -4,13 +4,15 @@
 
 #include "SendChat.h"
 
+#include <utility>
+
 namespace commmunication::messages::mods::broadcast {
 
     auto SendChat::getName() -> std::string {
         return "sendChat";
     }
 
-    SendChat::SendChat(const std::string &information) : information(information) {}
+    SendChat::SendChat(std::string information) : information(std::move(information)) {}
 
     std::string SendChat::getInformation() const {
         return information;

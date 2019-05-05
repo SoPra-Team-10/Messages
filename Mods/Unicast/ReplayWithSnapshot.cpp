@@ -4,33 +4,35 @@
 
 #include "ReplayWithSnapshot.h"
 
+#include <utility>
+
 namespace commmunication::messages::mods::broadcast {
 
     auto ReplayWithSnapshot::getName() -> std::string {
         return "replayWithSnapshot";
     }
 
-    ReplayWithSnapshot::ReplayWithSnapshot(const std::string &lobby, const std::string &startTimestamp,
+    ReplayWithSnapshot::ReplayWithSnapshot(std::string lobby, std::string startTimestamp,
                                            const communication::messages::broadcast::MatchConfig &matchConfig,
-                                           const communication::messages::request::TeamConfig &leftTeamConfig,
-                                           const communication::messages::request::TeamConfig &rightTeamConfig,
-                                           const std::string &leftTeamUserName, const std::string &rightTeamUserName,
-                                           const std::vector<std::string> &spectatorUserName,
-                                           const communication::messages::broadcast::Snapshot &firstSnapshot,
-                                           const std::vector<communication::messages::Message> &messages) : lobby(
-            lobby), startTimestamp(startTimestamp), matchConfig(matchConfig), leftTeamConfig(leftTeamConfig),
-                                                                                                            rightTeamConfig(
-                                                                                                                    rightTeamConfig),
-                                                                                                            leftTeamUserName(
-                                                                                                                    leftTeamUserName),
-                                                                                                            rightTeamUserName(
-                                                                                                                    rightTeamUserName),
-                                                                                                            spectatorUserName(
-                                                                                                                    spectatorUserName),
-                                                                                                            firstSnapshot(
-                                                                                                                    firstSnapshot),
-                                                                                                            messages(
-                                                                                                                    messages) {}
+                                           communication::messages::request::TeamConfig leftTeamConfig,
+                                           communication::messages::request::TeamConfig rightTeamConfig,
+                                           std::string leftTeamUserName, std::string rightTeamUserName,
+                                           std::vector<std::string> spectatorUserName,
+                                           communication::messages::broadcast::Snapshot firstSnapshot,
+                                           std::vector<communication::messages::Message> messages) : lobby(std::move(
+            lobby)), startTimestamp(std::move(startTimestamp)), matchConfig(matchConfig), leftTeamConfig(std::move(leftTeamConfig)),
+                                                                                                            rightTeamConfig(std::move(
+                                                                                                                    rightTeamConfig)),
+                                                                                                            leftTeamUserName(std::move(
+                                                                                                                    leftTeamUserName)),
+                                                                                                            rightTeamUserName(std::move(
+                                                                                                                    rightTeamUserName)),
+                                                                                                            spectatorUserName(std::move(
+                                                                                                                    spectatorUserName)),
+                                                                                                            firstSnapshot(std::move(
+                                                                                                                    firstSnapshot)),
+                                                                                                            messages(std::move(
+                                                                                                                    messages)) {}
 
     const std::string &ReplayWithSnapshot::getLobby() const {
         return lobby;

@@ -4,14 +4,16 @@
 
 #include "PrivateWarning.h"
 
+#include <utility>
+
 namespace commmunication::messages::mods::broadcast {
 
     auto PrivateWarning::getName() -> std::string {
         return "privateWarning";
     }
 
-    PrivateWarning::PrivateWarning(const std::string &warningProducingPayload, const std::string &information)
-            : warningProducingPayload(warningProducingPayload), information(information) {}
+    PrivateWarning::PrivateWarning(std::string warningProducingPayload, std::string information)
+            : warningProducingPayload(std::move(warningProducingPayload)), information(std::move(information)) {}
 
     std::string PrivateWarning::getWarningProducingPayload() const {
         return warningProducingPayload;

@@ -15,14 +15,14 @@
 namespace commmunication::messages::mods::broadcast {
     class ReplayWithSnapshot {
     public:
-        ReplayWithSnapshot(const std::string &lobby, const std::string &startTimestamp,
+        ReplayWithSnapshot(std::string lobby, std::string startTimestamp,
                            const communication::messages::broadcast::MatchConfig &matchConfig,
-                           const communication::messages::request::TeamConfig &leftTeamConfig,
-                           const communication::messages::request::TeamConfig &rightTeamConfig,
-                           const std::string &leftTeamUserName, const std::string &rightTeamUserName,
-                           const std::vector<std::string> &spectatorUserName,
-                           const communication::messages::broadcast::Snapshot &firstSnapshot,
-                           const std::vector<communication::messages::Message> &messages);
+                           communication::messages::request::TeamConfig leftTeamConfig,
+                           communication::messages::request::TeamConfig rightTeamConfig,
+                           std::string leftTeamUserName, std::string rightTeamUserName,
+                           std::vector<std::string> spectatorUserName,
+                           communication::messages::broadcast::Snapshot firstSnapshot,
+                           std::vector<communication::messages::Message> messages);
 
         const std::string &getLobby() const;
 

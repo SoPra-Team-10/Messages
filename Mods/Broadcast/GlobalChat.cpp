@@ -4,14 +4,16 @@
 
 #include "GlobalChat.h"
 
+#include <utility>
+
 namespace commmunication::messages::mods::broadcast {
 
     auto GlobalChat::getName() -> std::string {
         return "globalChat";
     }
 
-    GlobalChat::GlobalChat(const std::string &senderUserName, const std::string &information) : senderUserName(
-            senderUserName), information(information) {}
+    GlobalChat::GlobalChat(std::string senderUserName, std::string information) : senderUserName(std::move(
+            senderUserName)), information(std::move(information)) {}
 
     std::string GlobalChat::getSenderUserName() const {
         return senderUserName;

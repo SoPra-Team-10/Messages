@@ -11,7 +11,7 @@
 namespace commmunication::messages::mods::broadcast {
     class SendChat {
     public:
-        SendChat(const std::string &information);
+        explicit SendChat(std::string information);
 
         std::string getInformation() const;
 
