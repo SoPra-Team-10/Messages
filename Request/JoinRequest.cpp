@@ -13,7 +13,7 @@
 
 namespace communication::messages::request {
     JoinRequest::JoinRequest(std::string lobby, std::string userName, std::string password,
-                             bool isArtificialIntelligence, std::vector<std::string> mods) :
+                             bool isArtificialIntelligence, std::vector<types::Mods> mods) :
                              lobby{std::move(lobby)}, userName{std::move(userName)}, password{std::move(password)},
                              isArtificialIntelligence{isArtificialIntelligence}, mods{std::move(mods)} {}
 
@@ -33,7 +33,7 @@ namespace communication::messages::request {
         return this->isArtificialIntelligence;
     }
 
-    auto JoinRequest::getMods() const -> std::vector<std::string> {
+    auto JoinRequest::getMods() const -> std::vector<types::Mods> {
         return this->mods;
     }
 
@@ -58,16 +58,24 @@ namespace communication::messages::request {
         j["userName"] = joinRequest.getUserName();
         j["password"] = joinRequest.getPassword();
         j["isArtificialIntelligence"] = joinRequest.getIsAi();
-        j["mods"] = joinRequest.getMods();
+        j["mods"] = nlohmann::json::array();
+        for (const auto &mod : joinRequest.getMods()) {
+            j["mods"].emplace_back(types::toString(mod));
+        }
     }
 
     void from_json(const nlohmann::json &j, JoinRequest &joinRequest) {
+        std::vector<types::Mods> mods;
+        for (const auto &mod : j.at("mods")) {
+            mods.emplace_back(types::fromStringMod(mod.get<std::string>()));
+        }
+
         joinRequest = JoinRequest{
             j.at("lobby").get<std::string>(),
             j.at("userName").get<std::string>(),
             j.at("password").get<std::string>(),
             j.at("isArtificialIntelligence").get<bool>(),
-            j.at("mods")
+            mods
         };
 
         auto ok = [](const std::string &s, std::size_t len) {

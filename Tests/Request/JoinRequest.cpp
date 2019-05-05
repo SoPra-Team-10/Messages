@@ -6,7 +6,7 @@ using namespace communication::messages;
 using T = request::JoinRequest;
 
 TEST(RequestJoinRequest, SerializeDeserialize) {
-    T orig{"abc", "bcdf", "csdsd", true, {"abcdssd"}};
+    T orig{"abc", "bcdf", "csdsd", true, {types::Mods::WARNING, types::Mods::DISABLE_GENDER_BALANCE}};
     std::string ser;
     nlohmann::json json;
     T comp;
