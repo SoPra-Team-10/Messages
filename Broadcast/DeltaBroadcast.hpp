@@ -16,6 +16,7 @@ namespace communication::messages::broadcast {
     class DeltaBroadcast : public Delta {
     public:
         using Delta::Delta;
+
         static auto getName() -> std::string;
     };
 

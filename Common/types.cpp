@@ -158,11 +158,11 @@ auto communication::messages::types::toString(communication::messages::types::Br
         case types::Broom::TINDERBLAST:
             return "tinderblast";
         case types::Broom::CLEANSWEEP11:
-            return "cleansweep-11";
+            return "cleansweep11";
         case types::Broom::COMET260:
-            return "comet-260";
+            return "comet260";
         case types::Broom::NIMBUS2001:
-            return "nimbus-2001";
+            return "nimbus2001";
         case types::Broom::FIREBOLT:
             return "firebolt";
     }
@@ -172,11 +172,11 @@ auto communication::messages::types::toString(communication::messages::types::Br
 auto communication::messages::types::fromStringBroom(const std::string &s) -> communication::messages::types::Broom {
     if (s == "tinderblast") {
         return types::Broom::TINDERBLAST;
-    } else if (s == "cleansweep-11") {
+    } else if (s == "cleansweep11") {
         return types::Broom::CLEANSWEEP11;
-    } else if (s == "comet-260") {
+    } else if (s == "comet260") {
         return types::Broom::COMET260;
-    } else if (s == "nimbus-2001") {
+    } else if (s == "nimbus2001") {
         return types::Broom::NIMBUS2001;
     } else if (s == "firebolt") {
         return types::Broom::FIREBOLT;
@@ -227,6 +227,16 @@ auto communication::messages::types::toString(communication::messages::types::De
             return "bludgerKnockout";
         case DeltaType::MOVE:
             return "move";
+        case DeltaType::PHASE_CHANGE:
+            return "phaseChange";
+        case DeltaType::GOAL_POINTS_CHANGE:
+            return "goalPointsChange";
+        case DeltaType::ROUND_CHANGE:
+            return "roundChange";
+        case DeltaType::SKIP:
+            return "skip";
+        case DeltaType::UNBAN:
+            return "unban";
     }
     throw std::runtime_error{"[DeltaType] We shouln't really be here"};
 }
@@ -253,6 +263,16 @@ auto communication::messages::types::fromStringDeltaType(const std::string &s)
         return DeltaType::BLUDGER_KNOCKOUT;
     } else if (s == "move") {
         return DeltaType::MOVE;
+    } else if (s == "phaseChange") {
+        return DeltaType::PHASE_CHANGE;
+    } else if (s == "goalPointsChange") {
+        return DeltaType::GOAL_POINTS_CHANGE;
+    } else if (s == "roundChange") {
+        return DeltaType::ROUND_CHANGE;
+    } else if (s == "skip") {
+        return DeltaType::SKIP;
+    } else if (s == "unban") {
+        return DeltaType::UNBAN;
     } else {
         throw std::runtime_error{"Not a valid deltaType"};
     }
@@ -391,5 +411,54 @@ auto communication::messages::types::fromStringMod(const std::string &s) -> comm
         return Mods::LOBBIES;
     } else {
         throw std::runtime_error{"Not a valid Mod"};
+    }
+}
+
+auto communication::messages::types::toString(communication::messages::types::BanReason banReason) -> std::string {
+    switch (banReason) {
+        case BanReason::STOOGING:
+            return "stooging";
+        case BanReason::BLATCHING:
+            return "blatching";
+        case BanReason::FLACKING:
+            return "flacking";
+        case BanReason::HAVERSACKING:
+            return "haversacking";
+        case BanReason::SNITCHNIP:
+            return "snitchnip";
+        case BanReason::SNITCH_SNATCH:
+            return "snitchSnatch";
+        case BanReason::ELF_TELEPORTATION:
+            return "elfTeleportation";
+        case BanReason::GOBLIN_SHOCK:
+            return "goblinShock";
+        case BanReason::TROLL_ROAR:
+            return "trollRoar";
+    }
+    throw std::runtime_error{"[BanReason] We shouln't really be here"};
+}
+
+auto communication::messages::types::fromStringBanReason(const std::string &s)
+        -> communication::messages::types::BanReason {
+    if (s == "stooging") {
+        return BanReason::STOOGING;
+    } else if (s == "blatching") {
+        return BanReason::BLATCHING;
+    } else if (s == "flacking") {
+        return BanReason::FLACKING;
+    } else if (s == "haversacking") {
+        return BanReason::HAVERSACKING;
+    } else if (s == "snitchnip") {
+        return BanReason::SNITCHNIP;
+    } else if (s == "snitchSnatch") {
+        return BanReason::SNITCH_SNATCH;
+    } else if (s == "elfTeleportation") {
+        return BanReason::ELF_TELEPORTATION;
+    } else if (s == "goblinShock") {
+        return BanReason::GOBLIN_SHOCK;
+    } else if (s == "trollRoar") {
+        return BanReason::TROLL_ROAR;
+    } else {
+        throw std::runtime_error{"Not a valid BanReason"};
     }
 }

@@ -34,3 +34,16 @@ TEST(BroadcastTeamSnapshot, SerializeDeserialize) {
     ASSERT_NO_THROW(comp = nlohmann::json::parse(ser).get<T2>());
     ASSERT_EQ(comp, orig);
 }
+
+using T3 = broadcast::Fan;
+
+TEST(BroadcastFan, SerializeDeserialize) {
+    T3 orig{types::FanType::TROLL, true, false};
+    std::string ser;
+    nlohmann::json json;
+    T3 comp;
+    ASSERT_NO_THROW(json = orig);
+    ASSERT_NO_THROW(ser = json.dump());
+    ASSERT_NO_THROW(comp = nlohmann::json::parse(ser).get<T3>());
+    ASSERT_EQ(comp, orig);
+}

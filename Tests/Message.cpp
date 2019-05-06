@@ -30,7 +30,8 @@ TEST(CommunicationMessagesReplayMessage, SerializeDeserialize) {
             1,2,3,4,
             player,player,player,player,player,player,player
     };
-    broadcast::Replay replay{"Test", "abc", {}, teamConfig, teamConfig, "asdsd", "ssdsdb", {}, {}, {}};
+    broadcast::Replay replay{"Test", "abc", {15,2,3,4,5,6,7,0.71,0.81,0.91,0.101,0.111,0.121,0.131,0.141,0.151,0.161,
+           0.171,0.181,0.191,0.201,0.211,0.221,0.231,0.241,0.251,0.261}, teamConfig, teamConfig, "asdsd", "ssdsdb", {}, {}, {}};
     T2 orig{replay};
     std::string ser;
     nlohmann::json json;

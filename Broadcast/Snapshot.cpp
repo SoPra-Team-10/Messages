@@ -117,7 +117,7 @@ namespace communication::messages::broadcast {
         return points;
     }
 
-    std::vector<std::pair<types::FanType, bool>> TeamSnapshot::getFans() const {
+    std::vector<Fan> TeamSnapshot::getFans() const {
         return fans;
     }
 
@@ -258,7 +258,7 @@ namespace communication::messages::broadcast {
     }
 
 
-    TeamSnapshot::TeamSnapshot(int points, std::vector<std::pair<types::FanType, bool>> fans, int seekerX,
+    TeamSnapshot::TeamSnapshot(int points, std::vector<Fan> fans, int seekerX,
                                int seekerY, bool seekerBanned, bool seekerTurnUsed, bool seekerKnockout, int keeperX,
                                int keeperY, bool keeperBanned, bool keeperHoldsQuaffle, bool keeperTurnUsed,
                                bool keeperKnockout, int chaser1X, int chaser1Y, bool chaser1Banned,
@@ -429,14 +429,7 @@ namespace communication::messages::broadcast {
 
     void to_json(nlohmann::json &j, const TeamSnapshot &teamSnaphot) {
         j["points"] = teamSnaphot.getPoints();
-        j["fans"] = nlohmann::json::array();
-        for (const auto &fan : teamSnaphot.getFans()) {
-            nlohmann::json elem;
-            elem["fanType"] = types::toString(fan.first);
-            elem["banned"] = fan.second;
-            j["fans"].push_back(elem);
-        }
-
+        j["fans"] = teamSnaphot.getFans();
         j["players"]["seeker"]["xPos"] = teamSnaphot.getSeekerX();
         j["players"]["seeker"]["yPos"] = teamSnaphot.getSeekerY();
         j["players"]["seeker"]["banned"] = teamSnaphot.isSeekerBanned();
@@ -481,18 +474,9 @@ namespace communication::messages::broadcast {
     }
 
     void from_json(const nlohmann::json &j, TeamSnapshot &teamSnaphot) {
-        const auto &fans = j.at("fans");
-        std::vector<std::pair<types::FanType, bool>> fansV;
-        for (const auto &fan : fans) {
-            fansV.emplace_back(
-                    types::fromStringFanType(fan.at("fanType").get<std::string>()),
-                    fan.at("banned").get<bool>()
-            );
-        }
-
         teamSnaphot = TeamSnapshot{
             j.at("points").get<int>(),
-            fansV,
+            j.at("fans").get<std::vector<Fan>>(),
             j.at("players").at("seeker").at("xPos").get<int>(),
             j.at("players").at("seeker").at("yPos").get<int>(),
             j.at("players").at("seeker").at("banned").get<bool>(),
@@ -572,5 +556,27 @@ namespace communication::messages::broadcast {
             j.at("balls").at("bludger2").at("xPos").get<int>(),
             j.at("balls").at("bludger2").at("yPos").get<int>()
         };
+    }
+
+    void to_json(nlohmann::json &j, const Fan &fan) {
+        j["fanType"] = types::toString(fan.fanType);
+        j["banned"] = fan.banned;
+        j["turnUsed"] = fan.turnUsed;
+    }
+
+    void from_json(const nlohmann::json &j, Fan &fan) {
+        fan.fanType = types::fromStringFanType(j.at("fanType").get<std::string>());
+        fan.banned = j.at("banned").get<bool>();
+        fan.turnUsed = j.at("turnUsed").get<bool>();
+    }
+
+    bool Fan::operator==(const Fan &rhs) const {
+        return fanType == rhs.fanType &&
+               banned == rhs.banned &&
+               turnUsed == rhs.turnUsed;
+    }
+
+    bool Fan::operator!=(const Fan &rhs) const {
+        return !(rhs == *this);
     }
 }

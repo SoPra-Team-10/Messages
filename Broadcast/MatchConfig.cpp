@@ -13,7 +13,7 @@ namespace communication::messages::broadcast {
         return "matchConfig";
     }
 
-    MatchConfig::MatchConfig(int maxRounds, int playerTurnTimeout, int fanTurnTimeout, int playerPhaseTime,
+    MatchConfig::MatchConfig(int maxRounds, int teamFormationTimeout, int playerTurnTimeout, int fanTurnTimeout, int playerPhaseTime,
                              int fanPhaseTime, int ballPhaseTime, float probThrowSuccess,
                              float probKnockOut, float probFoolAway, float probCatchSnitch, float probCatchQuaffle,
                              float probWrestQuaffle, float probExtraTinderblast, float probExtraCleansweep,
@@ -21,6 +21,7 @@ namespace communication::messages::broadcast {
                              float probFoulFlacking, float probFoulHaversacking, float probFoulStooging,
                              float probFoulBlatching, float probFoulSnitchnip, float probFoulElf, float probFoulGoblin,
                              float probFoulTroll, float probFoulSnitch) : maxRounds{maxRounds},
+                                                                             teamFormationTimeout{teamFormationTimeout},
                                                                           playerTurnTimeout{playerTurnTimeout},
                                                                           fanTurnTimeout{fanTurnTimeout},
                                                                           playerPhaseTime{playerPhaseTime},
@@ -50,6 +51,11 @@ namespace communication::messages::broadcast {
     int MatchConfig::getMaxRounds() const {
         return maxRounds;
     }
+
+    int MatchConfig::getTeamFormationTimeout() const {
+        return teamFormationTimeout;
+    }
+
 
     int MatchConfig::getPlayerTurnTimeout() const {
         return playerTurnTimeout;
@@ -186,11 +192,12 @@ namespace communication::messages::broadcast {
 
     void to_json(nlohmann::json &j, const MatchConfig &matchConfig) {
         j["maxRounds"] = matchConfig.getMaxRounds();
-        j["timeouts"]["playerTurnTimeout"] = matchConfig.getPlayerTurnTimeout();
-        j["timeouts"]["fanTurnTimeout"] = matchConfig.getFanTurnTimeout();
-        j["timeouts"]["playerPhaseTime"] = matchConfig.getPlayerPhaseTime();
-        j["timeouts"]["fanPhaseTime"] = matchConfig.getFanPhaseTime();
-        j["timeouts"]["ballPhaseTime"] = matchConfig.getBallPhaseTime();
+        j["timings"]["teamFormationTimeout"] = matchConfig.getTeamFormationTimeout();
+        j["timings"]["playerTurnTimeout"] = matchConfig.getPlayerTurnTimeout();
+        j["timings"]["fanTurnTimeout"] = matchConfig.getFanTurnTimeout();
+        j["timings"]["minPlayerPhaseAnimationDuration"] = matchConfig.getPlayerPhaseTime();
+        j["timings"]["minFanPhaseAnimationDuration"] = matchConfig.getFanPhaseTime();
+        j["timings"]["minBallPhaseAnimationDuration"] = matchConfig.getBallPhaseTime();
         j["probabilities"]["throwSuccess"] = matchConfig.getProbThrowSuccess();
         j["probabilities"]["knockOut"] = matchConfig.getProbKnockOut();
         j["probabilities"]["foolAway"] = matchConfig.getProbFoolAway();
@@ -216,11 +223,12 @@ namespace communication::messages::broadcast {
     void from_json(const nlohmann::json &j, MatchConfig &matchConfig) {
         matchConfig = MatchConfig{
             j.at("maxRounds").get<int>(),
-            j.at("timeouts").at("playerTurnTimeout").get<int>(),
-            j.at("timeouts").at("fanTurnTimeout").get<int>(),
-            j.at("timeouts").at("playerPhaseTime").get<int>(),
-            j.at("timeouts").at("fanPhaseTime").get<int>(),
-            j.at("timeouts").at("ballPhaseTime").get<int>(),
+            j.at("timings").at("teamFormationTimeout").get<int>(),
+            j.at("timings").at("playerTurnTimeout").get<int>(),
+            j.at("timings").at("fanTurnTimeout").get<int>(),
+            j.at("timings").at("minPlayerPhaseAnimationDuration").get<int>(),
+            j.at("timings").at("minFanPhaseAnimationDuration").get<int>(),
+            j.at("timings").at("minBallPhaseAnimationDuration").get<int>(),
             j.at("probabilities").at("throwSuccess").get<float>(),
             j.at("probabilities").at("knockOut").get<float>(),
             j.at("probabilities").at("foolAway").get<float>(),
@@ -243,7 +251,8 @@ namespace communication::messages::broadcast {
             j.at("probabilities").at("fanFoulDetection").at("snitchSnatch").get<float>()
         };
 
-        if (matchConfig.getMaxRounds() < 0 || matchConfig.getFanTurnTimeout() < 0 ||
+        if (matchConfig.getMaxRounds() < 0 || matchConfig.getTeamFormationTimeout() < 0 ||
+            matchConfig.getFanTurnTimeout() < 0 ||
             matchConfig.getPlayerPhaseTime() < 0 || matchConfig.getFanPhaseTime() < 0 ||
             matchConfig.getBallPhaseTime() < 0) {
             throw std::runtime_error{"Timeout not valid"};
@@ -273,6 +282,10 @@ namespace communication::messages::broadcast {
                 !isProb(matchConfig.getProbFoulTroll()) ||
                 !isProb(matchConfig.getProbFoulSnitch())) {
             throw std::runtime_error{"Probabilites not valid"};
+        }
+
+        if (matchConfig.getMaxRounds() < 13 || matchConfig.getMaxRounds() > 100) {
+            throw std::runtime_error{"Invalid MaxRounds"};
         }
     }
 }

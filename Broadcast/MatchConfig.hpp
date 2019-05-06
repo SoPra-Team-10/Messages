@@ -15,7 +15,7 @@ namespace communication::messages::broadcast {
     class MatchConfig {
     public:
         MatchConfig() = default;
-        MatchConfig(int maxRounds, int playerTurnTimeout, int fanTurnTimeout, int playerPhaseTime, int fanPhaseTime,
+        MatchConfig(int maxRounds, int teamFormationTimeout, int playerTurnTimeout, int fanTurnTimeout, int playerPhaseTime, int fanPhaseTime,
                     int ballPhaseTime, float probThrowSuccess, float probKnockOut, float probFoolAway,
                     float probCatchSnitch, float probCatchQuaffle, float probWrestQuaffle, float probExtraTinderblast,
                     float probExtraCleansweep, float probExtraComet, float probExtraNimbus, float probExtraFirebolt,
@@ -24,6 +24,7 @@ namespace communication::messages::broadcast {
                     float probFoulSnitch);
 
         int getMaxRounds() const;
+        int getTeamFormationTimeout() const;
         int getPlayerTurnTimeout() const;
         int getFanTurnTimeout() const;
         int getPlayerPhaseTime() const;
@@ -57,7 +58,7 @@ namespace communication::messages::broadcast {
         bool operator!=(const MatchConfig &rhs) const;
 
     private:
-        int maxRounds;
+        int maxRounds, teamFormationTimeout;
         int playerTurnTimeout, fanTurnTimeout, playerPhaseTime, fanPhaseTime, ballPhaseTime;
         float probThrowSuccess, probKnockOut, probFoolAway, probCatchSnitch, probCatchQuaffle,
                 probWrestQuaffle, probExtraTinderblast, probExtraCleansweep, probExtraComet, probExtraNimbus,

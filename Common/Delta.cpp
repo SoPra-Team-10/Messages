@@ -8,6 +8,8 @@
 #include "Delta.hpp"
 #include "OptionalSerialization.hpp"
 
+#include <utility>
+
 namespace communication::messages {
 
     types::DeltaType Delta::getDeltaType() const {
@@ -46,10 +48,11 @@ namespace communication::messages {
                  const std::optional<int> &yPosOld, const std::optional<int> &xPosNew,
                  const std::optional<int> &yPosNew, const std::optional<types::EntityId> &activeEntity,
                  const std::optional<types::EntityId> &passiveEntity, types::PhaseType phase, int leftPoints,
-                 int rightPoints, int round) : deltaType(deltaType), success(success), xPosOld(xPosOld),
-                                               yPosOld(yPosOld), xPosNew(xPosNew), yPosNew(yPosNew),
-                                               activeEntity(activeEntity), passiveEntity(passiveEntity), phase(phase),
-                                               leftPoints(leftPoints), rightPoints(rightPoints), round(round) {}
+                 int rightPoints, int round, std::optional<types::BanReason> banReason)
+            : deltaType(deltaType), success(success), xPosOld(xPosOld),
+              yPosOld(yPosOld), xPosNew(xPosNew), yPosNew(yPosNew),
+              activeEntity(activeEntity), passiveEntity(passiveEntity), phase(phase),
+              leftPoints(leftPoints), rightPoints(rightPoints), round(round), banReason(std::move(banReason)) {}
 
     types::PhaseType Delta::getPhase() const {
         return phase;
@@ -86,6 +89,9 @@ namespace communication::messages {
         return !(rhs == *this);
     }
 
+    const std::optional<types::BanReason> &Delta::getBanReason() const {
+        return banReason;
+    }
 
     void to_json(nlohmann::json &j, const Delta &delta) {
         j["deltaType"] = types::toString(delta.getDeltaType());
@@ -95,7 +101,6 @@ namespace communication::messages {
         j["xPosNew"] = delta.getXPosNew();
         j["yPosNew"] = delta.getYPosNew();
 
-        nlohmann::json activeEntity, passiveEntity;
         if (delta.getActiveEntity().has_value()) {
             j["activeEntity"] = types::toString(delta.getActiveEntity().value());
         } else {
@@ -111,16 +116,32 @@ namespace communication::messages {
         j["leftPoints"] = delta.getLeftPoints();
         j["rightPoints"] = delta.getRightPoints();
         j["round"] = delta.getRound();
+
+        if (delta.getBanReason().has_value()) {
+            j["banReason"] = types::toString(delta.getBanReason().value());
+        } else {
+            j["banReason"] = nullptr;
+        }
     }
 
     void from_json(const nlohmann::json &j, Delta &delta) {
         std::optional<types::EntityId> active = std::nullopt, passive = std::nullopt;
-        if (!j.at("activeEntity").is_null()) {
-            active = types::fromStringEntityId(j.at("activeEntity").get<std::string>());
-        }
-        if (!j.at("passiveEntity").is_null()) {
-            passive = types::fromStringEntityId(j.at("passiveEntity").get<std::string>());
-        }
+        std::optional<types::BanReason> banReason = std::nullopt;
+        try {
+            if (!j.at("activeEntity").is_null()) {
+                active = types::fromStringEntityId(j.at("activeEntity").get<std::string>());
+            }
+        } catch (nlohmann::json::exception&) {}
+        try {
+            if (!j.at("passiveEntity").is_null()) {
+                passive = types::fromStringEntityId(j.at("passiveEntity").get<std::string>());
+            }
+        } catch (nlohmann::json::exception&) {}
+        try {
+            if (!j.at("banReason").is_null()) {
+                banReason = types::fromStringBanReason(j.at("banReason").get<std::string>());
+            }
+        } catch (nlohmann::json::exception&) {}
 
         delta = Delta{
             types::fromStringDeltaType(j.at("deltaType").get<std::string>()),
@@ -133,7 +154,8 @@ namespace communication::messages {
                 types::fromStringPhaseType(j.at("phase")),
                 j.at("leftPoints").get<int>(),
                 j.at("rightPoints").get<int>(),
-                j.at("round").get<int>()
+                j.at("round").get<int>(),
+                banReason
         };
     }
 }

@@ -183,6 +183,21 @@ TEST(CommonTypes, DeltaTypeBludgerKnockout) {
 TEST(CommonTypes, DeltaTypeMove) {
     ASSERT_EQ(fromStringDeltaType(toString(DeltaType::MOVE)), DeltaType::MOVE);
 }
+TEST(CommonTypes, DeltaTypePhaseChange) {
+    ASSERT_EQ(fromStringDeltaType(toString(DeltaType::PHASE_CHANGE)), DeltaType::PHASE_CHANGE);
+}
+TEST(CommonTypes, DeltaTypeGoalPointsChange) {
+    ASSERT_EQ(fromStringDeltaType(toString(DeltaType::GOAL_POINTS_CHANGE)), DeltaType::GOAL_POINTS_CHANGE);
+}
+TEST(CommonTypes, DeltaTypeRoundChange) {
+    ASSERT_EQ(fromStringDeltaType(toString(DeltaType::ROUND_CHANGE)), DeltaType::ROUND_CHANGE);
+}
+TEST(CommonTypes, DeltaTypeSkip) {
+    ASSERT_EQ(fromStringDeltaType(toString(DeltaType::SKIP)), DeltaType::SKIP);
+}
+TEST(CommonTypes, DeltaTypeUnban) {
+    ASSERT_EQ(fromStringDeltaType(toString(DeltaType::UNBAN)), DeltaType::UNBAN);
+}
 
 TEST(CommonTypes, PhaseTypeBallPhase) {
     ASSERT_EQ(fromStringPhaseType(toString(PhaseType::BALL_PHASE)), PhaseType::BALL_PHASE);
@@ -214,4 +229,32 @@ TEST(CommonTypes, ModsWarning) {
 }
 TEST(CommonTypes, ModsLobbies) {
     ASSERT_EQ(fromStringMod(toString(Mods::LOBBIES)), Mods::LOBBIES);
+}
+
+TEST(CommonTypes, BanReasonStooging) {
+    ASSERT_EQ(fromStringBanReason(toString(BanReason::STOOGING)), BanReason::STOOGING);
+}
+TEST(CommonTypes, BanReasonBlatching) {
+    ASSERT_EQ(fromStringBanReason(toString(BanReason::BLATCHING)), BanReason::BLATCHING);
+}
+TEST(CommonTypes, BanReasonFlacking) {
+    ASSERT_EQ(fromStringBanReason(toString(BanReason::FLACKING)), BanReason::FLACKING);
+}
+TEST(CommonTypes, BanReasonHaversacking) {
+    ASSERT_EQ(fromStringBanReason(toString(BanReason::HAVERSACKING)), BanReason::HAVERSACKING);
+}
+TEST(CommonTypes, BanReasonSnitchnip) {
+    ASSERT_EQ(fromStringBanReason(toString(BanReason::SNITCHNIP)), BanReason::SNITCHNIP);
+}
+TEST(CommonTypes, BanReasonSnitchSnatch) {
+    ASSERT_EQ(fromStringBanReason(toString(BanReason::SNITCH_SNATCH)), BanReason::SNITCH_SNATCH);
+}
+TEST(CommonTypes, BanReasonElfTeleportation) {
+    ASSERT_EQ(fromStringBanReason(toString(BanReason::ELF_TELEPORTATION)), BanReason::ELF_TELEPORTATION);
+}
+TEST(CommonTypes, BanReasonGoblinShock) {
+    ASSERT_EQ(fromStringBanReason(toString(BanReason::GOBLIN_SHOCK)), BanReason::GOBLIN_SHOCK);
+}
+TEST(CommonTypes, BanReasonTrollRoar) {
+    ASSERT_EQ(fromStringBanReason(toString(BanReason::TROLL_ROAR)), BanReason::TROLL_ROAR);
 }

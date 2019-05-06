@@ -65,7 +65,9 @@ namespace communication::messages::types {
     enum class DeltaType {
         SNITCH_CATCH, BLUDGER_BEATING, QUAFFLE_THROW,
         SNITCH_SNATCH, TROLL_ROAR, ELF_TELEPORTATION,
-        GOBLIN_SHOCK, BAN, BLUDGER_KNOCKOUT, MOVE
+        GOBLIN_SHOCK, BAN, BLUDGER_KNOCKOUT, MOVE,
+        PHASE_CHANGE, GOAL_POINTS_CHANGE, ROUND_CHANGE,
+        SKIP, UNBAN
     };
 
     auto toString(DeltaType deltaType) -> std::string;
@@ -84,6 +86,14 @@ namespace communication::messages::types {
 
     auto toString(Mods mods) -> std::string;
     auto fromStringMod(const std::string &s) -> Mods;
+
+    enum class BanReason {
+        STOOGING, BLATCHING, FLACKING, HAVERSACKING, SNITCHNIP, SNITCH_SNATCH,
+        ELF_TELEPORTATION, GOBLIN_SHOCK, TROLL_ROAR
+    };
+
+    auto toString(BanReason banReason) -> std::string;
+    auto fromStringBanReason(const std::string &s) -> BanReason;
 }
 
 #endif //SERVER_TYPES_HPP

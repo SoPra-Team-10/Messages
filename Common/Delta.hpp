@@ -18,9 +18,10 @@ namespace communication::messages {
         Delta() = default;
 
         Delta(types::DeltaType deltaType, const std::optional<bool> &success, const std::optional<int> &xPosOld,
-              const std::optional<int> &yPosOld, const std::optional<int> &xPosNew, const std::optional<int> &yPosNew,
-              const std::optional<types::EntityId> &activeEntity, const std::optional<types::EntityId> &passiveEntity,
-              types::PhaseType phase, int leftPoints, int rightPoints, int round);
+              const std::optional<int> &yPosOld, const std::optional<int> &xPosNew,
+              const std::optional<int> &yPosNew, const std::optional<types::EntityId> &activeEntity,
+              const std::optional<types::EntityId> &passiveEntity, types::PhaseType phase, int leftPoints,
+              int rightPoints, int round, std::optional<types::BanReason> banReason);
 
         types::DeltaType getDeltaType() const;
 
@@ -46,6 +47,8 @@ namespace communication::messages {
 
         int getRound() const;
 
+        const std::optional<types::BanReason> &getBanReason() const;
+
         bool operator==(const Delta &rhs) const;
 
         bool operator!=(const Delta &rhs) const;
@@ -57,6 +60,7 @@ namespace communication::messages {
         std::optional<types::EntityId> activeEntity, passiveEntity;
         types::PhaseType phase{};
         int leftPoints{}, rightPoints{}, round{};
+        std::optional<types::BanReason> banReason;
     };
 
     void to_json(nlohmann::json &j, const Delta &delta);

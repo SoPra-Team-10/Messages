@@ -15,10 +15,21 @@
 #include "DeltaBroadcast.hpp"
 
 namespace communication::messages::broadcast {
+    struct Fan {
+        types::FanType fanType;
+        bool banned, turnUsed;
+        bool operator==(const Fan &rhs) const;
+
+        bool operator!=(const Fan &rhs) const;
+    };
+
+    void to_json(nlohmann::json &j, const Fan &fan);
+    void from_json(const nlohmann::json &j, Fan &fan);
+
     class TeamSnapshot {
     public:
         TeamSnapshot() = default;
-        TeamSnapshot(int points, std::vector<std::pair<types::FanType, bool>> fans, int seekerX, int seekerY,
+        TeamSnapshot(int points, std::vector<Fan> fans, int seekerX, int seekerY,
                      bool seekerBanned, bool seekerTurnUsed, bool seekerKnockout, int keeperX, int keeperY,
                      bool keeperBanned, bool keeperHoldsQuaffle, bool keeperTurnUsed, bool keeperKnockout, int chaser1X,
                      int chaser1Y, bool chaser1Banned, bool chaser1HoldsQuaffle, bool chaser1TurnUsed,
@@ -30,7 +41,7 @@ namespace communication::messages::broadcast {
                      bool beater2Knockout);
 
         int getPoints() const;
-        std::vector<std::pair<types::FanType, bool>> getFans() const;
+        std::vector<Fan> getFans() const;
         int getSeekerX() const;
         int getSeekerY() const;
         bool isSeekerBanned() const;
@@ -86,7 +97,7 @@ namespace communication::messages::broadcast {
 
     private:
         int points{};
-        std::vector<std::pair<types::FanType, bool>> fans;
+        std::vector<Fan> fans;
         int seekerX{}, seekerY{};
         bool seekerBanned{}, seekerTurnUsed{}, seekerKnockout{};
         int keeperX{}, keeperY{};
