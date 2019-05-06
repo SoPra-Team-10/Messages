@@ -18,14 +18,6 @@ namespace communication::messages {
         auto globTime = std::time(nullptr);
         this->time = *std::localtime(&globTime);
     }
-    template<>
-    auto AbstractMessage<Payload>::getPayloadType() const -> std::string {
-        std::string type;
-        std::visit([&type](auto &&arg){
-            type = arg.getName();
-        }, this->payload);
-        return type;
-    }
 
     template <>
     void from_json(const nlohmann::json &j, AbstractMessage<Payload> &message) {
@@ -89,13 +81,5 @@ namespace communication::messages {
         message = Message{payload};
     }
 
-    template <>
-    void to_json(nlohmann::json &j, const AbstractMessage<Payload > &message) {
-        j["timestamp"] = message.getTimeStamp();
-        j["payloadType"] = message.getPayloadType();
-        std::visit([&j](auto &&arg){
-            j["payload"] = arg;
-        }, message.getPayload());
-    }
 
 }

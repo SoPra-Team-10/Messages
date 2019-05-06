@@ -10,8 +10,9 @@
 #include "Message.hpp"
 
 namespace communication::messages {
-    using ReplayMessage = AbstractMessage<broadcast::Replay>;
-    using ReplayWithSnapshotMessage = AbstractMessage<mods::unicast::ReplayWithSnapshot>;
+    using ReplayPayload = std::variant<broadcast::Replay, mods::unicast::ReplayWithSnapshot>;
+
+    using ReplayMessage = AbstractMessage<ReplayPayload >;
 }
 
 #endif //SOPRAMESSAGES_REPLAYMESSAGE_H

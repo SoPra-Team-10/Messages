@@ -97,6 +97,15 @@ namespace communication::messages {
         return this->payload;
     }
 
+    template<typename T>
+    auto AbstractMessage<T>::getPayloadType() const -> std::string {
+        std::string type;
+        std::visit([&type](auto &&arg){
+            type = arg.getName();
+        }, this->payload);
+        return type;
+    }
+
 
     template<typename Payload>
     auto AbstractMessage<Payload>::getTimeStamp() const -> std::string {
@@ -108,6 +117,15 @@ namespace communication::messages {
                 << std::setfill('0') <<std::setw(3) << (this->timestamp.count() % 1000);
 
         return sstream.str();
+    }
+
+    template <typename T>
+    void to_json(nlohmann::json &j, const AbstractMessage<T> &message) {
+        j["timestamp"] = message.getTimeStamp();
+        j["payloadType"] = message.getPayloadType();
+        std::visit([&j](auto &&arg){
+            j["payload"] = arg;
+        }, message.getPayload());
     }
 
     template<typename Payload>
