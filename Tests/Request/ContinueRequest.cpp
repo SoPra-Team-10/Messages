@@ -10,8 +10,8 @@ TEST(RequestContinueRequest, SerializeDeserialize) {
     std::string ser;
     nlohmann::json json;
     T comp;
-    EXPECT_NO_THROW(json = orig);
-    EXPECT_NO_THROW(ser = json.dump());
-    EXPECT_NO_THROW(comp = nlohmann::json::parse(ser).get<T>());
-    EXPECT_EQ(comp, orig);
+    ASSERT_NO_THROW(json = orig);
+    ASSERT_NO_THROW(ser = json.dump());
+    ASSERT_NO_THROW(comp = nlohmann::json::parse(ser).get<T>());
+    ASSERT_EQ(comp, orig);
 }

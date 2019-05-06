@@ -12,10 +12,10 @@ TEST(RequestTeamConfig, TeamConfigSerializeDeserialize) {
     std::string ser;
     nlohmann::json json;
     T0 comp;
-    EXPECT_NO_THROW(json = orig);
-    EXPECT_NO_THROW(ser = json.dump());
-    EXPECT_NO_THROW(comp = nlohmann::json::parse(ser).get<T0>());
-    EXPECT_EQ(comp, orig);
+    ASSERT_NO_THROW(json = orig);
+    ASSERT_NO_THROW(ser = json.dump());
+    ASSERT_NO_THROW(comp = nlohmann::json::parse(ser).get<T0>());
+    ASSERT_EQ(comp, orig);
 }
 
 TEST(RequestTeamConfig, PlayerSerializeDeserialize) {
@@ -23,8 +23,8 @@ TEST(RequestTeamConfig, PlayerSerializeDeserialize) {
     std::string ser;
     nlohmann::json json;
     T1 comp;
-    EXPECT_NO_THROW(json = orig);
-    EXPECT_NO_THROW(ser = json.dump());
-    EXPECT_NO_THROW(comp = nlohmann::json::parse(ser).get<T1>());
-    EXPECT_EQ(comp, orig);
+    ASSERT_NO_THROW(json = orig);
+    ASSERT_NO_THROW(ser = json.dump());
+    ASSERT_NO_THROW(comp = nlohmann::json::parse(ser).get<T1>());
+    ASSERT_EQ(comp, orig);
 }

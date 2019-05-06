@@ -10,8 +10,8 @@ TEST(BroadcastDeltaBroadcast, SerializeDeserialize) {
     std::string ser;
     nlohmann::json json;
     broadcast::DeltaBroadcast comp;
-    EXPECT_NO_THROW(json = orig);
-    EXPECT_NO_THROW(ser = json.dump());
-    EXPECT_NO_THROW(comp = nlohmann::json::parse(ser).get<broadcast::DeltaBroadcast>());
-    EXPECT_EQ(comp, orig);
+    ASSERT_NO_THROW(json = orig);
+    ASSERT_NO_THROW(ser = json.dump());
+    ASSERT_NO_THROW(comp = nlohmann::json::parse(ser).get<broadcast::DeltaBroadcast>());
+    ASSERT_EQ(comp, orig);
 }

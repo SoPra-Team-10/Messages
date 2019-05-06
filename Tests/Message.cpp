@@ -11,10 +11,10 @@ TEST(CommunicationMessagesMessage, SerializeDeserialize) {
     std::string ser;
     nlohmann::json json;
     T1 comp;
-    EXPECT_NO_THROW(json = orig);
-    EXPECT_NO_THROW(ser = json.dump());
-    EXPECT_NO_THROW(comp = nlohmann::json::parse(ser).get<T1>());
-    EXPECT_EQ(comp, orig);
+    ASSERT_NO_THROW(json = orig);
+    ASSERT_NO_THROW(ser = json.dump());
+    ASSERT_NO_THROW(comp = nlohmann::json::parse(ser).get<T1>());
+    ASSERT_EQ(comp, orig);
 }
 
 using T2 = ReplayMessage;
@@ -35,9 +35,9 @@ TEST(CommunicationMessagesReplayMessage, SerializeDeserialize) {
     std::string ser;
     nlohmann::json json;
     T2 comp;
-    EXPECT_NO_THROW(json = orig);
-    EXPECT_NO_THROW(ser = json.dump());
-    EXPECT_NO_THROW(comp = nlohmann::json::parse(ser).get<T2>());
-    EXPECT_EQ(comp, orig);
+    ASSERT_NO_THROW(json = orig);
+    ASSERT_NO_THROW(ser = json.dump());
+    ASSERT_NO_THROW(comp = nlohmann::json::parse(ser).get<T2>());
+    ASSERT_EQ(comp, orig);
 }
 

@@ -7,8 +7,8 @@ TEST(UtilOptionalSerialization, SerializeValue) {
     nlohmann::json comp;
     nlohmann::json gt = 0;
 
-    EXPECT_NO_THROW(comp = a);
-    EXPECT_EQ(comp, gt);
+    ASSERT_NO_THROW(comp = a);
+    ASSERT_EQ(comp, gt);
 }
 
 TEST(UtilOptionalSerialization, SerializeNoValue) {
@@ -16,8 +16,8 @@ TEST(UtilOptionalSerialization, SerializeNoValue) {
     nlohmann::json comp;
     nlohmann::json gt = nullptr;
 
-    EXPECT_NO_THROW(comp = a);
-    EXPECT_EQ(comp, gt);
+    ASSERT_NO_THROW(comp = a);
+    ASSERT_EQ(comp, gt);
 }
 
 TEST(UtilOptionalSerialization, DeSerializeValue) {
@@ -25,8 +25,8 @@ TEST(UtilOptionalSerialization, DeSerializeValue) {
     std::optional<int> comp;
     std::optional<int> gt = 0;
 
-    EXPECT_NO_THROW(comp = a.get<std::optional<int>>());
-    EXPECT_EQ(comp, gt);
+    ASSERT_NO_THROW(comp = a.get<std::optional<int>>());
+    ASSERT_EQ(comp, gt);
 }
 
 TEST(UtilOptionalSerialization, DeSerializeNoValue) {
@@ -34,6 +34,6 @@ TEST(UtilOptionalSerialization, DeSerializeNoValue) {
     std::optional<int> comp;
     std::optional<int> gt = std::nullopt;
 
-    EXPECT_NO_THROW(comp = a.get<std::optional<int>>());
-    EXPECT_EQ(comp, gt);
+    ASSERT_NO_THROW(comp = a.get<std::optional<int>>());
+    ASSERT_EQ(comp, gt);
 }
