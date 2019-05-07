@@ -113,6 +113,10 @@ namespace communication::messages::broadcast {
         return lastDeltaBroadcast;
     }
 
+    void Snapshot::setSpectators(const std::vector<std::string> &spectators) {
+        this->spectatorUserName = spectators;
+    }
+
     int TeamSnapshot::getPoints() const {
         return points;
     }

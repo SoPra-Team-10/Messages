@@ -140,6 +140,8 @@ namespace communication::messages::broadcast {
         int getBludger2X() const;
         int getBludger2Y() const;
 
+        void setSpectators(const std::vector<std::string> &spectators);
+
         static auto getName() -> std::string;
 
         bool operator==(const Snapshot &rhs) const;
