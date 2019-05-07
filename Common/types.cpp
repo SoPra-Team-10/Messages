@@ -237,6 +237,12 @@ auto communication::messages::types::toString(communication::messages::types::De
             return "skip";
         case DeltaType::UNBAN:
             return "unban";
+        case DeltaType::WREST_QUAFFLE:
+            return "wrestQuaffle";
+        case DeltaType::FOOL_AWAY:
+            return "foolAway";
+        case DeltaType::TURN_USED:
+            return "turnUsed";
     }
     throw std::runtime_error{"[DeltaType] We shouln't really be here"};
 }
@@ -273,6 +279,12 @@ auto communication::messages::types::fromStringDeltaType(const std::string &s)
         return DeltaType::SKIP;
     } else if (s == "unban") {
         return DeltaType::UNBAN;
+    } else if (s == "wrestQuaffle") {
+        return DeltaType::WREST_QUAFFLE;
+    } else if (s == "foolAway") {
+        return DeltaType::FOOL_AWAY;
+    } else if (s == "turnUsed") {
+        return DeltaType::TURN_USED;
     } else {
         throw std::runtime_error{"Not a valid deltaType"};
     }

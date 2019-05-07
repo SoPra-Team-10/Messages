@@ -198,6 +198,15 @@ TEST(CommonTypes, DeltaTypeSkip) {
 TEST(CommonTypes, DeltaTypeUnban) {
     ASSERT_EQ(fromStringDeltaType(toString(DeltaType::UNBAN)), DeltaType::UNBAN);
 }
+TEST(CommonTypes, DeltaTypeWrestQuaffle) {
+    ASSERT_EQ(fromStringDeltaType(toString(DeltaType::WREST_QUAFFLE)), DeltaType::WREST_QUAFFLE);
+}
+TEST(CommonTypes, DeltaTypeFoolAway) {
+    ASSERT_EQ(fromStringDeltaType(toString(DeltaType::FOOL_AWAY)), DeltaType::FOOL_AWAY);
+}
+TEST(CommonTypes, DeltaTypeTurnUsed) {
+    ASSERT_EQ(fromStringDeltaType(toString(DeltaType::TURN_USED)), DeltaType::TURN_USED);
+}
 
 TEST(CommonTypes, PhaseTypeBallPhase) {
     ASSERT_EQ(fromStringPhaseType(toString(PhaseType::BALL_PHASE)), PhaseType::BALL_PHASE);

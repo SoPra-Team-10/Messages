@@ -67,7 +67,7 @@ namespace communication::messages::types {
         SNITCH_SNATCH, TROLL_ROAR, ELF_TELEPORTATION,
         GOBLIN_SHOCK, BAN, BLUDGER_KNOCKOUT, MOVE,
         PHASE_CHANGE, GOAL_POINTS_CHANGE, ROUND_CHANGE,
-        SKIP, UNBAN
+        SKIP, UNBAN, WREST_QUAFFLE, FOOL_AWAY, TURN_USED
     };
 
     auto toString(DeltaType deltaType) -> std::string;
