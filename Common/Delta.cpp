@@ -47,26 +47,26 @@ namespace communication::messages {
     Delta::Delta(types::DeltaType deltaType, const std::optional<bool> &success, const std::optional<int> &xPosOld,
                  const std::optional<int> &yPosOld, const std::optional<int> &xPosNew,
                  const std::optional<int> &yPosNew, const std::optional<types::EntityId> &activeEntity,
-                 const std::optional<types::EntityId> &passiveEntity, types::PhaseType phase, int leftPoints,
-                 int rightPoints, int round, std::optional<types::BanReason> banReason)
+                 const std::optional<types::EntityId> &passiveEntity, types::PhaseType phase, std::optional<int> leftPoints,
+                 std::optional<int> rightPoints, std::optional<int> round, std::optional<types::BanReason> banReason)
             : deltaType(deltaType), success(success), xPosOld(xPosOld),
               yPosOld(yPosOld), xPosNew(xPosNew), yPosNew(yPosNew),
               activeEntity(activeEntity), passiveEntity(passiveEntity), phase(phase),
-              leftPoints(leftPoints), rightPoints(rightPoints), round(round), banReason(std::move(banReason)) {}
+              leftPoints(leftPoints), rightPoints(rightPoints), round(round), banReason(banReason) {}
 
     types::PhaseType Delta::getPhase() const {
         return phase;
     }
 
-    int Delta::getLeftPoints() const {
+    std::optional<int> Delta::getLeftPoints() const {
         return leftPoints;
     }
 
-    int Delta::getRightPoints() const {
+    std::optional<int> Delta::getRightPoints() const {
         return rightPoints;
     }
 
-    int Delta::getRound() const {
+    std::optional<int> Delta::getRound() const {
         return round;
     }
 
@@ -152,9 +152,9 @@ namespace communication::messages {
                 j.at("yPosNew").get<std::optional<int>>(),
                 active, passive,
                 types::fromStringPhaseType(j.at("phase")),
-                j.at("leftPoints").get<int>(),
-                j.at("rightPoints").get<int>(),
-                j.at("round").get<int>(),
+                j.at("leftPoints").get<std::optional<int>>(),
+                j.at("rightPoints").get<std::optional<int>>(),
+                j.at("round").get<std::optional<int>>(),
                 banReason
         };
     }
