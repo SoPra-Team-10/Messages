@@ -9,7 +9,7 @@
 #define SERVER_RECONNECT_HPP
 
 #include <string>
-#include <Next.hpp>
+#include "Next.hpp"
 #include "json.hpp"
 #include "MatchStart.hpp"
 #include "Snapshot.hpp"
