@@ -20,7 +20,7 @@ namespace communication::messages {
         Delta(types::DeltaType deltaType, const std::optional<bool> &success, const std::optional<int> &xPosOld,
               const std::optional<int> &yPosOld, const std::optional<int> &xPosNew,
               const std::optional<int> &yPosNew, const std::optional<types::EntityId> &activeEntity,
-              const std::optional<types::EntityId> &passiveEntity, types::PhaseType phase, std::optional<int> leftPoints,
+              const std::optional<types::EntityId> &passiveEntity, std::optional<types::PhaseType> phase, std::optional<int> leftPoints,
               std::optional<int> rightPoints, std::optional<int> round, std::optional<types::BanReason> banReason);
 
         types::DeltaType getDeltaType() const;
@@ -39,7 +39,7 @@ namespace communication::messages {
 
         std::optional<types::EntityId> getPassiveEntity() const;
 
-        types::PhaseType getPhase() const;
+        std::optional<types::PhaseType> getPhase() const;
 
         std::optional<int> getLeftPoints() const;
 
@@ -58,7 +58,7 @@ namespace communication::messages {
         std::optional<bool> success;
         std::optional<int> xPosOld, yPosOld, xPosNew, yPosNew;
         std::optional<types::EntityId> activeEntity, passiveEntity;
-        types::PhaseType phase{};
+        std::optional<types::PhaseType> phase{};
         std::optional<int> leftPoints{}, rightPoints{}, round{};
         std::optional<types::BanReason> banReason;
     };

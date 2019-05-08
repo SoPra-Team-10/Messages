@@ -47,14 +47,14 @@ namespace communication::messages {
     Delta::Delta(types::DeltaType deltaType, const std::optional<bool> &success, const std::optional<int> &xPosOld,
                  const std::optional<int> &yPosOld, const std::optional<int> &xPosNew,
                  const std::optional<int> &yPosNew, const std::optional<types::EntityId> &activeEntity,
-                 const std::optional<types::EntityId> &passiveEntity, types::PhaseType phase, std::optional<int> leftPoints,
+                 const std::optional<types::EntityId> &passiveEntity, std::optional<types::PhaseType> phase, std::optional<int> leftPoints,
                  std::optional<int> rightPoints, std::optional<int> round, std::optional<types::BanReason> banReason)
             : deltaType(deltaType), success(success), xPosOld(xPosOld),
               yPosOld(yPosOld), xPosNew(xPosNew), yPosNew(yPosNew),
               activeEntity(activeEntity), passiveEntity(passiveEntity), phase(phase),
               leftPoints(leftPoints), rightPoints(rightPoints), round(round), banReason(banReason) {}
 
-    types::PhaseType Delta::getPhase() const {
+    std::optional<types::PhaseType> Delta::getPhase() const {
         return phase;
     }
 
@@ -112,7 +112,11 @@ namespace communication::messages {
             j["passiveEntity"] = nullptr;
         }
 
-        j["phase"] = types::toString(delta.getPhase());
+        if (delta.getPhase().has_value()) {
+            j["phase"] = types::toString(delta.getPhase().value());
+        } else {
+            j["phase"] = nullptr;
+        }
         j["leftPoints"] = delta.getLeftPoints();
         j["rightPoints"] = delta.getRightPoints();
         j["round"] = delta.getRound();
@@ -127,6 +131,7 @@ namespace communication::messages {
     void from_json(const nlohmann::json &j, Delta &delta) {
         std::optional<types::EntityId> active = std::nullopt, passive = std::nullopt;
         std::optional<types::BanReason> banReason = std::nullopt;
+        std::optional<types::PhaseType> phaseType = std::nullopt;
         try {
             if (!j.at("activeEntity").is_null()) {
                 active = types::fromStringEntityId(j.at("activeEntity").get<std::string>());
@@ -142,6 +147,11 @@ namespace communication::messages {
                 banReason = types::fromStringBanReason(j.at("banReason").get<std::string>());
             }
         } catch (nlohmann::json::exception&) {}
+        try {
+            if (!j.at("phase").is_null()) {
+                phaseType = types::fromStringPhaseType(j.at("phase").get<std::string>());
+            }
+        } catch (nlohmann::json::exception&) {}
 
         delta = Delta{
             types::fromStringDeltaType(j.at("deltaType").get<std::string>()),
@@ -151,7 +161,7 @@ namespace communication::messages {
                 j.at("xPosNew").get<std::optional<int>>(),
                 j.at("yPosNew").get<std::optional<int>>(),
                 active, passive,
-                types::fromStringPhaseType(j.at("phase")),
+                phaseType,
                 j.at("leftPoints").get<std::optional<int>>(),
                 j.at("rightPoints").get<std::optional<int>>(),
                 j.at("round").get<std::optional<int>>(),
