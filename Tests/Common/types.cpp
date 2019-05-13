@@ -82,6 +82,10 @@ TEST(CommonTypes, EntityIdRightNiffler) {
     ASSERT_EQ(fromStringEntityId(toString(EntityId::RIGHT_NIFFLER)), EntityId::RIGHT_NIFFLER);
 }
 
+TEST(CommonTypes, EntityIdPieceOfShit) {
+    ASSERT_EQ(fromStringEntityId(toString(EntityId::PIECE_OF_SHIT)), EntityId::PIECE_OF_SHIT);
+}
+
 TEST(CommonTypes, TurnTypeMove) {
     ASSERT_EQ(fromStringTurnType(toString(TurnType::MOVE)), TurnType::MOVE);
 }
@@ -219,6 +223,10 @@ TEST(CommonTypes, PhaseTypeFanPhase) {
 }
 TEST(CommonTypes, PhaseTypeGameFinish) {
     ASSERT_EQ(fromStringPhaseType(toString(PhaseType::GAME_FINISH)), PhaseType::GAME_FINISH);
+}
+
+TEST(CommonTypes, PhaseTypeUnbanPhase) {
+    ASSERT_EQ(fromStringPhaseType(toString(PhaseType::UNBAN_PHASE)), PhaseType::UNBAN_PHASE);
 }
 
 TEST(CommonTypes, ModsChat) {
