@@ -16,7 +16,7 @@ namespace communication::messages::types {
         RIGHT_SEEKER, RIGHT_KEEPER, RIGHT_CHASER1, RIGHT_CHASER2, RIGHT_CHASER3, RIGHT_BEATER1, RIGHT_BEATER2,
         SNITCH, BLUDGER1, BLUDGER2, QUAFFLE,
         LEFT_GOBLIN, LEFT_TROLL, LEFT_ELF, LEFT_NIFFLER,
-        RIGHT_GOBLIN, RIGHT_TROLL, RIGHT_ELF, RIGHT_NIFFLER
+        RIGHT_GOBLIN, RIGHT_TROLL, RIGHT_ELF, RIGHT_NIFFLER, PIECE_OF_SHIT
     };
 
     auto toString(EntityId entityId) -> std::string;
@@ -74,7 +74,7 @@ namespace communication::messages::types {
     auto fromStringDeltaType(const std::string &s) -> DeltaType;
 
     enum class PhaseType {
-        BALL_PHASE, PLAYER_PHASE, FAN_PHASE, GAME_FINISH
+        BALL_PHASE, PLAYER_PHASE, FAN_PHASE, GAME_FINISH, UNBAN_PHASE
     };
 
     auto toString(PhaseType phaseType) -> std::string;
