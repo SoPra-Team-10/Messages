@@ -8,6 +8,7 @@
 #include <chrono>
 #include <variant>
 #include <iomanip>
+#include <ReconnectChat.h>
 
 #include "DeltaBroadcast.hpp"
 #include "GlobalDebug.hpp"
@@ -60,7 +61,8 @@ namespace communication::messages {
             mods::request::GetReplayWithSnapshot,
             mods::request::SendChat,
             mods::unicast::PrivateError,
-            mods::unicast::PrivateWarning>;
+            mods::unicast::PrivateWarning,
+            mods::unicast::ReconnectChat>;
 
     template <typename Payload>
     class AbstractMessage {
