@@ -8,7 +8,6 @@
 #include <chrono>
 #include <variant>
 #include <iomanip>
-#include <ReconnectChat.h>
 
 #include "DeltaBroadcast.hpp"
 #include "GlobalDebug.hpp"
@@ -34,6 +33,7 @@
 #include "SendChat.h"
 #include "PrivateError.h"
 #include "PrivateWarning.h"
+#include "ReconnectChat.h"
 
 namespace communication::messages {
     using Payload = std::variant<
