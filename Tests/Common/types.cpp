@@ -228,10 +228,6 @@ TEST(CommonTypes, PhaseTypeUnbanPhase) {
     ASSERT_EQ(fromStringPhaseType(toString(PhaseType::UNBAN_PHASE)), PhaseType::UNBAN_PHASE);
 }
 
-TEST(CommonTypes, PhaseTypeUnbanPhase) {
-    ASSERT_EQ(fromStringPhaseType(toString(PhaseType::UNBAN_PHASE)), PhaseType::UNBAN_PHASE);
-}
-
 TEST(CommonTypes, ModsChat) {
     ASSERT_EQ(fromStringMod(toString(Mods::CHAT)), Mods::CHAT);
 }
