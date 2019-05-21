@@ -329,6 +329,8 @@ auto communication::messages::types::toString(communication::messages::types::Ph
             return "fanPhase";
         case PhaseType::GAME_FINISH:
             return "gameFinish";
+        case PhaseType::UNBAN_PHASE:
+            return "unbanPhase";
     }
     throw std::runtime_error{"[PhaseType] We shouln't really be here"};
 }
@@ -343,6 +345,8 @@ auto communication::messages::types::fromStringPhaseType(const std::string &s)
         return PhaseType::FAN_PHASE;
     } else if (s == "gameFinish") {
         return PhaseType::GAME_FINISH;
+    } else if (s == "unbanPhase") {
+        return PhaseType::UNBAN_PHASE;
     } else {
         throw std::runtime_error{"Not a valid PhaseType"};
     }

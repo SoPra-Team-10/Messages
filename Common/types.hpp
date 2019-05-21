@@ -74,7 +74,7 @@ namespace communication::messages::types {
     auto fromStringDeltaType(const std::string &s) -> DeltaType;
 
     enum class PhaseType {
-        BALL_PHASE, PLAYER_PHASE, FAN_PHASE, GAME_FINISH
+        BALL_PHASE, PLAYER_PHASE, FAN_PHASE, GAME_FINISH, UNBAN_PHASE
     };
 
     auto toString(PhaseType phaseType) -> std::string;

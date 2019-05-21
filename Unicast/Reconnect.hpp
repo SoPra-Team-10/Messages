@@ -35,7 +35,7 @@ namespace communication::messages::unicast {
     private:
         broadcast::MatchStart matchStart;
         broadcast::Snapshot snapshot;
-        broadcast::Next next;
+        broadcast::Next next{};
     };
 
     void to_json(nlohmann::json &j, const Reconnect &reconnect);

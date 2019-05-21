@@ -13,9 +13,10 @@ namespace communication::messages::broadcast {
         return "matchConfig";
     }
 
-    MatchConfig::MatchConfig(int maxRounds, int teamFormationTimeout, int playerTurnTimeout, int fanTurnTimeout, int playerPhaseTime,
-                             int fanPhaseTime, int ballPhaseTime, float probThrowSuccess,
-                             float probKnockOut, float probFoolAway, float probCatchSnitch, float probCatchQuaffle,
+    MatchConfig::MatchConfig(int maxRounds, int teamFormationTimeout, int playerTurnTimeout, int fanTurnTimeout, int unbanTurnTimeout,
+                            int playerPhaseTime, int fanPhaseTime, int ballPhaseTime, int minUnbanPhaseAnimationDuration,
+                            float probThrowSuccess,
+                             float probKnockOut, float probCatchSnitch, float probCatchQuaffle,
                              float probWrestQuaffle, float probExtraTinderblast, float probExtraCleansweep,
                              float probExtraComet, float probExtraNimbus, float probExtraFirebolt,
                              float probFoulFlacking, float probFoulHaversacking, float probFoulStooging,
@@ -24,12 +25,13 @@ namespace communication::messages::broadcast {
                                                                              teamFormationTimeout{teamFormationTimeout},
                                                                           playerTurnTimeout{playerTurnTimeout},
                                                                           fanTurnTimeout{fanTurnTimeout},
+                                                                          unbanTurnTimeout{unbanTurnTimeout},
                                                                           playerPhaseTime{playerPhaseTime},
                                                                           fanPhaseTime{fanPhaseTime},
                                                                           ballPhaseTime{ballPhaseTime},
+                                                                          unbanPhaseTime{minUnbanPhaseAnimationDuration},
                                                                           probThrowSuccess{probThrowSuccess},
                                                                           probKnockOut{probKnockOut},
-                                                                          probFoolAway{probFoolAway},
                                                                           probCatchSnitch{probCatchSnitch},
                                                                           probCatchQuaffle{probCatchQuaffle},
                                                                           probWrestQuaffle{probWrestQuaffle},
@@ -83,10 +85,6 @@ namespace communication::messages::broadcast {
 
     float MatchConfig::getProbKnockOut() const {
         return probKnockOut;
-    }
-
-    float MatchConfig::getProbFoolAway() const {
-        return probFoolAway;
     }
 
     float MatchConfig::getProbCatchSnitch() const {
@@ -166,7 +164,6 @@ namespace communication::messages::broadcast {
                ballPhaseTime == rhs.ballPhaseTime &&
                probThrowSuccess == rhs.probThrowSuccess &&
                probKnockOut == rhs.probKnockOut &&
-               probFoolAway == rhs.probFoolAway &&
                probCatchSnitch == rhs.probCatchSnitch &&
                probCatchQuaffle == rhs.probCatchQuaffle &&
                probWrestQuaffle == rhs.probWrestQuaffle &&
@@ -183,11 +180,21 @@ namespace communication::messages::broadcast {
                probFoulElf == rhs.probFoulElf &&
                probFoulGoblin == rhs.probFoulGoblin &&
                probFoulTroll == rhs.probFoulTroll &&
-               probFoulSnitch == rhs.probFoulSnitch;
+               probFoulSnitch == rhs.probFoulSnitch &&
+               unbanTurnTimeout == rhs.unbanTurnTimeout &&
+               unbanPhaseTime == rhs.getUnbanPhaseTime();
     }
 
     bool MatchConfig::operator!=(const MatchConfig &rhs) const {
         return !(rhs == *this);
+    }
+
+    int MatchConfig::getUnbanTurnTimeout() const {
+        return unbanTurnTimeout;
+    }
+
+    int MatchConfig::getUnbanPhaseTime() const {
+        return unbanPhaseTime;
     }
 
     void to_json(nlohmann::json &j, const MatchConfig &matchConfig) {
@@ -195,12 +202,13 @@ namespace communication::messages::broadcast {
         j["timings"]["teamFormationTimeout"] = matchConfig.getTeamFormationTimeout();
         j["timings"]["playerTurnTimeout"] = matchConfig.getPlayerTurnTimeout();
         j["timings"]["fanTurnTimeout"] = matchConfig.getFanTurnTimeout();
+        j["timings"]["unbanTurnTimeout"] = matchConfig.getUnbanTurnTimeout();
         j["timings"]["minPlayerPhaseAnimationDuration"] = matchConfig.getPlayerPhaseTime();
         j["timings"]["minFanPhaseAnimationDuration"] = matchConfig.getFanPhaseTime();
         j["timings"]["minBallPhaseAnimationDuration"] = matchConfig.getBallPhaseTime();
+        j["timings"]["minUnbanPhaseAnimationDuration"] = matchConfig.getUnbanPhaseTime();
         j["probabilities"]["throwSuccess"] = matchConfig.getProbThrowSuccess();
         j["probabilities"]["knockOut"] = matchConfig.getProbKnockOut();
-        j["probabilities"]["foolAway"] = matchConfig.getProbFoolAway();
         j["probabilities"]["catchSnitch"] = matchConfig.getProbCatchSnitch();
         j["probabilities"]["catchQuaffle"] = matchConfig.getProbCatchQuaffle();
         j["probabilities"]["wrestQuaffle"] = matchConfig.getProbWrestQuaffle();
@@ -226,12 +234,13 @@ namespace communication::messages::broadcast {
             j.at("timings").at("teamFormationTimeout").get<int>(),
             j.at("timings").at("playerTurnTimeout").get<int>(),
             j.at("timings").at("fanTurnTimeout").get<int>(),
+            j.at("timings").at("unbanTurnTimeout").get<int>(),
             j.at("timings").at("minPlayerPhaseAnimationDuration").get<int>(),
             j.at("timings").at("minFanPhaseAnimationDuration").get<int>(),
             j.at("timings").at("minBallPhaseAnimationDuration").get<int>(),
+            j.at("timings").at("minUnbanPhaseAnimationDuration").get<int>(),
             j.at("probabilities").at("throwSuccess").get<float>(),
             j.at("probabilities").at("knockOut").get<float>(),
-            j.at("probabilities").at("foolAway").get<float>(),
             j.at("probabilities").at("catchSnitch").get<float>(),
             j.at("probabilities").at("catchQuaffle").get<float>(),
             j.at("probabilities").at("wrestQuaffle").get<float>(),
@@ -254,7 +263,9 @@ namespace communication::messages::broadcast {
         if (matchConfig.getMaxRounds() < 0 || matchConfig.getTeamFormationTimeout() < 0 ||
             matchConfig.getFanTurnTimeout() < 0 ||
             matchConfig.getPlayerPhaseTime() < 0 || matchConfig.getFanPhaseTime() < 0 ||
-            matchConfig.getBallPhaseTime() < 0) {
+            matchConfig.getBallPhaseTime() < 0 ||
+            matchConfig.getUnbanPhaseTime() < 0 ||
+            matchConfig.getUnbanTurnTimeout() < 0) {
             throw std::runtime_error{"Timeout not valid"};
         }
 
@@ -264,7 +275,6 @@ namespace communication::messages::broadcast {
 
         if (!isProb(matchConfig.getProbThrowSuccess()) ||
                 !isProb(matchConfig.getProbKnockOut()) ||
-                !isProb(matchConfig.getProbFoolAway()) ||
                 !isProb(matchConfig.getProbCatchSnitch()) ||
                 !isProb(matchConfig.getProbCatchQuaffle()) ||
                 !isProb(matchConfig.getProbWrestQuaffle()) ||

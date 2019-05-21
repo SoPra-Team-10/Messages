@@ -7,7 +7,7 @@ using T1 = broadcast::Snapshot;
 
 TEST(BroadcastSnapshot, SerializeDeserialize) {
     T1 orig{{}, types::PhaseType::FAN_PHASE, {}, 17, {}, {},
-           1,2,3,4,5,6,7,8};
+           1,2,3,4,5,6,7,8, {{1,2},{3,4}}, true};
     std::string ser;
     nlohmann::json json;
     T1 comp;

@@ -19,7 +19,8 @@ namespace communication::messages::broadcast {
 
     Snapshot::Snapshot(broadcast::DeltaBroadcast lastDeltaBroadcast, types::PhaseType phase, std::vector<std::string> spectatorUserName, int round,
                        TeamSnapshot leftTeam, TeamSnapshot rightTeam, std::optional<int> snitchX, std::optional<int> snitchY,
-                       int quaffleX, int quaffleY, int bludger1X, int bludger1Y, int bludger2X, int bludger2Y) :
+                       int quaffleX, int quaffleY, int bludger1X, int bludger1Y, int bludger2X, int bludger2Y,
+                       std::vector<std::pair<int, int>> wombatCubes, bool goalWasThrownThisRound) :
                        lastDeltaBroadcast{lastDeltaBroadcast}, phase(
             phase), spectatorUserName(std::move(spectatorUserName)), round(round), leftTeam(std::move(leftTeam)), rightTeam(std::move(rightTeam)),
                                                                                                                  snitchX(snitchX),
@@ -35,7 +36,9 @@ namespace communication::messages::broadcast {
                                                                                                                  bludger2X(
                                                                                                                          bludger2X),
                                                                                                                  bludger2Y(
-                                                                                                                         bludger2Y) {}
+                                                                                                                         bludger2Y),
+                                                                                                                 wombatCubes(std::move(wombatCubes)),
+                                                                                                                 goalWasThrownThisRound(goalWasThrownThisRound) {}
 
     types::PhaseType Snapshot::getPhase() const {
         return phase;
@@ -102,7 +105,9 @@ namespace communication::messages::broadcast {
                bludger1X == rhs.bludger1X &&
                bludger1Y == rhs.bludger1Y &&
                bludger2X == rhs.bludger2X &&
-               bludger2Y == rhs.bludger2Y;
+               bludger2Y == rhs.bludger2Y &&
+               wombatCubes == rhs.wombatCubes &&
+               goalWasThrownThisRound == rhs.goalWasThrownThisRound;
     }
 
     bool Snapshot::operator!=(const Snapshot &rhs) const {
@@ -115,6 +120,14 @@ namespace communication::messages::broadcast {
 
     void Snapshot::setSpectators(const std::vector<std::string> &spectators) {
         this->spectatorUserName = spectators;
+    }
+
+    auto Snapshot::getWombatCubes() const -> std::vector<std::pair<int, int>> {
+        return wombatCubes;
+    }
+
+    bool Snapshot::isGoalWasThrownThisRound() const {
+        return goalWasThrownThisRound;
     }
 
     int TeamSnapshot::getPoints() const {
@@ -540,9 +553,20 @@ namespace communication::messages::broadcast {
         j["balls"]["bludger1"]["yPos"] = snaphot.getBludger1Y();
         j["balls"]["bludger2"]["xPos"] = snaphot.getBludger2X();
         j["balls"]["bludger2"]["yPos"] = snaphot.getBludger2Y();
+        j["wombatCubes"] = nlohmann::json::array();
+        for (const auto &cube : snaphot.getWombatCubes()) {
+            nlohmann::json pos{{"xPos", cube.first}, {"yPos", cube.second}};
+            j["wombatCubes"].push_back(pos);
+        }
+        j["goalWasThrownThisRound"] = snaphot.isGoalWasThrownThisRound();
     }
 
     void from_json(const nlohmann::json &j, Snapshot &snaphot) {
+        std::vector<std::pair<int, int>> wombatCubes;
+        for (const auto &cube : j.at("wombatCubes")) {
+            wombatCubes.emplace_back(cube.at("xPos").get<int>(), cube.at("yPos").get<int>());
+        }
+
         snaphot = Snapshot{
             j.at("lastDeltaBroadcast"),
             types::fromStringPhaseType(
@@ -558,7 +582,9 @@ namespace communication::messages::broadcast {
             j.at("balls").at("bludger1").at("xPos").get<int>(),
             j.at("balls").at("bludger1").at("yPos").get<int>(),
             j.at("balls").at("bludger2").at("xPos").get<int>(),
-            j.at("balls").at("bludger2").at("yPos").get<int>()
+            j.at("balls").at("bludger2").at("yPos").get<int>(),
+            wombatCubes,
+            j.at("goalWasThrownThisRound").get<bool>()
         };
     }
 

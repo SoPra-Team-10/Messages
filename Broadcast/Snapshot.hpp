@@ -122,7 +122,8 @@ namespace communication::messages::broadcast {
         Snapshot() = default;
         Snapshot(broadcast::DeltaBroadcast lastDeltaBroadcast, types::PhaseType phase, std::vector<std::string> spectatorUserName, int round,
                  TeamSnapshot leftTeam, TeamSnapshot rightTeam, std::optional<int> snitchX, std::optional<int> snitchY, int quaffleX,
-                 int quaffleY, int bludger1X, int bludger1Y, int bludger2X, int bludger2Y);
+                 int quaffleY, int bludger1X, int bludger1Y, int bludger2X, int bludger2Y,
+                 std::vector<std::pair<int, int>> wombatCubes, bool goalWasThrown);
 
         DeltaBroadcast getLastDeltaBroadcast() const;
 
@@ -139,6 +140,10 @@ namespace communication::messages::broadcast {
         int getBludger1Y() const;
         int getBludger2X() const;
         int getBludger2Y() const;
+
+        auto getWombatCubes() const -> std::vector<std::pair<int, int>>;
+
+        bool isGoalWasThrownThisRound() const;
 
         void setSpectators(const std::vector<std::string> &spectators);
 
@@ -158,6 +163,8 @@ namespace communication::messages::broadcast {
         int quaffleX{}, quaffleY{};
         int bludger1X{}, bludger1Y{};
         int bludger2X{}, bludger2Y{};
+        std::vector<std::pair<int, int>> wombatCubes{};
+        bool goalWasThrownThisRound{};
     };
 
     void to_json(nlohmann::json &j, const Snapshot &snaphot);

@@ -15,8 +15,9 @@ namespace communication::messages::broadcast {
     class MatchConfig {
     public:
         MatchConfig() = default;
-        MatchConfig(int maxRounds, int teamFormationTimeout, int playerTurnTimeout, int fanTurnTimeout, int playerPhaseTime, int fanPhaseTime,
-                    int ballPhaseTime, float probThrowSuccess, float probKnockOut, float probFoolAway,
+        MatchConfig(int maxRounds, int teamFormationTimeout, int playerTurnTimeout, int fanTurnTimeout, int unbanTurnTimout,
+                    int playerPhaseTime, int fanPhaseTime, int minUnbanPhaseAnimationDuration,
+                    int ballPhaseTime, float probThrowSuccess, float probKnockOut,
                     float probCatchSnitch, float probCatchQuaffle, float probWrestQuaffle, float probExtraTinderblast,
                     float probExtraCleansweep, float probExtraComet, float probExtraNimbus, float probExtraFirebolt,
                     float probFoulFlacking, float probFoulHaversacking, float probFoulStooging, float probFoulBlatching,
@@ -32,7 +33,6 @@ namespace communication::messages::broadcast {
         int getBallPhaseTime() const;
         float getProbThrowSuccess() const;
         float getProbKnockOut() const;
-        float getProbFoolAway() const;
         float getProbCatchSnitch() const;
         float getProbCatchQuaffle() const;
         float getProbWrestQuaffle() const;
@@ -50,6 +50,8 @@ namespace communication::messages::broadcast {
         float getProbFoulGoblin() const;
         float getProbFoulTroll() const;
         float getProbFoulSnitch() const;
+        int getUnbanTurnTimeout() const;
+        int getUnbanPhaseTime() const;
 
         static auto getName() -> std::string;
 
@@ -59,8 +61,9 @@ namespace communication::messages::broadcast {
 
     private:
         int maxRounds, teamFormationTimeout;
-        int playerTurnTimeout, fanTurnTimeout, playerPhaseTime, fanPhaseTime, ballPhaseTime;
-        float probThrowSuccess, probKnockOut, probFoolAway, probCatchSnitch, probCatchQuaffle,
+        int playerTurnTimeout, fanTurnTimeout, unbanTurnTimeout, playerPhaseTime, fanPhaseTime, ballPhaseTime,
+            unbanPhaseTime;
+        float probThrowSuccess, probKnockOut, probCatchSnitch, probCatchQuaffle,
                 probWrestQuaffle, probExtraTinderblast, probExtraCleansweep, probExtraComet, probExtraNimbus,
                 probExtraFirebolt, probFoulFlacking, probFoulHaversacking, probFoulStooging, probFoulBlatching,
                 probFoulSnitchnip, probFoulElf, probFoulGoblin, probFoulTroll, probFoulSnitch;
