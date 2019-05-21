@@ -35,6 +35,7 @@ namespace communication::messages::mods::unicast {
     void to_json(nlohmann::json &j, const PrivateWarning &privateWarning) {
         j["warningProducingPayload"] = privateWarning.getWarningProducingPayload();
         j["information"] = privateWarning.getInformation();
+        j["code"] = 0;
     }
 
     void from_json(const nlohmann::json &j, PrivateWarning &privateWarning) {

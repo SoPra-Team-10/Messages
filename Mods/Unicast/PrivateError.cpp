@@ -35,6 +35,8 @@ namespace communication::messages::mods::unicast {
     void to_json(nlohmann::json &j, const PrivateError &privateError) {
         j["errorProducingPayload"] = privateError.getErrorProducingPayload();
         j["information"] = privateError.getInformation();
+        j["triggerMatchFinish"] = true;
+        j["code"] = 0;
     }
 
     void from_json(const nlohmann::json &j, PrivateError &privateError) {
