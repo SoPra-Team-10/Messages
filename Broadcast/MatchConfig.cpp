@@ -21,7 +21,7 @@ namespace communication::messages::broadcast {
                              float probExtraComet, float probExtraNimbus, float probExtraFirebolt,
                              float probFoulFlacking, float probFoulHaversacking, float probFoulStooging,
                              float probFoulBlatching, float probFoulSnitchnip, float probFoulElf, float probFoulGoblin,
-                             float probFoulTroll, float probFoulSnitch) : maxRounds{maxRounds},
+                             float probFoulTroll, float probFoulSnitch, float probWombatPoo) : maxRounds{maxRounds},
                                                                              teamFormationTimeout{teamFormationTimeout},
                                                                           playerTurnTimeout{playerTurnTimeout},
                                                                           fanTurnTimeout{fanTurnTimeout},
@@ -48,7 +48,8 @@ namespace communication::messages::broadcast {
                                                                           probFoulElf{probFoulElf},
                                                                           probFoulGoblin{probFoulGoblin},
                                                                           probFoulTroll{probFoulTroll},
-                                                                          probFoulSnitch{probFoulSnitch} {}
+                                                                          probFoulSnitch{probFoulSnitch},
+                                                                          probWombatPoo{probWombatPoo} {}
 
     int MatchConfig::getMaxRounds() const {
         return maxRounds;
@@ -182,7 +183,8 @@ namespace communication::messages::broadcast {
                probFoulTroll == rhs.probFoulTroll &&
                probFoulSnitch == rhs.probFoulSnitch &&
                unbanTurnTimeout == rhs.unbanTurnTimeout &&
-               unbanPhaseTime == rhs.getUnbanPhaseTime();
+               unbanPhaseTime == rhs.getUnbanPhaseTime() &&
+               probWombatPoo == rhs.probWombatPoo;
     }
 
     bool MatchConfig::operator!=(const MatchConfig &rhs) const {
@@ -195,6 +197,10 @@ namespace communication::messages::broadcast {
 
     int MatchConfig::getUnbanPhaseTime() const {
         return unbanPhaseTime;
+    }
+
+    float MatchConfig::getProbWombatPoo() const {
+        return probWombatPoo;
     }
 
     void to_json(nlohmann::json &j, const MatchConfig &matchConfig) {
@@ -226,6 +232,7 @@ namespace communication::messages::broadcast {
         j["probabilities"]["fanFoulDetection"]["goblinShock"] = matchConfig.getProbFoulGoblin();
         j["probabilities"]["fanFoulDetection"]["trollRoar"] = matchConfig.getProbFoulTroll();
         j["probabilities"]["fanFoulDetection"]["snitchSnatch"] = matchConfig.getProbFoulSnitch();
+        j["probabilities"]["fanFoulDetection"]["wombatPoo"] = matchConfig.getProbWombatPoo();
     }
 
     void from_json(const nlohmann::json &j, MatchConfig &matchConfig) {
@@ -257,7 +264,8 @@ namespace communication::messages::broadcast {
             j.at("probabilities").at("fanFoulDetection").at("elfTeleportation").get<float>(),
             j.at("probabilities").at("fanFoulDetection").at("goblinShock").get<float>(),
             j.at("probabilities").at("fanFoulDetection").at("trollRoar").get<float>(),
-            j.at("probabilities").at("fanFoulDetection").at("snitchSnatch").get<float>()
+            j.at("probabilities").at("fanFoulDetection").at("snitchSnatch").get<float>(),
+            j.at("probabilities").at("fanFoulDetection").at("wombatPoo").get<float>()
         };
 
         if (matchConfig.getMaxRounds() < 0 || matchConfig.getTeamFormationTimeout() < 0 ||
@@ -290,7 +298,8 @@ namespace communication::messages::broadcast {
                 !isProb(matchConfig.getProbFoulElf()) ||
                 !isProb(matchConfig.getProbFoulGoblin()) ||
                 !isProb(matchConfig.getProbFoulTroll()) ||
-                !isProb(matchConfig.getProbFoulSnitch())) {
+                !isProb(matchConfig.getProbFoulSnitch()) ||
+                !isProb(matchConfig.getProbWombatPoo())) {
             throw std::runtime_error{"Probabilites not valid"};
         }
 

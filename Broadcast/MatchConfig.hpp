@@ -22,7 +22,7 @@ namespace communication::messages::broadcast {
                     float probExtraCleansweep, float probExtraComet, float probExtraNimbus, float probExtraFirebolt,
                     float probFoulFlacking, float probFoulHaversacking, float probFoulStooging, float probFoulBlatching,
                     float probFoulSnitchnip, float probFoulElf, float probFoulGoblin, float probFoulTroll,
-                    float probFoulSnitch);
+                    float probFoulSnitch, float probWombatPoo);
 
         int getMaxRounds() const;
         int getTeamFormationTimeout() const;
@@ -53,6 +53,8 @@ namespace communication::messages::broadcast {
         int getUnbanTurnTimeout() const;
         int getUnbanPhaseTime() const;
 
+        float getProbWombatPoo() const;
+
         static auto getName() -> std::string;
 
         bool operator==(const MatchConfig &rhs) const;
@@ -66,7 +68,7 @@ namespace communication::messages::broadcast {
         float probThrowSuccess, probKnockOut, probCatchSnitch, probCatchQuaffle,
                 probWrestQuaffle, probExtraTinderblast, probExtraCleansweep, probExtraComet, probExtraNimbus,
                 probExtraFirebolt, probFoulFlacking, probFoulHaversacking, probFoulStooging, probFoulBlatching,
-                probFoulSnitchnip, probFoulElf, probFoulGoblin, probFoulTroll, probFoulSnitch;
+                probFoulSnitchnip, probFoulElf, probFoulGoblin, probFoulTroll, probFoulSnitch, probWombatPoo;
     };
 
     void to_json(nlohmann::json &j, const MatchConfig &matchConfig);

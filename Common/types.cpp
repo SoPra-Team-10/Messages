@@ -62,8 +62,10 @@ auto communication::messages::types::toString(communication::messages::types::En
             return "rightElf";
         case types::EntityId::RIGHT_NIFFLER:
             return "rightNiffler";
-        case EntityId::PIECE_OF_SHIT:
-            return "pieceOfShit";
+        case EntityId::LEFT_WOMBAT:
+            return "leftWombat";
+        case EntityId::RIGHT_WOMBAT:
+            return "rightWombat";
     }
     throw std::runtime_error{"[EntityId] We shouldn't really be here"};
 }
@@ -121,8 +123,10 @@ auto communication::messages::types::fromStringEntityId(const std::string &s) ->
         return types::EntityId::RIGHT_ELF;
     } else if (s == "rightNiffler") {
         return types::EntityId::RIGHT_NIFFLER;
-    } else if(s == "pieceOfShit"){
-        return types::EntityId::PIECE_OF_SHIT;
+    } else if (s == "leftWombat") {
+        return types::EntityId::LEFT_WOMBAT;
+    } else if (s == "rightWombat") {
+        return types::EntityId::RIGHT_WOMBAT;
     } else {
         throw std::runtime_error{"Not a valid entity id"};
     }

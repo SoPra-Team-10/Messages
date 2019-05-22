@@ -81,9 +81,11 @@ TEST(CommonTypes, EntityIdRightElf) {
 TEST(CommonTypes, EntityIdRightNiffler) {
     ASSERT_EQ(fromStringEntityId(toString(EntityId::RIGHT_NIFFLER)), EntityId::RIGHT_NIFFLER);
 }
-
-TEST(CommonTypes, EntityIdPieceOfShit) {
-    ASSERT_EQ(fromStringEntityId(toString(EntityId::PIECE_OF_SHIT)), EntityId::PIECE_OF_SHIT);
+TEST(CommonTypes, EntityIdLeftWombat) {
+    ASSERT_EQ(fromStringEntityId(toString(EntityId::LEFT_WOMBAT)), EntityId::LEFT_WOMBAT);
+}
+TEST(CommonTypes, EntityIdRightWombat) {
+    ASSERT_EQ(fromStringEntityId(toString(EntityId::RIGHT_WOMBAT)), EntityId::RIGHT_WOMBAT);
 }
 
 TEST(CommonTypes, TurnTypeMove) {
