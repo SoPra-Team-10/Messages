@@ -35,7 +35,7 @@ namespace communication::messages::request {
     public:
         TeamConfig() = default;
         TeamConfig(std::string name, std::string motto, std::string colorPrimary, std::string colorSecondary,
-                   std::string image, int goblins, int trolls, int elfs, int nifflers, Player seeker,
+                   std::string image, int goblins, int trolls, int elfs, int nifflers, int wombats, Player seeker,
                    Player keeper, Player chaser1, Player chaser2, Player chaser3,
                    Player beater1, Player beater2);
 
@@ -48,6 +48,7 @@ namespace communication::messages::request {
         int getTrolls() const;
         int getElfs() const;
         int getNifflers() const;
+        int getWombats() const;
         Player getSeeker() const;
         Player getKeeper() const;
         Player getChaser1() const;
@@ -66,7 +67,7 @@ namespace communication::messages::request {
         std::string name, motto;
         std::string colorPrimary, colorSecondary;
         std::string image;
-        int goblins{}, trolls{}, elfs{}, nifflers{};
+        int goblins{}, trolls{}, elfs{}, nifflers{}, wombats{};
         Player seeker, keeper, chaser1, chaser2, chaser3, beater1, beater2;
 
     };

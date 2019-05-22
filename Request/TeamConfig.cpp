@@ -19,11 +19,11 @@ namespace communication::messages::request {
 
     TeamConfig::TeamConfig(std::string name, std::string motto, std::string colorPrimary,
                            std::string colorSecondary, std::string image, int goblins, int trolls, int elfs,
-                           int nifflers, Player seeker, Player keeper, Player chaser1,
+                           int nifflers, int wombats, Player seeker, Player keeper, Player chaser1,
                            Player chaser2, Player chaser3, Player beater1, Player beater2)
             : name(std::move(name)), motto(std::move(motto)), colorPrimary(std::move(colorPrimary)),
               colorSecondary(std::move(colorSecondary)), image(std::move(image)),
-              goblins(goblins), trolls(trolls), elfs(elfs), nifflers(nifflers), seeker(std::move(seeker)),
+              goblins(goblins), trolls(trolls), elfs(elfs), nifflers(nifflers), wombats{wombats}, seeker(std::move(seeker)),
               keeper(std::move(keeper)),
               chaser1(std::move(chaser1)), chaser2(std::move(chaser2)), chaser3(std::move(chaser3)),
               beater1(std::move(beater1)), beater2(std::move(beater2)) {}
@@ -74,6 +74,7 @@ namespace communication::messages::request {
         j["fans"]["trolls"] = teamConfig.getTrolls();
         j["fans"]["elves"] = teamConfig.getElfs();
         j["fans"]["nifflers"] = teamConfig.getNifflers();
+        j["fans"]["wombats"] = teamConfig.getWombats();
         j["players"]["seeker"] = teamConfig.getSeeker();
         j["players"]["keeper"] = teamConfig.getKeeper();
         j["players"]["chaser1"] = teamConfig.getChaser1();
@@ -94,6 +95,7 @@ namespace communication::messages::request {
             j.at("fans").at("trolls").get<int>(),
             j.at("fans").at("elves").get<int>(),
             j.at("fans").at("nifflers").get<int>(),
+            j.at("fans").at("wombats").get<int>(),
             j.at("players").at("seeker").get<Player>(),
             j.at("players").at("keeper").get<Player>(),
             j.at("players").at("chaser1").get<Player>(),
@@ -169,11 +171,16 @@ namespace communication::messages::request {
                chaser2 == rhs.chaser2 &&
                chaser3 == rhs.chaser3 &&
                beater1 == rhs.beater1 &&
-               beater2 == rhs.beater2;
+               beater2 == rhs.beater2 &&
+               wombats == rhs.wombats;
     }
 
     bool TeamConfig::operator!=(const TeamConfig &rhs) const {
         return !(rhs == *this);
+    }
+
+    int TeamConfig::getWombats() const {
+        return wombats;
     }
 
 

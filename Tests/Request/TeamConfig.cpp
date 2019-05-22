@@ -8,7 +8,7 @@ using T1 = request::Player;
 
 TEST(RequestTeamConfig, TeamConfigSerializeDeserialize) {
     request::Player player{"abcd", {}, {}};
-    T0 orig{"asds","bsdsd","0011FF","FF1100","esdsd",1,2,3,4,player,player,player,player,player,player,player};
+    T0 orig{"asds","bsdsd","0011FF","FF1100","esdsd",1,2,3,4,5,player,player,player,player,player,player,player};
     std::string ser;
     nlohmann::json json;
     T0 comp;

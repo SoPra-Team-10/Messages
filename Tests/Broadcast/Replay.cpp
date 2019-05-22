@@ -13,7 +13,7 @@ TEST(BroadcastReplay, SerializeDeserialize) {
             "00FF11",
             "11FF00",
             "abc",
-            1,2,3,4,
+            1,2,3,4,5,
             player,player,player,player,player,player,player
     };
     T orig{"Test", "abc", {15,7,8,2,3,4,5,6,7,0.71,0.91,0.101,0.111,0.121,0.131,0.141,0.151,0.161,
