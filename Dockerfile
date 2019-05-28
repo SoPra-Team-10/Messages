@@ -1,7 +1,7 @@
 FROM ubuntu:18.04
 
 # Install dependencies
-RUN apt-get update -y && apt-get install -y libgtest-dev cmake gcc-8 g++-8 libasan5 google-mock git wget unzip bash
+RUN apt-get update -y && apt-get install -y libgtest-dev cmake gcc-8 g++-8 libasan5 google-mock
 RUN update-alternatives --install /usr/bin/gcc gcc /usr/bin/gcc-8 800 --slave /usr/bin/g++ g++ /usr/bin/g++-8
 
 # Compile GTest
@@ -28,4 +28,4 @@ RUN cmake -DCMAKE_BUILD_TYPE=Release .. && make -j$(nproc) SopraMessages && make
 RUN cmake -DCMAKE_BUILD_TYPE=Release -DUSE_INSTALLED_LIB=true .. && make -j$(nproc) Tests
 
 WORKDIR /src
-#CMD ["Tests/Tests", "--gtest_repeat=10", "--gtest_shuffle", "--gtest_color=yes"]
+CMD ["build/Tests/Tests", "--gtest_repeat=10", "--gtest_shuffle", "--gtest_color=yes"]
