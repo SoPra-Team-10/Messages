@@ -308,6 +308,8 @@ auto communication::messages::types::toString(communication::messages::types::Fa
             return "elf";
         case FanType::NIFFLER:
             return "niffler";
+        case FanType::WOMBAT:
+            return "wombat";
     }
     throw std::runtime_error{"[FanType] We shouln't really be here"};
 }
@@ -322,6 +324,8 @@ auto communication::messages::types::fromStringFanType(const std::string &s)
         return FanType::ELF;
     } else if (s == "niffler") {
         return FanType::NIFFLER;
+    } else if (s == "wombat") {
+        return FanType::WOMBAT;
     } else {
         throw std::runtime_error{"Not a valid FanType"};
     }

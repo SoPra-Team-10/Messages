@@ -42,7 +42,7 @@ namespace communication::messages::types {
     auto fromStringVictoryReason(const std::string &s) -> VictoryReason;
 
     enum class FanType {
-        GOBLIN, TROLL, ELF, NIFFLER
+        GOBLIN, TROLL, ELF, NIFFLER, WOMBAT
     };
 
     auto toString(FanType fanType) -> std::string;

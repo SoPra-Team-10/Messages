@@ -135,6 +135,9 @@ TEST(CommonTypes, FanTypeElf) {
 TEST(CommonTypes, FanTypeNiffler) {
     ASSERT_EQ(fromStringFanType(toString(FanType::NIFFLER)), FanType::NIFFLER);
 }
+TEST(CommonTypes, FanTypeWombat) {
+    ASSERT_EQ(fromStringFanType(toString(FanType::WOMBAT)), FanType::WOMBAT);
+}
 
 TEST(CommonTypes, BroomTinderblast) {
     ASSERT_EQ(fromStringBroom(toString(Broom::TINDERBLAST)), Broom::TINDERBLAST);
