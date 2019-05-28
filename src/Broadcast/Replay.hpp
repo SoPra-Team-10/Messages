@@ -14,7 +14,7 @@
 //#include "Message.hpp"
 #include "MatchConfig.hpp"
 #include "Snapshot.hpp"
-#include "Message.hpp"
+#include "src/Message.hpp"
 
 namespace communication::messages::broadcast {
     class Replay {

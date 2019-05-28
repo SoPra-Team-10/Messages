@@ -8,7 +8,7 @@
 #ifndef SERVER_OPTIONALSERIALIZATION_HPP
 #define SERVER_OPTIONALSERIALIZATION_HPP
 
-#include <Lib/json.hpp>
+#include <src/Lib/json.hpp>
 
 namespace std {
     template<typename T>

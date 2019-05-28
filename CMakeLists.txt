@@ -15,42 +15,42 @@ endif ()
 # Building
 project(SopraMessages VERSION 0.0.1 DESCRIPTION "Messages for SoPra")
 
-include_directories(Broadcast Request Unicast Common Lib Util Mods/Broadcast Mods/Request Mods/Unicast ${CMAKE_SOURCE_DIR})
+include_directories(src/Broadcast src/Request src/Unicast src/Common src/Lib src/Util src/Mods/Broadcast src/Mods/Request src/Mods/Unicast ${CMAKE_SOURCE_DIR})
 
 set(SOURCES
-        ${CMAKE_SOURCE_DIR}/Message.cpp
-        ${CMAKE_SOURCE_DIR}/Broadcast/DeltaBroadcast.cpp
-        ${CMAKE_SOURCE_DIR}/Broadcast/GlobalDebug.cpp
-        ${CMAKE_SOURCE_DIR}/Broadcast/LoginGreeting.cpp
-        ${CMAKE_SOURCE_DIR}/Broadcast/MatchConfig.cpp
-        ${CMAKE_SOURCE_DIR}/Broadcast/MatchFinish.cpp
-        ${CMAKE_SOURCE_DIR}/Broadcast/MatchStart.cpp
-        ${CMAKE_SOURCE_DIR}/Broadcast/Next.cpp
-        ${CMAKE_SOURCE_DIR}/Broadcast/PauseResponse.cpp
-        ${CMAKE_SOURCE_DIR}/Broadcast/Replay.cpp
-        ${CMAKE_SOURCE_DIR}/Broadcast/Snapshot.cpp
-        ${CMAKE_SOURCE_DIR}/Request/ContinueRequest.cpp
-        ${CMAKE_SOURCE_DIR}/Request/DeltaRequest.cpp
-        ${CMAKE_SOURCE_DIR}/Request/GetReplay.cpp
-        ${CMAKE_SOURCE_DIR}/Request/JoinRequest.cpp
-        ${CMAKE_SOURCE_DIR}/Request/PauseRequest.cpp
-        ${CMAKE_SOURCE_DIR}/Request/SendDebug.cpp
-        ${CMAKE_SOURCE_DIR}/Request/TeamConfig.cpp
-        ${CMAKE_SOURCE_DIR}/Request/TeamFormation.cpp
-        ${CMAKE_SOURCE_DIR}/Unicast/JoinResponse.cpp
-        ${CMAKE_SOURCE_DIR}/Unicast/PrivateDebug.cpp
-        ${CMAKE_SOURCE_DIR}/Unicast/Reconnect.cpp
-        ${CMAKE_SOURCE_DIR}/Common/types.cpp
-        ${CMAKE_SOURCE_DIR}/Common/Delta.cpp
-        ${CMAKE_SOURCE_DIR}/ReplayMessage.cpp
-        ${CMAKE_SOURCE_DIR}/Mods/Broadcast/GlobalChat.cpp
-        ${CMAKE_SOURCE_DIR}/Mods/Request/GetReplayWithSnapshot.cpp
-        ${CMAKE_SOURCE_DIR}/Mods/Request/SendChat.cpp
-        ${CMAKE_SOURCE_DIR}/Mods/Unicast/PrivateError.cpp
-        ${CMAKE_SOURCE_DIR}/Mods/Unicast/PrivateWarning.cpp
-        ${CMAKE_SOURCE_DIR}/Mods/Unicast/ReplayWithSnapshot.cpp
-        ${CMAKE_SOURCE_DIR}/Other/LobbyMod.cpp
-        ${CMAKE_SOURCE_DIR}/Mods/Unicast/ReconnectChat.cpp)
+        ${CMAKE_SOURCE_DIR}/src/Message.cpp
+        ${CMAKE_SOURCE_DIR}/src/Broadcast/DeltaBroadcast.cpp
+        ${CMAKE_SOURCE_DIR}/src/Broadcast/GlobalDebug.cpp
+        ${CMAKE_SOURCE_DIR}/src/Broadcast/LoginGreeting.cpp
+        ${CMAKE_SOURCE_DIR}/src/Broadcast/MatchConfig.cpp
+        ${CMAKE_SOURCE_DIR}/src/Broadcast/MatchFinish.cpp
+        ${CMAKE_SOURCE_DIR}/src/Broadcast/MatchStart.cpp
+        ${CMAKE_SOURCE_DIR}/src/Broadcast/Next.cpp
+        ${CMAKE_SOURCE_DIR}/src/Broadcast/PauseResponse.cpp
+        ${CMAKE_SOURCE_DIR}/src/Broadcast/Replay.cpp
+        ${CMAKE_SOURCE_DIR}/src/Broadcast/Snapshot.cpp
+        ${CMAKE_SOURCE_DIR}/src/Request/ContinueRequest.cpp
+        ${CMAKE_SOURCE_DIR}/src/Request/DeltaRequest.cpp
+        ${CMAKE_SOURCE_DIR}/src/Request/GetReplay.cpp
+        ${CMAKE_SOURCE_DIR}/src/Request/JoinRequest.cpp
+        ${CMAKE_SOURCE_DIR}/src/Request/PauseRequest.cpp
+        ${CMAKE_SOURCE_DIR}/src/Request/SendDebug.cpp
+        ${CMAKE_SOURCE_DIR}/src/Request/TeamConfig.cpp
+        ${CMAKE_SOURCE_DIR}/src/Request/TeamFormation.cpp
+        ${CMAKE_SOURCE_DIR}/src/Unicast/JoinResponse.cpp
+        ${CMAKE_SOURCE_DIR}/src/Unicast/PrivateDebug.cpp
+        ${CMAKE_SOURCE_DIR}/src/Unicast/Reconnect.cpp
+        ${CMAKE_SOURCE_DIR}/src/Common/types.cpp
+        ${CMAKE_SOURCE_DIR}/src/Common/Delta.cpp
+        ${CMAKE_SOURCE_DIR}/src/ReplayMessage.cpp
+        ${CMAKE_SOURCE_DIR}/src/Mods/Broadcast/GlobalChat.cpp
+        ${CMAKE_SOURCE_DIR}/src/Mods/Request/GetReplayWithSnapshot.cpp
+        ${CMAKE_SOURCE_DIR}/src/Mods/Request/SendChat.cpp
+        ${CMAKE_SOURCE_DIR}/src/Mods/Unicast/PrivateError.cpp
+        ${CMAKE_SOURCE_DIR}/src/Mods/Unicast/PrivateWarning.cpp
+        ${CMAKE_SOURCE_DIR}/src/Mods/Unicast/ReplayWithSnapshot.cpp
+        ${CMAKE_SOURCE_DIR}/src/Other/LobbyMod.cpp
+        ${CMAKE_SOURCE_DIR}/src/Mods/Unicast/ReconnectChat.cpp)
 
 include_directories(${CMAKE_SOURCE_DIR})
 add_library(${PROJECT_NAME} SHARED ${SOURCES})

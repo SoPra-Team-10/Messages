@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Request/JoinRequest.hpp>
+#include <src/Request/JoinRequest.hpp>
 
 using namespace communication::messages;
 

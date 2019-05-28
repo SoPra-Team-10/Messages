@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Request/ContinueRequest.hpp>
+#include <src/Request/ContinueRequest.hpp>
 
 using namespace communication::messages;
 

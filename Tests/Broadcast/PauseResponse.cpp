@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Broadcast/PauseResponse.hpp>
+#include <src/Broadcast/PauseResponse.hpp>
 
 using namespace communication::messages;
 
