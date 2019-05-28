@@ -216,6 +216,12 @@ TEST(CommonTypes, DeltaTypeFoolAway) {
 TEST(CommonTypes, DeltaTypeTurnUsed) {
     ASSERT_EQ(fromStringDeltaType(toString(DeltaType::TURN_USED)), DeltaType::TURN_USED);
 }
+TEST(CommonTypes, DeltaTypeWombatPoo) {
+    ASSERT_EQ(fromStringDeltaType(toString(DeltaType::WOMBAT_POO)), DeltaType::WOMBAT_POO);
+}
+TEST(CommonTypes, DeltaTypeRemovePoo) {
+    ASSERT_EQ(fromStringDeltaType(toString(DeltaType::REMOVE_POO)), DeltaType::REMOVE_POO);
+}
 
 TEST(CommonTypes, PhaseTypeBallPhase) {
     ASSERT_EQ(fromStringPhaseType(toString(PhaseType::BALL_PHASE)), PhaseType::BALL_PHASE);
@@ -278,4 +284,7 @@ TEST(CommonTypes, BanReasonGoblinShock) {
 }
 TEST(CommonTypes, BanReasonTrollRoar) {
     ASSERT_EQ(fromStringBanReason(toString(BanReason::TROLL_ROAR)), BanReason::TROLL_ROAR);
+}
+TEST(CommonTypes, BanReasonWombatPoo) {
+    ASSERT_EQ(fromStringBanReason(toString(BanReason::WOMBAT_POO)), BanReason::WOMBAT_POO);
 }

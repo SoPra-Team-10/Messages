@@ -67,7 +67,8 @@ namespace communication::messages::types {
         SNITCH_SNATCH, TROLL_ROAR, ELF_TELEPORTATION,
         GOBLIN_SHOCK, BAN, BLUDGER_KNOCKOUT, MOVE,
         PHASE_CHANGE, GOAL_POINTS_CHANGE, ROUND_CHANGE,
-        SKIP, UNBAN, WREST_QUAFFLE, FOOL_AWAY, TURN_USED
+        SKIP, UNBAN, WREST_QUAFFLE, FOOL_AWAY, TURN_USED, WOMBAT_POO,
+        REMOVE_POO
     };
 
     auto toString(DeltaType deltaType) -> std::string;
@@ -89,7 +90,7 @@ namespace communication::messages::types {
 
     enum class BanReason {
         STOOGING, BLATCHING, FLACKING, HAVERSACKING, SNITCHNIP, SNITCH_SNATCH,
-        ELF_TELEPORTATION, GOBLIN_SHOCK, TROLL_ROAR
+        ELF_TELEPORTATION, GOBLIN_SHOCK, TROLL_ROAR, WOMBAT_POO
     };
 
     auto toString(BanReason banReason) -> std::string;

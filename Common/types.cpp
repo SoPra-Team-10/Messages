@@ -251,6 +251,10 @@ auto communication::messages::types::toString(communication::messages::types::De
             return "foolAway";
         case DeltaType::TURN_USED:
             return "turnUsed";
+        case DeltaType::WOMBAT_POO:
+            return "wombatPoo";
+        case DeltaType::REMOVE_POO:
+            return "removePoo";
     }
     throw std::runtime_error{"[DeltaType] We shouln't really be here"};
 }
@@ -293,6 +297,10 @@ auto communication::messages::types::fromStringDeltaType(const std::string &s)
         return DeltaType::FOOL_AWAY;
     } else if (s == "turnUsed") {
         return DeltaType::TURN_USED;
+    } else if (s == "wombatPoo") {
+        return DeltaType::WOMBAT_POO;
+    } else if (s == "removePoo") {
+        return DeltaType::REMOVE_POO;
     } else {
         throw std::runtime_error{"Not a valid deltaType"};
     }
@@ -462,6 +470,8 @@ auto communication::messages::types::toString(communication::messages::types::Ba
             return "goblinShock";
         case BanReason::TROLL_ROAR:
             return "trollRoar";
+        case BanReason::WOMBAT_POO:
+            return "wombatPoo";
     }
     throw std::runtime_error{"[BanReason] We shouln't really be here"};
 }
@@ -486,6 +496,8 @@ auto communication::messages::types::fromStringBanReason(const std::string &s)
         return BanReason::GOBLIN_SHOCK;
     } else if (s == "trollRoar") {
         return BanReason::TROLL_ROAR;
+    } else if (s == "wombatPoo") {
+        return BanReason::WOMBAT_POO;
     } else {
         throw std::runtime_error{"Not a valid BanReason"};
     }
