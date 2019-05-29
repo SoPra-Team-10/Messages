@@ -15,7 +15,17 @@ endif ()
 # Building
 project(SopraMessages VERSION 0.0.1 DESCRIPTION "Messages for SoPra")
 
-include_directories(src/Broadcast src/Request src/Unicast src/Common src/Lib src/Util src/Mods/Broadcast src/Mods/Request src/Mods/Unicast ${CMAKE_SOURCE_DIR})
+include_directories(
+        ${CMAKE_SOURCE_DIR}/src/Broadcast
+        ${CMAKE_SOURCE_DIR}/src/Request
+        ${CMAKE_SOURCE_DIR}/src/Unicast
+        ${CMAKE_SOURCE_DIR}/src/Common
+        ${CMAKE_SOURCE_DIR}/src/Lib
+        ${CMAKE_SOURCE_DIR}/src/Util
+        ${CMAKE_SOURCE_DIR}/src/Mods/Broadcast
+        ${CMAKE_SOURCE_DIR}/src/Mods/Request
+        ${CMAKE_SOURCE_DIR}/src/Mods/Unicast
+        ${CMAKE_SOURCE_DIR}/src)
 
 set(SOURCES
         ${CMAKE_SOURCE_DIR}/src/Message.cpp

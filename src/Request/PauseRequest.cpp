@@ -1,5 +1,3 @@
-#include <utility>
-
 /**
  * @file PauseRequest.cpp
  * @author paul
@@ -8,6 +6,8 @@
  */
 
 #include "PauseRequest.hpp"
+
+#include <utility>
 
 namespace communication::messages::request {
 

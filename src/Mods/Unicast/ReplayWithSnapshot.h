@@ -8,7 +8,7 @@
 #include <string>
 #include "TeamConfig.hpp"
 #include "Snapshot.hpp"
-#include "src/Message.hpp"
+#include "Message.hpp"
 #include "json.hpp"
 #include "MatchConfig.hpp"
 

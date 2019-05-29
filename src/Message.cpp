@@ -1,5 +1,3 @@
-#include <utility>
-
 //
 // Created by paulnykiel on 26.04.19.
 //
@@ -8,6 +6,7 @@
 #include <sstream>
 #include <iomanip>
 #include <iostream>
+#include <utility>
 
 namespace communication::messages {
     template<>
