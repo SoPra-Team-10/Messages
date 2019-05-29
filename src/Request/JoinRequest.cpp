@@ -1,7 +1,3 @@
-#include <utility>
-
-#include <utility>
-
 /**
  * @file JoinRequest.cpp
  * @author paul
@@ -10,6 +6,8 @@
  */
 
 #include "JoinRequest.hpp"
+
+#include <utility>
 
 namespace communication::messages::request {
     JoinRequest::JoinRequest(std::string lobby, std::string userName, std::string password,

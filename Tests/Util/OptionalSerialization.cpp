@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
 
-#include <Util/OptionalSerialization.hpp>
+#include <src/Util/OptionalSerialization.hpp>
 
 TEST(UtilOptionalSerialization, SerializeValue) {
     std::optional<int> a = 0;

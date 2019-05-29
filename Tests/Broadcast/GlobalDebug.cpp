@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Broadcast/GlobalDebug.hpp>
+#include <src/Broadcast/GlobalDebug.hpp>
 
 using namespace communication::messages;
 

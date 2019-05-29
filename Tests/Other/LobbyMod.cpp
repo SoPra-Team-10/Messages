@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Other/LobbyMod.hpp>
+#include <src/Other/LobbyMod.hpp>
 
 using namespace communication::messages::mods;
 

@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Unicast/JoinResponse.hpp>
+#include <src/Unicast/JoinResponse.hpp>
 
 using namespace communication::messages;
 

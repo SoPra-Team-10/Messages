@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Request/TeamConfig.hpp>
+#include <src/Request/TeamConfig.hpp>
 
 using namespace communication::messages;
 

@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Common/types.hpp>
+#include <src/Common/types.hpp>
 
 using namespace communication::messages::types;
 

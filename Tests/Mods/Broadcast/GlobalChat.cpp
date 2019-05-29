@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Mods/Broadcast/GlobalChat.h>
+#include <src/Mods/Broadcast/GlobalChat.h>
 
 using namespace communication::messages::mods;
 

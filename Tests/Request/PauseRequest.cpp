@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Request/PauseRequest.hpp>
+#include <src/Request/PauseRequest.hpp>
 
 using namespace communication::messages;
 

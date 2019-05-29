@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Broadcast/Snapshot.hpp>
+#include <src/Broadcast/Snapshot.hpp>
 
 using namespace communication::messages;
 
