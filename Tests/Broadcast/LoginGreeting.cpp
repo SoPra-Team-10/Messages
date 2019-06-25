@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Broadcast/LoginGreeting.hpp>
+#include <src/Broadcast/LoginGreeting.hpp>
 
 using namespace communication::messages;
 

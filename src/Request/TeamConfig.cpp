@@ -1,5 +1,3 @@
-#include <utility>
-
 /**
  * @file TeamConfig.cpp
  * @author paul
@@ -10,6 +8,7 @@
 #include "TeamConfig.hpp"
 #include <utility>
 #include <sstream>
+#include <utility>
 
 namespace communication::messages::request {
 

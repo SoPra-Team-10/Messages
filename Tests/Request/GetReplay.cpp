@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Request/GetReplay.hpp>
+#include <src/Request/GetReplay.hpp>
 
 using namespace communication::messages;
 

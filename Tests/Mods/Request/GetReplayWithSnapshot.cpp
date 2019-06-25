@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Mods/Request/GetReplayWithSnapshot.h>
+#include <src/Mods/Request/GetReplayWithSnapshot.h>
 
 using namespace communication::messages::mods;
 

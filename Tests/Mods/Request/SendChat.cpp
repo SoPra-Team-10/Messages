@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Mods/Request/SendChat.h>
+#include <src/Mods/Request/SendChat.h>
 
 using namespace communication::messages::mods;
 

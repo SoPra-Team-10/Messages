@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Broadcast/Next.hpp>
+#include <src/Broadcast/Next.hpp>
 
 using namespace communication::messages;
 

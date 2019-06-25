@@ -1,5 +1,5 @@
 #include <gtest/gtest.h>
-#include <Broadcast/MatchConfig.hpp>
+#include <src/Broadcast/MatchConfig.hpp>
 
 using namespace communication::messages;
 

@@ -1,6 +1,6 @@
 #include <gtest/gtest.h>
-#include <Message.hpp>
-#include <ReplayMessage.h>
+#include <src/Message.hpp>
+#include <src/ReplayMessage.h>
 
 using namespace communication::messages;
 

@@ -8,7 +8,7 @@
 #include "Reconnect.hpp"
 
 #include <utility>
-#include <Message.hpp>
+#include "Message.hpp"
 
 namespace communication::messages::unicast {
 
