@@ -226,7 +226,7 @@ namespace communication::messages::request {
 
         auto ok = [](const std::string &s, std::size_t len) {
             for (const auto &c : s) {
-                if (!std::isalnum(c)) {
+                if (!(std::isalnum(c) || c == ' ')) {
                     return false;
                 }
             }
