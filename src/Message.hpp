@@ -115,7 +115,7 @@ namespace communication::messages {
         // (time has only second accuracy, that's why there is this
         // stream magic)
         std::stringstream sstream;
-        sstream << std::put_time(&this->time,"%F %T:")
+        sstream << std::put_time(&this->time,"%F %T.")
                 << std::setfill('0') <<std::setw(3) << (this->timestamp.count() % 1000);
 
         return sstream.str();
