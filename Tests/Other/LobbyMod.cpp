@@ -1,9 +1,9 @@
 #include <gtest/gtest.h>
-#include <src/Other/LobbyMod.hpp>
+#include <src/Mods/Unicast/LobbyMod.hpp>
 
 using namespace communication::messages::mods;
 
-using T1 = other::LobbyEntry;
+using T1 = unicast::LobbyEntry;
 
 TEST(ModsOtherLobbyEntry, SerializeDeserialize) {
     T1 orig{"Test", true, 17};
@@ -16,7 +16,7 @@ TEST(ModsOtherLobbyEntry, SerializeDeserialize) {
     ASSERT_EQ(comp, orig);
 }
 
-using T2 = other::LobbyMod;
+using T2 = unicast::LobbyMod;
 
 TEST(ModsOtherLobbyMod, SerializeDeserialize) {
     T2 orig{{{"Test", true, 17},{"Test2", false, 18}}};

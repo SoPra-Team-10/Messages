@@ -76,6 +76,8 @@ namespace communication::messages {
             payload = payloadJ.get<mods::unicast::PrivateWarning>();
         } else if (payloadType == mods::unicast::ReconnectChat::getName()) {
             payload = payloadJ.get<mods::unicast::ReconnectChat>();
+        } else if (payloadType == mods::unicast::LobbyMod::getName()) {
+            payload = payloadJ.get<mods::unicast::LobbyMod>();
         } else {
             throw std::runtime_error{"Not a valid payloadType"};
         }

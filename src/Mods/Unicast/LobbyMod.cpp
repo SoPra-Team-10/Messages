@@ -8,7 +8,7 @@
 
 #include "LobbyMod.hpp"
 
-namespace communication::messages::mods::other {
+namespace communication::messages::mods::unicast {
     LobbyMod::LobbyMod(std::vector<LobbyEntry> lobbies) : lobbies(std::move(lobbies)) {}
 
     void LobbyMod::addLobby(LobbyEntry lobbyEntry) {
@@ -25,6 +25,10 @@ namespace communication::messages::mods::other {
 
     bool LobbyMod::operator!=(const LobbyMod &rhs) const {
         return !(rhs == *this);
+    }
+
+    auto LobbyMod::getName() -> std::string {
+        return "lobbyMod";
     }
 
     void to_json(nlohmann::json &j, const LobbyEntry &lobbyEntry) {

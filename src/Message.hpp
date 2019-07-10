@@ -8,6 +8,7 @@
 #include <chrono>
 #include <variant>
 #include <iomanip>
+#include <LobbyMod.hpp>
 
 #include "DeltaBroadcast.hpp"
 #include "GlobalDebug.hpp"
@@ -62,7 +63,8 @@ namespace communication::messages {
             mods::request::SendChat,
             mods::unicast::PrivateError,
             mods::unicast::PrivateWarning,
-            mods::unicast::ReconnectChat>;
+            mods::unicast::ReconnectChat,
+            mods::unicast::LobbyMod>;
 
     template <typename Payload>
     class AbstractMessage {

@@ -63,7 +63,7 @@ set(SOURCES
         ${CMAKE_SOURCE_DIR}/src/Mods/Unicast/PrivateError.cpp
         ${CMAKE_SOURCE_DIR}/src/Mods/Unicast/PrivateWarning.cpp
         ${CMAKE_SOURCE_DIR}/src/Mods/Unicast/ReplayWithSnapshot.cpp
-        ${CMAKE_SOURCE_DIR}/src/Other/LobbyMod.cpp
+        ${CMAKE_SOURCE_DIR}/src/Mods/Unicast/LobbyMod.cpp
         ${CMAKE_SOURCE_DIR}/src/Mods/Unicast/ReconnectChat.cpp)
 
 include_directories(${CMAKE_SOURCE_DIR})
@@ -75,7 +75,7 @@ set_target_properties(${PROJECT_NAME} PROPERTIES
         VERSION ${PROJECT_VERSION}
         SOVERSION 1
         PUBLIC_HEADER
-        "src/Message.hpp;src/Broadcast/DeltaBroadcast.hpp;src/Broadcast/GlobalDebug.hpp;src/Broadcast/LoginGreeting.hpp;src/Broadcast/MatchConfig.hpp;src/Broadcast/MatchFinish.hpp;src/Broadcast/MatchStart.hpp;src/Broadcast/Next.hpp;src/Broadcast/PauseResponse.hpp;src/Broadcast/Replay.hpp;src/Broadcast/Snapshot.hpp;src/Request/ContinueRequest.hpp;src/Request/DeltaRequest.hpp;src/Request/GetReplay.hpp;src/Request/JoinRequest.hpp;src/Request/PauseRequest.hpp;src/Request/SendDebug.hpp;src/Request/TeamConfig.hpp;src/Request/TeamFormation.hpp;src/Unicast/JoinResponse.hpp;src/Unicast/PrivateDebug.hpp;src/Unicast/Reconnect.hpp;src/Common/types.hpp;src/Common/Delta.hpp;src/Lib/json.hpp;src/Util/OptionalSerialization.hpp;src/ReplayMessage.h;src/Mods/Broadcast/GlobalChat.h;src/Mods/Request/GetReplayWithSnapshot.h;src/Mods/Request/SendChat.h;src/Mods/Unicast/PrivateError.h;src/Mods/Unicast/PrivateWarning.h;src/Mods/Unicast/ReplayWithSnapshot.h;src/Other/LobbyMod.hpp;src/Mods/Unicast/ReconnectChat.h")
+        "src/Message.hpp;src/Broadcast/DeltaBroadcast.hpp;src/Broadcast/GlobalDebug.hpp;src/Broadcast/LoginGreeting.hpp;src/Broadcast/MatchConfig.hpp;src/Broadcast/MatchFinish.hpp;src/Broadcast/MatchStart.hpp;src/Broadcast/Next.hpp;src/Broadcast/PauseResponse.hpp;src/Broadcast/Replay.hpp;src/Broadcast/Snapshot.hpp;src/Request/ContinueRequest.hpp;src/Request/DeltaRequest.hpp;src/Request/GetReplay.hpp;src/Request/JoinRequest.hpp;src/Request/PauseRequest.hpp;src/Request/SendDebug.hpp;src/Request/TeamConfig.hpp;src/Request/TeamFormation.hpp;src/Unicast/JoinResponse.hpp;src/Unicast/PrivateDebug.hpp;src/Unicast/Reconnect.hpp;src/Common/types.hpp;src/Common/Delta.hpp;src/Lib/json.hpp;src/Util/OptionalSerialization.hpp;src/ReplayMessage.h;src/Mods/Broadcast/GlobalChat.h;src/Mods/Request/GetReplayWithSnapshot.h;src/Mods/Request/SendChat.h;src/Mods/Unicast/PrivateError.h;src/Mods/Unicast/PrivateWarning.h;src/Mods/Unicast/ReplayWithSnapshot.h;src/Mods/Unicast/LobbyMod.hpp;src/Mods/Unicast/ReconnectChat.h")
 install(TARGETS ${PROJECT_NAME}
         LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}
         PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/SopraMessages)

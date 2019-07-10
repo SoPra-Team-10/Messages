@@ -12,7 +12,7 @@
 
 #include "json.hpp"
 
-namespace communication::messages::mods::other {
+namespace communication::messages::mods::unicast {
     struct LobbyEntry {
         std::string name;
         bool matchStarted;
@@ -36,6 +36,7 @@ namespace communication::messages::mods::other {
 
         bool operator!=(const LobbyMod &rhs) const;
 
+        static auto getName() -> std::string;
     private:
         std::vector<LobbyEntry> lobbies;
     };
